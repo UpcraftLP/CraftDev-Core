@@ -16,10 +16,10 @@ public class CraftDevReference {
 	public static final String VERSION = MAJOR + "." + MINOR + "." + PATCH + "-b" + BUILD;
 	public static final String MODNAME = "CraftDev Core";
 	public static final String MODID = "craftdev-core";
-	public static final String INTERNAL_UPDATE_URL = ""; //TODO: Update-URL
-	public static final String UPDATE_URL = ""; //TODO: CurseForge Page
+	public static final String INTERNAL_UPDATE_URL = "https://raw.githubusercontent.com/UpcraftLP/CraftDev-Core/master/Version.txt";
+	public static final String UPDATE_URL = "https://minecraft.curseforge.com/projects/craftdev-core";
 	public static final String CREDITS = TextFormatting.GOLD + "\u00A9" + Year.now().getValue() + " UpcraftLP";
 	public static final String[] authors = new String[] {"UpcraftLP"};
-	public static final String MOD_DESCRIPTION = TextFormatting.AQUA + "core mod for UpcraftLP's mods";
+	public static final String MOD_DESCRIPTION = TextFormatting.AQUA + "core mod for Upcraft's mods";
 	
 }
