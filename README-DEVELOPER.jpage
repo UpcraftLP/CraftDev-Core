@@ -1,0 +1,13 @@
+/*
+ * Dear Mod Authors,
+ * this is the basic documentation file of the craftdev library.
+ */
+
+General Notes:
+	
+	please ALWAYS add this as dependency-string in your @Mod annotation:
+		"required-after:craftdev-core"
+		
+		Example: @Mod(modid="modid", name="mod", dependencies="required-after:craftdev-core")
+
+	also make sure that CraftDevCore.getCodeBase() returns the same number as the version your mod was built against. Different values SHOULD NOT be supported!

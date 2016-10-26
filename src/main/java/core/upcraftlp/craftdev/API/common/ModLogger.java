@@ -16,4 +16,8 @@ public class ModLogger {
 		this.log.info(output);
 	}
 	
+	public void errFatal(String output) {
+		this.log.fatal(output);
+	}
+	
 }

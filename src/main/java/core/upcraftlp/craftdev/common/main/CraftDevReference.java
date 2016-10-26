@@ -11,7 +11,9 @@ public class CraftDevReference {
 	private static final int MAJOR = 0;
 	private static final int MINOR = 1;
 	private static final int PATCH = 0;
-	private static final int BUILD = 1;
+	public static final int BUILD = 2;
+	
+	public static final int CODEBASE = 1;
 	
 	public static final String VERSION = MAJOR + "." + MINOR + "." + PATCH + "-b" + BUILD;
 	public static final String MODNAME = "CraftDev Core";
