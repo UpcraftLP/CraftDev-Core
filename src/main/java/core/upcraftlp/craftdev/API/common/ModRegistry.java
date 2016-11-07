@@ -1,10 +1,8 @@
 package core.upcraftlp.craftdev.API.common;
 
-import java.io.File;
 import java.util.Map;
 
 import core.upcraftlp.craftdev.common.CoreInternalRegistry;
-import core.upcraftlp.craftdev.common.CoreInternalUpdateChecker;
 import core.upcraftlp.craftdev.common.main.CraftDevCore;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,8 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -31,21 +27,6 @@ public class ModRegistry {
 
 	private static int entityID;
 	
-	public static Configuration getConfigFile(FMLPreInitializationEvent event, String modid) {
-		return new Configuration(new File(event.getModConfigurationDirectory() + File.separator + "craftdevmods" + File.separator + modid + ".cfg"));
-	}
-	
-	/**
-	 * Registers a mod to the update-checker
-	 * @param modid ID of the mod
-	 * @param currentVersion mod's current version
-	 * @param internalUpdateUrl URL to query the version.txt file from
-	 * @param publicUpdateUrl URL to show to users to update the mod
-	 */
-	public static void registerMod(String modid, String currentVersion, String internalUpdateUrl, String publicUpdateUrl) {
-		CoreInternalUpdateChecker.add(modid, currentVersion, internalUpdateUrl, publicUpdateUrl);
-	}
-
 	public static void registerItems(Map<Item, CreativeTabs> items) {
 		CoreInternalRegistry.registerItemsInternally(items);
 	}

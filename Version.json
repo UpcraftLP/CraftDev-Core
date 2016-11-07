@@ -1,0 +1,12 @@
+{
+	"homepage": "https://minecraft.curseforge.com/projects/craftdev-core",
+	"promos": {
+		"1.10.2-latest": "0.2.0-b3",
+		"1.10.2-recommended": "0.2.0-b3"
+	},
+	"1.10.2": {
+		"0.2.0-b3": "* added AbstractPotion template\n",
+		"0.1.0-b2": "* added Coremod validation System \n*added ERROR log-level access\n",
+		"0.1.0-b1": "Initial Release\n"
+	}
+}

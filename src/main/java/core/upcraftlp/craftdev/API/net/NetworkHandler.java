@@ -1,8 +1,10 @@
 package core.upcraftlp.craftdev.API.net;
 
-import core.upcraftlp.craftdev.common.CoreInternalPacketHandler;
+import core.upcraftlp.craftdev.common.main.CraftDevReference;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class NetworkHandler {
@@ -13,8 +15,11 @@ public class NetworkHandler {
 	 * @param message
 	 * @param side
 	 */
+	private static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(CraftDevReference.MODID.toLowerCase());
+	private static int packedID = 0;
+	
 	public static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> handler, Class<REQ> message, Side side) {
-		CoreInternalPacketHandler.add(handler, message, side);
+		INSTANCE.registerMessage(handler, message, packedID++, side);
 	}
 	
 }

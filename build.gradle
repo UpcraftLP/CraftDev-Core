@@ -2,6 +2,7 @@
 // For those who want the bleeding edge
 buildscript {
     repositories {
+		//old gradle on drone.io
         jcenter()
         maven {
             name = "forge"
@@ -20,9 +21,10 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.10.2-0.1.0-b2"
-group= "core.upcraftlp.craftdev" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "craftdev-core"
+
+version = 'modversion'
+group = 'src_package'
+archivesBaseName = 'modname'
 
 sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
 compileJava {
@@ -30,7 +32,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.10.2-12.18.2.2107"
+    version = '12.18.2.2122'
     if(file('../run').exists()) {
 		runDir = "../run"
 	}

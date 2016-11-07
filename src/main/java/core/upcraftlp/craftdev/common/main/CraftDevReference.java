@@ -7,18 +7,11 @@ import net.minecraft.util.text.TextFormatting;
 public class CraftDevReference {
 
 	public static final String MCVERSIONS = "1.10.2,1.9.4";
-	
-	private static final int MAJOR = 0;
-	private static final int MINOR = 1;
-	private static final int PATCH = 0;
-	public static final int BUILD = 2;
-	
-	public static final int CODEBASE = 1;
-	
-	public static final String VERSION = MAJOR + "." + MINOR + "." + PATCH + "-b" + BUILD;
+
+	public static final String VERSION = "0.2.0-b3";
 	public static final String MODNAME = "CraftDev Core";
 	public static final String MODID = "craftdev-core";
-	public static final String INTERNAL_UPDATE_URL = "https://raw.githubusercontent.com/UpcraftLP/CraftDev-Core/master/Version.txt";
+	public static final String UPDATE_JSON = "https://raw.githubusercontent.com/UpcraftLP/CraftDev-Core/master/Version.json";
 	public static final String UPDATE_URL = "https://minecraft.curseforge.com/projects/craftdev-core";
 	public static final String CREDITS = TextFormatting.GOLD + "\u00A9" + Year.now().getValue() + " UpcraftLP";
 	public static final String[] authors = new String[] {"UpcraftLP"};

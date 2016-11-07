@@ -1,0 +1,4 @@
+modname = "craftdev-core"
+src_package = "core.upcraftlp.craftdev"
+forgeVersion = "12.18.2.2122"
+modversion = "0.2.0-b3"

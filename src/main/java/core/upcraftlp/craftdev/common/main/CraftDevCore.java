@@ -3,21 +3,19 @@ package core.upcraftlp.craftdev.common.main;
 import java.util.Arrays;
 
 import core.upcraftlp.craftdev.API.common.ModLogger;
-import core.upcraftlp.craftdev.API.common.ModRegistry;
 import core.upcraftlp.craftdev.common.CoreInternalConfig;
-import core.upcraftlp.craftdev.common.CoreInternalUpdateChecker;
 import core.upcraftlp.craftdev.common.CoreInternalWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(name = CraftDevReference.MODNAME, version = CraftDevReference.VERSION, acceptedMinecraftVersions = CraftDevReference.MCVERSIONS, modid = CraftDevReference.MODID, acceptableRemoteVersions = "*", canBeDeactivated = false)
+@Mod(name = CraftDevReference.MODNAME, version = CraftDevReference.VERSION, acceptedMinecraftVersions = CraftDevReference.MCVERSIONS, modid = CraftDevReference.MODID, acceptableRemoteVersions = "*", canBeDeactivated = false, updateJSON = CraftDevReference.UPDATE_JSON)
 public class CraftDevCore {
 
 	private static final ModLogger utils = new ModLogger(CraftDevReference.MODID);
@@ -36,7 +34,6 @@ public class CraftDevCore {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		CoreInternalConfig.init(event);
-		ModRegistry.registerMod(CraftDevReference.MODID, CraftDevReference.VERSION, CraftDevReference.INTERNAL_UPDATE_URL, CraftDevReference.UPDATE_URL);
 		GameRegistry.registerWorldGenerator(new CoreInternalWorldGenerator(), Integer.MAX_VALUE - 5);
 		if(event.getSide() == Side.CLIENT) {
 			ModMetadata data = event.getModMetadata();
@@ -47,13 +44,13 @@ public class CraftDevCore {
 			data.name = CraftDevReference.MODNAME;
 			data.description = CraftDevReference.MOD_DESCRIPTION;
 			data.url = CraftDevReference.UPDATE_URL;
+			data.updateJSON = CraftDevReference.UPDATE_JSON;
 		}
 		utils.println("Pre-Initialization finished.");
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		CoreInternalUpdateChecker.init();
 		utils.println("Initialization finished.");
 	}
 	

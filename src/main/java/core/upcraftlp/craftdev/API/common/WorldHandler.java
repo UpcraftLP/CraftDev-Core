@@ -7,7 +7,7 @@ import java.util.Map;
 
 import core.upcraftlp.craftdev.API.world.IWorldChunkGenerator;
 
-public class CommonHandler {
+public class WorldHandler {
 
 	private static Map<Integer, List<IWorldChunkGenerator>> generators = new HashMap<Integer, List<IWorldChunkGenerator>>();
 	
