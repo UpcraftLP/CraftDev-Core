@@ -22,14 +22,15 @@ plugins {
 }
 */
 
-version = 'modversion'
-group = 'src_package'
-archivesBaseName = 'modname'
-
 sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
 compileJava {
     sourceCompatibility = targetCompatibility = "1.8"
 }
+
+version = "1.10.2-0.2.0-b3"
+archivesBaseName = "craftdev-core"
+group = "core.upcraftlp.craftdev"
+
 
 minecraft {
     version = '12.18.2.2122'
