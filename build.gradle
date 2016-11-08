@@ -27,7 +27,7 @@ compileJava {
     sourceCompatibility = targetCompatibility = "1.8"
 }
 
-version = "1.10.2-0.2.0-b4"
+version = "1.10.2-0.2.1"
 archivesBaseName = "craftdev-core"
 group = "core.upcraftlp.craftdev"
 
