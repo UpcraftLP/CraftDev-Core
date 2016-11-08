@@ -5,7 +5,7 @@
 		"1.10.2-recommended": "0.2.2"
 	},
 	"1.10.2": {
-		"0.2.2": "* moved API stuff into API package\n* made potions use potion name keys\n",
+		"0.2.2": "* made potions use potion name keys\n",
 		"0.2.1": "* internal changes\n*new Potions!\n",
 		"0.2.0-b4": "* changed AbstractPotion to a regular Potion\n",
 		"0.2.0-b3": "* added AbstractPotion template\n",
