@@ -1,8 +1,6 @@
 package core.upcraftlp.craftdev.common;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -13,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -64,7 +63,7 @@ public class CoreInternalRegistry {
 			
 			//nullcheck to see if itemblock is wanted
 			if(tab != null) {
-				List<ItemStack> stacks = new ArrayList<ItemStack>();
+				NonNullList<ItemStack> stacks = NonNullList.func_191196_a(); //nonnulllist.create() ??
 				Item itemBlock = Item.getItemFromBlock(block);
 				if(itemBlock == null) {
 					itemBlock = new ItemBlock(block);

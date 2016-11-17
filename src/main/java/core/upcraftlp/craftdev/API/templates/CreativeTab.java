@@ -1,14 +1,12 @@
 package core.upcraftlp.craftdev.API.templates;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import core.upcraftlp.craftdev.common.main.CraftDevCore;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -43,7 +41,7 @@ public class CreativeTab extends CreativeTabs {
 			this.displayRandom = true;
 			return;
 		}
-		icon.stackSize = 1;
+		icon.func_190920_e(1); //set stacksize
 		if(icon.getItem() != null) {
 			this.icon = icon;
 		}
@@ -75,7 +73,7 @@ public class CreativeTab extends CreativeTabs {
 		}
 		else
 		{
-			List<ItemStack> itemStacks = new ArrayList<ItemStack>();
+			NonNullList<ItemStack> itemStacks = NonNullList.func_191196_a(); //nonnulllist.create()??
 			this.displayAllRelevantItems(itemStacks);
 			ItemStack toDisplay = itemStacks.get(tempIndex);
 			this.tempDisplayStack = toDisplay;
@@ -85,13 +83,8 @@ public class CreativeTab extends CreativeTabs {
 	}
 	
 	@Override
-	public Item getTabIconItem() {
-		return this.getIconItemStack().getItem();
-	}
-	
-	@Override
-	public int getIconItemDamage() {
-		return this.tempDisplayStack.getItemDamage();
+	public ItemStack getTabIconItem() {
+		return this.getIconItemStack();
 	}
 	
 }

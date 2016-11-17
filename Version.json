@@ -1,8 +1,12 @@
 {
 	"homepage": "https://minecraft.curseforge.com/projects/craftdev-core",
 	"promos": {
+		"1.11-latest": "0.2.3",
 		"1.10.2-latest": "0.2.2",
 		"1.10.2-recommended": "0.2.2"
+	},
+	"1.11": {
+		"0.2.3": "* updated to 1.11!\n"
 	},
 	"1.10.2": {
 		"0.2.2": "* made potions use potion name keys\n",
