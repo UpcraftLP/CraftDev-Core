@@ -27,13 +27,13 @@ compileJava {
     sourceCompatibility = targetCompatibility = "1.8"
 }
 
-version = "1.11-0.2.3"
+version = "1.11-0.3.0"
 archivesBaseName = "craftdev-core"
 group = "core.upcraftlp.craftdev"
 
 
 minecraft {
-    version = '13.19.0.2144'
+    version = '1.11-13.19.0.2157'
     if(file('../run').exists()) {
 		runDir = "../run"
 	}

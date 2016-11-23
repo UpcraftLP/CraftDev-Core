@@ -8,7 +8,7 @@ public class CraftDevReference {
 
 	public static final String MCVERSIONS = "1.11";
 
-	public static final String VERSION = "0.2.3";
+	public static final String VERSION = "0.3.0";
 	public static final String MODNAME = "CraftDev Core";
 	public static final String MODID = "craftdev-core";
 	public static final String UPDATE_JSON = "https://raw.githubusercontent.com/UpcraftLP/CraftDev-Core/master/Version.json";

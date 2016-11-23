@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * Main Registry class.
- * Also keeps track of Mod-Updates.
  * <p></p>
  * <b>Contains:</b>
  * 	<li>Items</li>
@@ -68,19 +67,21 @@ public class ModRegistry {
 	/**
 	 * Register an entity with the specified tracking values.
 	 *
+	 * @param registryName		   A unique Registry name for the entity
 	 * @param entityClass          The entity's class
 	 * @param entityName           The entity's unique name
 	 * @param trackingRange        The range at which MC will send tracking updates
 	 * @param updateFrequency      The frequency of tracking updates
 	 * @param sendsVelocityUpdates Whether to send velocity information packets as well
 	 */
-	public static void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
-		EntityRegistry.registerModEntity(entityClass, entityName, entityID++, CraftDevCore.getInstance(), trackingRange, updateFrequency, sendsVelocityUpdates);
+	public static void registerEntity(ResourceLocation registryName, Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
+		EntityRegistry.registerModEntity(registryName, entityClass, entityName, entityID++, CraftDevCore.getInstance(), trackingRange, updateFrequency, sendsVelocityUpdates);
 	}
 	
 	/**
 	 * Register an entity with the specified tracking values.
 	 *
+	 * @param registryName		   A unique Registry name for the entity
 	 * @param entityClass          The entity's class
 	 * @param entityName           The entity's unique name
 	 * @param trackingRange        The range at which MC will send tracking updates
@@ -89,9 +90,9 @@ public class ModRegistry {
 	 * @param eggPrimary           Spawn Egg primary color
 	 * @param eggSecondary         Spawn Egg secondary color		
 	 */
-	public static void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
-		registerEntity(entityClass, entityName, trackingRange, updateFrequency, sendsVelocityUpdates);
-		EntityRegistry.registerEgg(entityClass, eggPrimary, eggSecondary);
+	public static void registerEntity(ResourceLocation registryName, Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
+		registerEntity(registryName, entityClass, entityName, trackingRange, updateFrequency, sendsVelocityUpdates);
+		EntityRegistry.registerEgg(registryName, eggPrimary, eggSecondary);
 	}
 
 }
