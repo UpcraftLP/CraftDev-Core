@@ -4,12 +4,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import core.upcraftlp.craftdev.API.templates.ItemBlock;
 import core.upcraftlp.craftdev.common.main.CraftDevCore;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
@@ -42,13 +42,18 @@ public class CoreInternalRegistry {
 			CreativeTabs tab = e.getValue();
 			if(block.getRegistryName() != null) {
 				GameRegistry.register(block);
-				if(tab != null) block.setCreativeTab(tab);
+				if(tab != null) {
+					block.setCreativeTab(tab);
+					Item itemBlock;
+					if(block instanceof core.upcraftlp.craftdev.API.templates.Block) itemBlock = ((core.upcraftlp.craftdev.API.templates.Block) block).item();
+					else itemBlock = new ItemBlock(block);
+					GameRegistry.register(itemBlock);
+					}
 			}
 			else
 			{
 				CraftDevCore.getLogger().println("Unable to register " + block + ": no registry name found!");
 			}
-			
 		}
 	}
 	
@@ -65,12 +70,7 @@ public class CoreInternalRegistry {
 			if(tab != null) {
 				NonNullList<ItemStack> stacks = NonNullList.func_191196_a(); //nonnulllist.create() ??
 				Item itemBlock = Item.getItemFromBlock(block);
-				if(itemBlock == null) {
-					itemBlock = new ItemBlock(block);
-					itemBlock.setRegistryName(block.getRegistryName());
-					itemBlock.setUnlocalizedName(block.getUnlocalizedName().substring(5));
-					GameRegistry.register(itemBlock);
-				}
+				
 				block.getSubBlocks(Item.getItemFromBlock(block), tab, stacks);
 				if(stacks.size() > 1) {
 					int meta = 0;

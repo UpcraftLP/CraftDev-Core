@@ -1,10 +1,12 @@
 package core.upcraftlp.craftdev.API.templates;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -21,7 +24,7 @@ public class BlockSilverfish extends Block {
 	protected net.minecraft.block.Block drop;
 	
 	public BlockSilverfish(net.minecraft.block.Block drop) {
-		super(drop.getUnlocalizedName().substring(5) + "_silverfish", Material.CLAY);
+		super(drop.getUnlocalizedName().substring(5) + "_silverfish", Material.CLAY, true);
 		this.setUnlocalizedName(drop.getUnlocalizedName().substring(5));
 		this.setSoundType(SoundType.STONE);
 		this.setHardness(2.0f);
@@ -33,13 +36,11 @@ public class BlockSilverfish extends Block {
 		this.drop = drop;
 	}
 	
-	//FIXME Block Tooltips
-	/*
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+	public void func_190948_a(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+		super.func_190948_a(stack, player, tooltip, advanced);
 		tooltip.add(TextFormatting.GRAY + I18n.format("desc.silverfish.name"));
 	}
-	*/
 	
 	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)

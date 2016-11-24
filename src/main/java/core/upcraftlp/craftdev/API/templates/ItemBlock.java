@@ -9,5 +9,5 @@ public class ItemBlock extends net.minecraft.item.ItemBlock {
 		this.setUnlocalizedName(block.getUnlocalizedName().substring(5));
 		this.setRegistryName(block.getRegistryName());
 	}
-
+	
 }
