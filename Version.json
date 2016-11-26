@@ -1,12 +1,13 @@
 {
 	"homepage": "https://minecraft.curseforge.com/projects/craftdev-core",
 	"promos": {
-		"1.11-latest": "1.0.0",
-		"1.11-recommended": "1.0.0",
+		"1.11-latest": "1.0.1",
+		"1.11-recommended": "1.0.1",
 		"1.10.2-latest": "0.2.2",
 		"1.10.2-recommended": "0.2.2"
 	},
 	"1.11": {
+		"1.0.1": "*updated to latest Forge mappings\n",
 		"1.0.0": "* Finally working release!\n",
 		"0.3.0": "* first stable 1.11 release!\n",
 		"0.2.3": "* updated to 1.11!\n"

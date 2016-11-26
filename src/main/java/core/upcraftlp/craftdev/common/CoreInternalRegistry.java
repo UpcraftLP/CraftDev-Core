@@ -68,7 +68,7 @@ public class CoreInternalRegistry {
 			
 			//nullcheck to see if itemblock is wanted
 			if(tab != null) {
-				NonNullList<ItemStack> stacks = NonNullList.func_191196_a(); //nonnulllist.create() ??
+				NonNullList<ItemStack> stacks = NonNullList.create();
 				Item itemBlock = Item.getItemFromBlock(block);
 				
 				block.getSubBlocks(Item.getItemFromBlock(block), tab, stacks);

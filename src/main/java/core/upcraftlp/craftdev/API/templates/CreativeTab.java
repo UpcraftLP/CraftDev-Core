@@ -41,7 +41,7 @@ public class CreativeTab extends CreativeTabs {
 			this.displayRandom = true;
 			return;
 		}
-		icon.func_190920_e(1); //set stacksize
+		icon.setCount(1);
 		if(icon.getItem() != null) {
 			this.icon = icon;
 		}
@@ -73,7 +73,7 @@ public class CreativeTab extends CreativeTabs {
 		}
 		else
 		{
-			NonNullList<ItemStack> itemStacks = NonNullList.func_191196_a(); //nonnulllist.create()??
+			NonNullList<ItemStack> itemStacks = NonNullList.create();
 			this.displayAllRelevantItems(itemStacks);
 			ItemStack toDisplay = itemStacks.get(tempIndex);
 			this.tempDisplayStack = toDisplay;

@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(name = CraftDevReference.MODNAME, version = CraftDevReference.VERSION, acceptedMinecraftVersions = CraftDevReference.MCVERSIONS, modid = CraftDevReference.MODID, acceptableRemoteVersions = "*", canBeDeactivated = false, updateJSON = CraftDevReference.UPDATE_JSON)
+@Mod(name = CraftDevReference.MODNAME, version = CraftDevReference.VERSION, acceptedMinecraftVersions = CraftDevReference.MCVERSIONS, modid = CraftDevReference.MODID, acceptableRemoteVersions = "*", canBeDeactivated = false, updateJSON = CraftDevReference.UPDATE_JSON, guiFactory = CraftDevReference.GUI_FACTORY)
 public class CraftDevCore {
 
 	private static final ModLogger utils = new ModLogger(CraftDevReference.MODID);

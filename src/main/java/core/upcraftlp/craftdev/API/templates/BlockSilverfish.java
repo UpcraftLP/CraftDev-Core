@@ -37,8 +37,7 @@ public class BlockSilverfish extends Block {
 	}
 	
 	@Override
-	public void func_190948_a(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-		super.func_190948_a(stack, player, tooltip, advanced);
+	public void addInformation(ItemStack stack, net.minecraft.entity.player.EntityPlayer player, List<String> tooltip, boolean advanced) {
 		tooltip.add(TextFormatting.GRAY + I18n.format("desc.silverfish.name"));
 	}
 	
@@ -49,12 +48,12 @@ public class BlockSilverfish extends Block {
 	    {
 			if(chance > 0.0f) {
 				EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.drop, 1));
-				worldIn.spawnEntityInWorld(item);
+				worldIn.spawnEntity(item);
 			}
 			if(worldIn.getDifficulty() != EnumDifficulty.PEACEFUL) {
 				EntitySilverfish entitysilverfish = new EntitySilverfish(worldIn);
 		        entitysilverfish.setLocationAndAngles((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, 0.0F, 0.0F);
-		        worldIn.spawnEntityInWorld(entitysilverfish);
+		        worldIn.spawnEntity(entitysilverfish);
 		        entitysilverfish.spawnExplosionParticle();
 			}
 	    }

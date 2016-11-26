@@ -2,6 +2,7 @@ package core.upcraftlp.craftdev.API.common;
 
 import java.io.File;
 
+import core.upcraftlp.craftdev.common.CoreInternalConfig;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.config.Configuration;
@@ -16,5 +17,9 @@ public class ModHelper {
 	
 	public static Configuration getConfigFile(FMLPreInitializationEvent event, String modid) {
 		return new Configuration(new File(event.getModConfigurationDirectory() + File.separator + "craftdevmods" + File.separator + modid + ".cfg"));
+	}
+	
+	public static boolean isDebugMode() {
+		return CoreInternalConfig.isDebugMode;
 	}
 }
