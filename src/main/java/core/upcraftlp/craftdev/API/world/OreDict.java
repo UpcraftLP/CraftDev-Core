@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+@Deprecated
 @Retention(RetentionPolicy.RUNTIME)
 @Target(FIELD)
 public @interface OreDict {

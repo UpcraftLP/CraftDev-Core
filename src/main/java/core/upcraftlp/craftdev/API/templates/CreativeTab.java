@@ -61,13 +61,13 @@ public class CreativeTab extends CreativeTabs {
     @Override
     public ItemStack getIconItemStack() {
         if ( this.displayTick % 60 == 0 || this.tempDisplayStack == null ) {
-            this.updateDispalyStack();
+            this.updateDisplayStack();
         }
         this.displayTick++;
         return this.tempDisplayStack;
     }
 
-    private void updateDispalyStack() {
+    private void updateDisplayStack() {
         if ( !this.displayRandom ) {
             this.tempDisplayStack = this.icon;
         }
