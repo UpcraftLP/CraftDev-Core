@@ -1,4 +1,20 @@
-tile.alpha_cobblestone.name=Alpha Cobblestone
-item.universal_wrench.name=Universal Wrench
+#PARSE_ESCAPES
+
+#general
 itemGroup.tabCraftDev.name=CraftDev-Core
 config.craftdevcore.name=CraftDev Core
+
+#items and blocks
+item.universal_wrench.name=Universal Wrench
+tile.deco_web.name=Deco Web
+
+#commands
+commands.clearlag.usage=/clearlag <1-5>\n - 1: only bosses\n - 2: all hostile mobs\n - 3: all passive mobs\n - 4: items\n - 5: 1-4 combined
+commands.clearlag.fail.param=%s is not a valid parameter!
+commands.clearlag.success.1=Deleted all bosses! (%s in total)
+commands.clearlag.success.2=Deleted all hostiles! (%s in total)
+commands.clearlag.success.3=Deleted all neutral mobs! (%s in total)
+commands.clearlag.success.4=Deleted all items! (%s in total)
+commands.clearlag.success.5=Success! (additionally deleted %s entities)
+
+commands.loadstructure.usage=/loadStructure <name> <x> <y> <z> [mirrored] [rotation] [ignoreEntities]

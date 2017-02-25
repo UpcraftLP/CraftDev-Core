@@ -21,52 +21,51 @@ import net.minecraft.world.World;
 
 public class BlockSilverfish extends Block {
 
-	protected net.minecraft.block.Block drop;
-	
-	public BlockSilverfish(net.minecraft.block.Block drop) {
-		super(drop.getUnlocalizedName().substring(5) + "_silverfish", Material.CLAY, true);
-		this.setUnlocalizedName(drop.getUnlocalizedName().substring(5));
-		this.setSoundType(SoundType.STONE);
-		this.setHardness(2.0f);
-		this.setResistance(30.0f);
-		this.setDrop(drop);
-	}
-	
-	public void setDrop(net.minecraft.block.Block drop) {
-		this.drop = drop;
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, net.minecraft.entity.player.EntityPlayer player, List<String> tooltip, boolean advanced) {
-		tooltip.add(TextFormatting.GRAY + I18n.format("desc.silverfish.name"));
-	}
-	
-	@Override
-	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
-	{
-		if (!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops"))
-	    {
-			if(chance > 0.0f) {
-				EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.drop, 1));
-				worldIn.spawnEntity(item);
-			}
-			if(worldIn.getDifficulty() != EnumDifficulty.PEACEFUL) {
-				EntitySilverfish entitysilverfish = new EntitySilverfish(worldIn);
-		        entitysilverfish.setLocationAndAngles((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, 0.0F, 0.0F);
-		        worldIn.spawnEntity(entitysilverfish);
-		        entitysilverfish.spawnExplosionParticle();
-			}
-	    }
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(this.drop);
-	}
-	
-	@Override
-	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		if(worldIn.isRemote || player.capabilities.isCreativeMode) return;
-		player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 160));
-	}
+    protected net.minecraft.block.Block drop;
+
+    public BlockSilverfish(net.minecraft.block.Block drop) {
+        super(drop.getUnlocalizedName().substring(5) + "_silverfish", Material.CLAY, true);
+        this.setUnlocalizedName(drop.getUnlocalizedName().substring(5));
+        this.setSoundType(SoundType.STONE);
+        this.setHardness(2.0f);
+        this.setResistance(30.0f);
+        this.setDrop(drop);
+    }
+
+    public void setDrop(net.minecraft.block.Block drop) {
+        this.drop = drop;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, net.minecraft.entity.player.EntityPlayer player, List<String> tooltip, boolean advanced) {
+        tooltip.add(TextFormatting.GRAY + I18n.format("desc.silverfish.name"));
+    }
+
+    @Override
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
+        if ( !worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops") ) {
+            if ( chance > 0.0f ) {
+                EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.drop, 1));
+                worldIn.spawnEntity(item);
+            }
+            if ( worldIn.getDifficulty() != EnumDifficulty.PEACEFUL ) {
+                EntitySilverfish entitysilverfish = new EntitySilverfish(worldIn);
+                entitysilverfish.setLocationAndAngles((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, 0.0F, 0.0F);
+                worldIn.spawnEntity(entitysilverfish);
+                entitysilverfish.spawnExplosionParticle();
+            }
+        }
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        return Item.getItemFromBlock(this.drop);
+    }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+        if ( worldIn.isRemote || player.capabilities.isCreativeMode )
+            return;
+        player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 160));
+    }
 }
