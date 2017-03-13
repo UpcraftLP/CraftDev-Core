@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 /**
  * not really deprecated, but unfinished!
+ * <br/><b>DO NOT USE</b>
  */
 @Beta
 public class StructureLoaderSchematic {

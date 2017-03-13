@@ -26,7 +26,10 @@ public class ServerProxy extends CommonProxy {
     public void serverStarting(FMLServerStartingEvent event) {
         super.serverStarting(event);
     }
-
+    
     @Override
-    public void setScale(Float mobScaleFactor, boolean scalePlayers) { }
+    public void configChanged() {
+        super.configChanged();
+    }
+
 }

@@ -37,5 +37,7 @@ public abstract class CommonProxy {
         event.registerServerCommand(new CommandClearLag());
     }
 
-    public abstract void setScale(Float mobScaleFactor, boolean scalePlayers);
+    public void configChanged() {
+        
+    }
 }

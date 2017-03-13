@@ -2,8 +2,7 @@ package core.upcraftlp.craftdev.API.templates;
 
 import java.util.Random;
 
-import core.upcraftlp.craftdev.common.CraftDevCore;
-import core.upcraftlp.craftdev.init.CraftDevItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -12,18 +11,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CreativeTab extends CreativeTabs {
 
-    private ItemStack icon;
-    private boolean hasSearchBar;
+    protected static final String BACKGROUND_IMAGE_SEARCHBAR = "item_search.png";
+    
+    private ItemStack icon = ItemStack.EMPTY;
+    private boolean hasSearchBar = false;
     private boolean displayRandom = false;
     public Random RANDOM = new Random();
-    private int displayTick = 0;
     private int tempIndex = 0;
-    private ItemStack tempDisplayStack;
+    private ItemStack tempDisplayStack = ItemStack.EMPTY;
 
+    /**
+     * @param label
+     * @param searchBarEnabled if the tab should have a search bar;<br/>this will also automatically set the background texture to <b>{@code item_search.png}</b>
+     */
     public CreativeTab(String label, boolean searchBarEnabled) {
         super(label + ".name");
         this.hasSearchBar = searchBarEnabled;
-        if ( this.hasSearchBar ) this.setBackgroundImageName("item_search.png");
+        if (this.hasSearchBar) this.setBackgroundImageName(BACKGROUND_IMAGE_SEARCHBAR);
     }
 
     /**
@@ -38,18 +42,14 @@ public class CreativeTab extends CreativeTabs {
      */
     @SideOnly(Side.CLIENT)
     public void setIconStack(ItemStack icon) {
-        if ( icon == null ) {
+        if (icon == null || icon.isEmpty()) { // only place where you still have
+            // to check for a null ItemStack
+            // :P
             this.displayRandom = true;
             return;
-        }
-        icon.setCount(1);
-        if ( icon.getItem() != null ) {
+        } else {
+            icon.setCount(1);
             this.icon = icon;
-        }
-        else {
-            this.icon = new ItemStack(CraftDevItems.WRENCH);
-            CraftDevCore.getLogger().println("Tried to register a null value as Item for a CreativeTab, defaulting to " + CraftDevItems.WRENCH.getRegistryName());
-            CraftDevCore.getLogger().println("Details: " + this.toString());
         }
     }
 
@@ -58,30 +58,29 @@ public class CreativeTab extends CreativeTabs {
         return this.hasSearchBar;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public ItemStack getIconItemStack() {
-        if ( this.displayTick % 60 == 0 || this.tempDisplayStack == null ) {
+        if (Minecraft.getSystemTime() % 60 == 0 || this.tempDisplayStack.isEmpty()) {
             this.updateDisplayStack();
         }
-        this.displayTick++;
         return this.tempDisplayStack;
     }
 
     private void updateDisplayStack() {
-        if ( !this.displayRandom ) {
+        if (!this.displayRandom) {
             this.tempDisplayStack = this.icon;
-        }
-        else {
+        } else {
             NonNullList<ItemStack> itemStacks = NonNullList.create();
             this.displayAllRelevantItems(itemStacks);
             ItemStack toDisplay = itemStacks.get(tempIndex);
             this.tempDisplayStack = toDisplay;
             tempIndex++;
-            if ( tempIndex >= itemStacks.size() )
-                tempIndex = 0;
+            if (tempIndex >= itemStacks.size()) tempIndex = 0;
         }
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public ItemStack getTabIconItem() {
         return this.getIconItemStack();

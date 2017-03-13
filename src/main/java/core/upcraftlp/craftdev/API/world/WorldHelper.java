@@ -1,47 +1,73 @@
 package core.upcraftlp.craftdev.API.world;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 
 public class WorldHelper {
 
-    /**
-     * find a grass or dirt block to place the bush on original method from
-     * sky_01, see
-     * http://www.minecraftforum.net/forums/mapping-and-modding/2666351
-     * modified by UpcraftLP.
-     * 
-     * @param world
-     * @param x
-     * @param z
-     * @return the y-value at ground level
-     */
-    public static int getGroundFromAbove(World world, int x, int z, List<Block> soil) {
-        int y = 255;
-        boolean foundGround = false;
-        while (!foundGround && y-- >= 0) {
-            Block blockAt = world.getBlockState(new BlockPos(x, y, z)).getBlock();
-            foundGround = soil.contains(blockAt);
-        }
+	/**
+	 * get the highest suitable block
+	 * @return the y-value of the found block's position, or -1 if no block was found.
+	 */
+    public static int getGroundFromAbove(World world, int x, int z, Block... soil) {
+        int y = 0;
+        MutableBlockPos startPos = new MutableBlockPos(x, 255, z); //maximum build height
+        do {
+            Block blockAt = world.getBlockState(startPos.down(y)).getBlock();
+            for(Block soilToTest : soil) {
+            	if(blockAt == soilToTest) return y;
+            }
+        } while (++y < 255);
 
-        return y;
+        return -1;
     }
 
     /**
-     * find a grass or dirt block to place the bush on original method from
-     * sky_01, see
-     * http://www.minecraftforum.net/forums/mapping-and-modding/2666351
-     * modified by UpcraftLP.
-     * 
-     * @param world
-     * @param pos
-     * @return the y-value at ground level
-     */
-    public static int getGroundFromAbove(World world, BlockPos pos, List<Block> soil) {
+	 * get the highest suitable block
+	 * @return the y-value of the found block's position, or -1 if no block was found.
+	 */
+    public static int getGroundFromAbove(World world, BlockPos pos, Block... soil) {
         return getGroundFromAbove(world, pos.getX(), pos.getZ(), soil);
+    }
+    
+    /**
+	 * get the lowest suitable block
+	 * @return the y-value of the found block's position, or -1 if no block was found.
+	 */
+    public static int getGroundFromBelow(World world, int x, int z, Block... soil) {
+    	int y = 0;
+        MutableBlockPos startPos = new MutableBlockPos(x, 0, z); //minimum build height
+        do {
+            Block blockAt = world.getBlockState(startPos.up(y)).getBlock();
+            for(Block soilToTest : soil) {
+            	if(blockAt == soilToTest) return y;
+            }
+        } while (++y < 255);
+
+        return -1;
+    }
+    
+    /**
+   	 * get the lowest suitable block
+   	 * @return the y-value of the found block's position, or -1 if no block was found.
+   	 */
+    public static int getGroundFromBelow(World world, BlockPos pos, Block... soil) {
+    	return getGroundFromBelow(world, pos.getX(), pos.getZ(), soil);
+    }
+    
+    /**
+     * spawns particles on the respective Side (Client or Server)
+     */
+    public static void spawnParticles(World world, EnumParticleTypes particle, boolean ignoreRangeClient, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters) {
+    	if(!world.isRemote) {
+    		world.spawnParticle(particle, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
+    	}
+    	else {
+    		world.spawnParticle(particle, ignoreRangeClient, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
+    	}
     }
 
 }

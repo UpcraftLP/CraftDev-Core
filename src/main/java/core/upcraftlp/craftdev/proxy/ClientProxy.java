@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import core.upcraftlp.craftdev.client.MobScaleHandler;
 import core.upcraftlp.craftdev.common.CraftDevReference;
+import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -42,12 +43,14 @@ public class ClientProxy extends CommonProxy {
     public void serverStarting(FMLServerStartingEvent event) {
         super.serverStarting(event);
     }
-
+    
     @Override
-    public void setScale(Float mobScaleFactor, boolean scalePlayers) {
+    public void configChanged() {
+        super.configChanged();
+        float mobScaleFactor = CoreInternalConfig.mobScaleFactor;
         boolean enabled = mobScaleFactor > 0.0f;
         MobScaleHandler.isEnabled = enabled;
-        MobScaleHandler.scalePlayers = scalePlayers;
+        MobScaleHandler.scalePlayers = CoreInternalConfig.scalePlayers;
         MobScaleHandler.scale = mobScaleFactor;
         Minecraft.getMinecraft().gameSettings.entityShadows = !enabled;
     }
