@@ -26,7 +26,7 @@ public class CraftDevLoadingPlugin implements IFMLLoadingPlugin {
 
     @Override
     public String getSetupClass() {
-        return null;
+        return CraftDevReference.TRANSFORMER_HOLDER;
     }
 
     @Override
