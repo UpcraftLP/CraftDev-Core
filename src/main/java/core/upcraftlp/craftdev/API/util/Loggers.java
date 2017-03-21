@@ -1,6 +1,7 @@
 package core.upcraftlp.craftdev.API.util;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,10 +20,18 @@ public class Loggers {
 
     public static class ModLogger {
 
+        
+        /**
+         * Factory method to create an{@link ModLogger}
+         */
+        public static ModLogger create(String modid) {
+            return get(modid);
+        }
+        
         private Logger log;
 
-        public ModLogger(String modid) {
-            log = LogManager.getLogger(modid.substring(0, 1).toUpperCase() + modid.substring(1).toLowerCase());
+        private ModLogger(String modid) {
+            log = LogManager.getLogger(modid.toLowerCase(Locale.ROOT));
         }
 
         public void println(String output, Object... params) {

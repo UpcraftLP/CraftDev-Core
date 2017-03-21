@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 @Mod(name = CraftDevReference.MODNAME, version = CraftDevReference.VERSION, acceptedMinecraftVersions = CraftDevReference.MCVERSIONS, modid = CraftDevReference.MODID, acceptableRemoteVersions = "*", canBeDeactivated = false, updateJSON = CraftDevReference.UPDATE_JSON, guiFactory = CraftDevReference.GUI_FACTORY)
 public class CraftDevCore {
 
-    private static final ModLogger log = new ModLogger(CraftDevReference.MODID);
+    private static final ModLogger log = ModLogger.create(CraftDevReference.MODID);
     
     @Mod.Metadata
     public static ModMetadata metaData;
