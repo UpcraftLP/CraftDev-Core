@@ -12,7 +12,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
 
     @Override
@@ -50,6 +53,6 @@ public class ClientProxy extends CommonProxy {
         super.configChanged();
         MobScaleHandler.scalePlayers = CoreInternalConfig.scalePlayers;
         MobScaleHandler.scale = 1.0f - (CoreInternalConfig.mobScaleFactor * 0.2f); // hardcoded maximum of 0.8f
-        Minecraft.getMinecraft().gameSettings.entityShadows = MobScaleHandler.scale == 1.0f;
+        Minecraft.getMinecraft().gameSettings.entityShadows = MobScaleHandler.scale == 1.0f; //disable shadows if the scale is active
     }
 }
