@@ -5,7 +5,7 @@ import java.util.Iterator;
 import org.objectweb.asm.tree.MethodNode;
 
 import core.upcraftlp.craftdev.API.util.asm.ClassTransform;
-import core.upcraftlp.craftdev.ASM.DeobfuscationHelper;
+import core.upcraftlp.craftdev.API.util.asm.DeobfuscationHelper;
 
 public class TweakEnchantHelper extends ClassTransform {
     

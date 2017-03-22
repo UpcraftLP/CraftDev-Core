@@ -44,10 +44,12 @@ public class TransformerUtils  {
         Iterator<MethodNode> methods = cn.methods.iterator();
         log.println("transforming class " + deobfName);
         transformer.transform(methods);
-
+        
         // ASM specific for cleaning up and returning the final bytes for JVM processing.
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
         cn.accept(writer);
+        
+        log.println("successfully transformed " + deobfName + "!");
         return writer.toByteArray();
     }
     

@@ -8,12 +8,12 @@ import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 @IFMLLoadingPlugin.MCVersion("1.11")
 public class CraftDevLoadingPlugin implements IFMLLoadingPlugin {
 
-    private static boolean isDebofuscatedEnvironment;
-
-    public static boolean isDeobfuscationEnabled() {
-        return isDebofuscatedEnvironment;
+    private static boolean runtimeDeobfuscation;
+    
+    public static boolean isDeobfuscatedEnvironment() {
+        return !runtimeDeobfuscation; //yep, this makes sense
     }
-
+    
     @Override
     public String[] getASMTransformerClass() {
         return CraftDevReference.TRANSFORMER_CLASSES;
@@ -31,7 +31,7 @@ public class CraftDevLoadingPlugin implements IFMLLoadingPlugin {
 
     @Override
     public void injectData(Map<String, Object> data) {
-        isDebofuscatedEnvironment = (Boolean) data.get("runtimeDeobfuscationEnabled");
+        runtimeDeobfuscation = (Boolean) data.get("runtimeDeobfuscationEnabled");
     }
 
     @Override

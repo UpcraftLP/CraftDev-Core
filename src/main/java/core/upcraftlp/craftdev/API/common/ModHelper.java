@@ -137,7 +137,7 @@ public class ModHelper {
 	 * @return whether you are in a dev environment or not
 	 */
 	public static boolean isDevEnvironment() {
-		return CraftDevLoadingPlugin.isDeobfuscationEnabled();
+		return CraftDevLoadingPlugin.isDeobfuscatedEnvironment();
 	}
 
 }
