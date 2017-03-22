@@ -1,7 +1,8 @@
 package core.upcraftlp.craftdev.config;
 
-import static core.upcraftlp.craftdev.API.common.ConfigHelper.Categories.*;
-import core.upcraftlp.craftdev.API.common.ModHelper;
+import static core.upcraftlp.craftdev.API.config.ConfigHelper.Categories.*;
+
+import core.upcraftlp.craftdev.API.util.ModHelper;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraftforge.common.config.Configuration;

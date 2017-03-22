@@ -1,7 +1,7 @@
 package core.upcraftlp.craftdev.config;
 
-import core.upcraftlp.craftdev.API.common.AbstractConfigGuiFactory;
-import core.upcraftlp.craftdev.API.common.ConfigHelper;
+import core.upcraftlp.craftdev.API.config.AbstractConfigGuiFactory;
+import core.upcraftlp.craftdev.API.config.ConfigHelper;
 import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;

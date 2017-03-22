@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.common;
+package core.upcraftlp.craftdev.API.util;
 
 import java.io.File;
 
