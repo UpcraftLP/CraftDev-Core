@@ -114,7 +114,15 @@ public class ModHelper {
 	 * get the config File for CraftDev-Mods
 	 */
 	public static Configuration getConfigFile(FMLPreInitializationEvent event, String modid) {
-		return new Configuration(new File(getConfigDir(event), modid + ".cfg"));
+        return new Configuration(new File(getConfigDir(event), modid + ".cfg"), null);
+    }
+	
+	/**
+     * get the config File for CraftDev-Mods
+     * @param version the version of this config file, usually the mod version
+     */
+	public static Configuration getConfigFile(FMLPreInitializationEvent event, String modid, String version) {
+		return new Configuration(new File(getConfigDir(event), modid + ".cfg"), version);
 	}
 
 	/**
