@@ -17,10 +17,10 @@ public class DeathMessageHandler {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingDeath(LivingDeathEvent event) {
-        if ( !CoreInternalConfig.showAllDeaths ) return;
+        if (!CoreInternalConfig.showAllDeaths) return;
         EntityLivingBase entity = event.getEntityLiving();
         World world = entity.getEntityWorld();
-        if ( !world.isRemote && entity.hasCustomName() && !(entity instanceof EntityPlayer) ) {
+        if (!world.isRemote && entity.hasCustomName() && !(entity instanceof EntityPlayer)) {
             // TODO: leave it like this or have the same formatting as players?
             Style formatting = new Style().setColor(TextFormatting.GRAY).setItalic(true);
             world.getMinecraftServer().getPlayerList().sendMessage(entity.getCombatTracker().getDeathMessage().setStyle(formatting));

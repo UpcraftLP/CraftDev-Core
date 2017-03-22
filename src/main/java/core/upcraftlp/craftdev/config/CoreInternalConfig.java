@@ -44,7 +44,7 @@ public class CoreInternalConfig {
         webCrafting = config.getBoolean("web crafting", TWEAKS, true, "en/disbale crafting recipe for cobwebs");
 
         /* CLIENT */
-        mobScaleFactor = config.getFloat("mob scale factor", CLIENT, 1.0f, 0.0f, 1.0f, "custom mob scale factor applied to all living entities (formula: 1.0 - (scale * 0.2f); 0.0 to disable, anything else will also turn entity shadows off); purely visual!");
+        mobScaleFactor = config.getFloat("mob scale factor", CLIENT, 0.0f, 0.0f, 1.0f, "custom mob scale factor applied to all living entities (formula: 1.0 - (scale * 0.2f); 0.0 to disable, anything else will also turn entity shadows off); purely visual!");
         scalePlayers = config.getBoolean("scale Playes", CLIENT, false, "enable/disable scaling for players. Will only take effect if mob scale factor > 0");
         CraftDevCore.proxy.configChanged();
 
