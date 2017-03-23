@@ -26,7 +26,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 /**
  * not really deprecated, but unfinished!
- * <br/><b>DO NOT USE</b>
+ * <br/>
+ * <b>DO NOT USE</b>
  */
 @Beta
 public class StructureLoaderSchematic {
@@ -46,19 +47,19 @@ public class StructureLoaderSchematic {
         InputStream stream = null;
         try {
             File structureFile = new File(structureDir, name + ".schematic");
-            if ( !structureFile.exists() ) {
+            if (!structureFile.exists()) {
                 CraftDevCore.getLogger().errFatal("File not found: " + structureFile.getAbsolutePath());
                 return;
             }
             stream = new FileInputStream(structureFile);
             load(world, pos, stream, settings);
-        }catch (Exception e) {
+        } catch (Exception e) {
             CraftDevCore.getLogger().errFatal("Exception caught: " + e.getMessage());
-        }finally {
+        } finally {
             IOUtils.closeQuietly(stream);
         }
     }
-    
+
     @Deprecated
     @Beta
     public static void loadFromAssets(World world, BlockPos pos, ResourceLocation location, PlacementSettings settings) {
@@ -68,9 +69,9 @@ public class StructureLoaderSchematic {
             String path = location.getResourcePath();
             stream = MinecraftServer.class.getResourceAsStream("/assets/" + id + "/structures/" + path + ".schematic");
             load(world, pos, stream, settings);
-        }catch (Exception e) {
+        } catch (Exception e) {
             CraftDevCore.getLogger().errFatal("Exception caught: " + e.getMessage());
-        }finally {
+        } finally {
             IOUtils.closeQuietly(stream);
         }
     }
@@ -80,17 +81,16 @@ public class StructureLoaderSchematic {
      */
     @Beta
     private static void load(World world, BlockPos pos, InputStream stream, PlacementSettings settings) throws IOException {
-        
+
         /***************************************************************************************/
-        
-        
+
         CraftDevCore.getLogger().errFatal("I TOLD YOU NOT TO USE SCHEMATIC LOADER!");
         CraftDevCore.getLogger().errFatal("Crashing Minecraft NOW");
         CraftDevCore.getLogger().errFatal("This is your fault.");
         FMLCommonHandler.instance().exitJava(1, true); // yep, NEVER EVER
                                                        // CALL THIS METHOD!
         /***************************************************************************************/
-        
+
         NBTTagCompound schematicNBT = CompressedStreamTools.readCompressed(stream);
         short width = schematicNBT.getShort(WIDTH);
         short height = schematicNBT.getShort(HEIGHT);
@@ -102,10 +102,10 @@ public class StructureLoaderSchematic {
 
         // FIXME: actual schematic implementation
         NBTTagCompound templateCompound = new NBTTagCompound();
-        
+
         Template template = new Template();
         template.read(StructureLoaderNBT.fixer.process(FixTypes.STRUCTURE, templateCompound));
-        if ( settings.getIntegrity() < 1.0f ) {
+        if (settings.getIntegrity() < 1.0f) {
             settings.setIntegrity(MathHelper.clamp(settings.getIntegrity(), 0.0f, 1.0f));
             settings.setSeed(world.getSeed());
         }
