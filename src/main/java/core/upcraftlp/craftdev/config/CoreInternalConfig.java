@@ -20,6 +20,7 @@ public class CoreInternalConfig {
     public static boolean chestBreaker;
     public static boolean showAllDeaths;
     public static boolean burningCreepersExplode;
+    public static boolean zomBabiesBurn;
     public static boolean webCrafting;
 
     public static float mobScaleFactor;
@@ -41,6 +42,8 @@ public class CoreInternalConfig {
         chestBreaker = config.getBoolean("chest breaker", TWEAKS, true, "false to prevent double chests from being destroyed as a single chest");
         showAllDeaths = config.getBoolean("show custom deaths", TWEAKS, true, "show death messages of all living entities with custom name");
         burningCreepersExplode = config.getBoolean("fiery creepers", TWEAKS, true, "creepers explode when on fire");
+        zomBabiesBurn = config.getBoolean("ZomBabies burn", TWEAKS, true, "fixes baby zombies not catching fire in sunlight. false to disable");
+        
         webCrafting = config.getBoolean("web crafting", TWEAKS, true, "en/disbale crafting recipe for cobwebs");
 
         /* CLIENT */
