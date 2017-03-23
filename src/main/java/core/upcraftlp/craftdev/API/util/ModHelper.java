@@ -1,6 +1,8 @@
 package core.upcraftlp.craftdev.API.util;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import core.upcraftlp.craftdev.ASM.CraftDevLoadingPlugin;
 import core.upcraftlp.craftdev.common.CraftDevCore;
@@ -11,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -147,5 +150,17 @@ public class ModHelper {
 	public static boolean isDevEnvironment() {
 		return CraftDevLoadingPlugin.isDeobfuscatedEnvironment();
 	}
+	
+	private static final Map<String, Boolean> loadedMods = new HashMap<String, Boolean>();
+
+	/**
+	 * checks if a specific mod id is loaded, caches the result for efficiency
+	 */
+    public static boolean getIsModLoaded(String id) {
+        if(!loadedMods.containsKey(id)) {
+            loadedMods.put(id, Loader.isModLoaded(id));
+        }
+        return loadedMods.get(id);
+    }
 
 }
