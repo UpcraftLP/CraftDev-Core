@@ -11,17 +11,17 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
 
-version = project.mod_version
+version = "${project.minecraft_version}-${project.mod_version}"
 group= project.base_package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.mod_name
 
-sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = project.jvm_version // Need this here so eclipse task generates correctly.
 compileJava {
-    sourceCompatibility = targetCompatibility = "1.8"
+    sourceCompatibility = targetCompatibility = project.jvm_version
 }
 
 minecraft {
-    version = project.forge_version
+    version = "${project.minecraft_version}-${project.forge_version}"
     if(file('../run').exists()) {
 		runDir = "../run"
 	}
@@ -29,38 +29,32 @@ minecraft {
 	{
 		runDir = "run"
 	}
-    
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not always work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
+
     mappings = project.forge_mappings
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    makeObfSourceJar = true
+	
+	replace "@VERSION@", project.mod_version
+    replaceIn "CraftDevReference.java"	
+}
+
+configurations {
+    compile.extendsFrom exportedCompile
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+   
+}
 
-    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
-    // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+sourceSets {
+	
+	main {
+		java {
+			srcDir 'src/main/java'
+		}
+		resources {
+			srcDir 'resources'
+		}
+	}
 }
 
 processResources
@@ -79,6 +73,15 @@ processResources
         
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude 'mcmod.info'		
+    }
+	
+}
+
+jar {
+    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes 'FMLCorePlugin': 'core.upcraftlp.craftdev.ASM.CraftDevLoadingPlugin'
+		attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.google.common.annotations.Beta;
+
 import core.upcraftlp.craftdev.API.structures.ITreeMapping;
 import core.upcraftlp.craftdev.API.structures.TreeType;
 import net.minecraft.util.EnumFacing;
@@ -11,6 +13,10 @@ import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * <b>UNFINISHED, USE AT OWN RISK!</b>
+ */
+@Beta
 public class DecorationHelper {
 
 	/**

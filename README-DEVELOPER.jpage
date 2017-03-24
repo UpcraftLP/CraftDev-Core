@@ -7,8 +7,8 @@ General Notes:
 	
 	Dependencies:
 		please ALWAYS add this as dependency-string in your @Mod annotation:
-		"required-after:craftdev-core"
-		Example: @Mod(modid="modid", name="mod", dependencies="required-after:craftdev-core", updateJSON = "https://raw.githubusercontent.com/UpcraftLP/CraftDev-Core/master/Version.json")
+		"required-after:craftdev-core@[version]" 
+		Example: @Mod(modid="modid", name="mod", dependencies="required-after:craftdev-core@[2.0.0]", updateJSON = "https://raw.githubusercontent.com/UpcraftLP/CraftDev-Core/master/Version.json")
 
 	Versioning:
 		please refer to the Forge Versioning System:

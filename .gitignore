@@ -21,6 +21,7 @@ build
 eclipse
 run
 build
+src/test
 
 
 

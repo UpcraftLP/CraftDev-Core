@@ -10,23 +10,24 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * A wrapper for {@link net.minecraft.item.IItemPropertyGetter} that allows lambdas to be used as implementations.
+ * A wrapper for {@link net.minecraft.item.IItemPropertyGetter} that allows
+ * lambdas to be used as implementations.
  * <p>
  *
  * @author Choonster
  * @see "MeshDefinitionFix"
  */
 public interface IItemPropertyGetterFix extends IItemPropertyGetter {
-	@SideOnly(Side.CLIENT)
-	float applyPropertyGetter(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn);
+    @SideOnly(Side.CLIENT)
+    float applyPropertyGetter(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn);
 
-	static IItemPropertyGetterFix create(IItemPropertyGetterFix lambda) {
-		return lambda;
-	}
+    static IItemPropertyGetterFix create(IItemPropertyGetterFix lambda) {
+        return lambda;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	default float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-		return applyPropertyGetter(stack, worldIn, entityIn);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    default float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+        return applyPropertyGetter(stack, worldIn, entityIn);
+    }
 }
