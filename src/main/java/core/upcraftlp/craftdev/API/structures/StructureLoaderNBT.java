@@ -34,10 +34,10 @@ public class StructureLoaderNBT {
             stream = MinecraftServer.class.getResourceAsStream("/assets/" + id + "/structures/" + path + ".nbt");
             load(world, pos, stream, settings);
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             CraftDevCore.getLogger().errFatal("Resource not found: " + location.toString());
             return false;
-        }finally {
+        } finally {
             IOUtils.closeQuietly(stream);
         }
     }
@@ -46,19 +46,18 @@ public class StructureLoaderNBT {
         InputStream stream = null;
         try {
             File structureFile = new File(structureDir, name + ".nbt");
-            if ( !structureFile.exists() ) {
+            if (!structureFile.exists()) {
                 CraftDevCore.getLogger().errFatal("File not found: " + structureFile.getAbsolutePath());
                 return false;
-            }
-            else {
+            } else {
                 stream = new FileInputStream(structureFile);
                 load(world, pos, stream, settings);
                 return true;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             CraftDevCore.getLogger().errFatal("Exception caught: " + e.getMessage());
             return false;
-        }finally {
+        } finally {
             IOUtils.closeQuietly(stream);
         }
     }
@@ -67,7 +66,7 @@ public class StructureLoaderNBT {
         NBTTagCompound templateCompound = CompressedStreamTools.readCompressed(stream);
         Template template = new Template();
         template.read(fixer.process(FixTypes.STRUCTURE, templateCompound));
-        if ( settings.getIntegrity() < 1.0f ) {
+        if (settings.getIntegrity() < 1.0f) {
             settings.setIntegrity(MathHelper.clamp(settings.getIntegrity(), 0.0f, 1.0f));
             settings.setSeed(world.getSeed());
         }
@@ -79,7 +78,7 @@ public class StructureLoaderNBT {
     }
 
     public static void setStructureDir(File dir) {
-        if ( !dir.exists() ) dir.mkdirs();
+        if (!dir.exists()) dir.mkdirs();
         structureDir = dir;
     }
 }

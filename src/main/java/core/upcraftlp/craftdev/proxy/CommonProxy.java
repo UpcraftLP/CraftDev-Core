@@ -6,6 +6,7 @@ import core.upcraftlp.craftdev.API.structures.StructureLoaderNBT;
 import core.upcraftlp.craftdev.API.structures.StructureLoaderSchematic;
 import core.upcraftlp.craftdev.API.util.ModHelper;
 import core.upcraftlp.craftdev.commands.CommandClearLag;
+import core.upcraftlp.craftdev.commands.CommandLoadSchematic;
 import core.upcraftlp.craftdev.commands.CommandLoadStructure;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import core.upcraftlp.craftdev.init.CraftDevCrafting;
@@ -25,21 +26,24 @@ public abstract class CommonProxy {
         CraftDevCrafting.init();
         CraftDevEvents.init(event.getSide());
     }
-    
+
     public void init(FMLInitializationEvent event) {
-        
+
     }
-    
+
     public void postInit(FMLPostInitializationEvent event) {
-        
+
     }
-    
+
     public void serverStarting(FMLServerStartingEvent event) {
-        if ( ModHelper.isDebugMode() || ModHelper.isDevEnvironment() ) event.registerServerCommand(new CommandLoadStructure());
+        if (ModHelper.isDebugMode() || ModHelper.isDevEnvironment()) {
+            event.registerServerCommand(new CommandLoadStructure());
+            event.registerServerCommand(new CommandLoadSchematic());
+        }
         event.registerServerCommand(new CommandClearLag());
     }
 
     public void configChanged() {
-        
+
     }
 }

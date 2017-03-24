@@ -18,3 +18,4 @@ commands.clearlag.success.4=Deleted all items! (%s in total)
 commands.clearlag.success.5=Success! (additionally deleted %s entities)
 
 commands.loadstructure.usage=/loadStructure <name> <x> <y> <z> [mirrored] [rotation] [ignoreEntities]
+commands.loadschematic.usage=/loadSchematic <name> <x> <y> <z> [mirrored] [rotation] [ignoreEntities]
