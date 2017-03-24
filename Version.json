@@ -3,8 +3,8 @@
 	"promos": {
 		"1.11.2-latest": "1.1.0",
 		"1.11.2-recommended": "1.1.0",
-		"1.11-latest": "1.0.2",
-		"1.11-recommended": "1.0.2",
+		"1.11-latest": "2.0.0",
+		"1.11-recommended": "2.0.0",
 		"1.10.2-latest": "0.2.2",
 		"1.10.2-recommended": "0.2.2"
 	},
@@ -12,6 +12,7 @@
 		"1.1.0": "* First 1.11.2 Release\n"
 	},
 	"1.11": {
+		"2.0.0": "*great refactorings!\n* added some vanilla tweaks (configurable)\n* now featuring an API that's useful ;)\n*added an ItemEnchantabilityEvent\n  UPDATE RECOMMENDED!\n",
 		"1.0.2": "* Fixed EventHandlers to remove unnecessary console spam\n*Updated to latest Forge Version (1.11 - 13.19.1.2199)\n",
 		"1.0.1": "*updated to latest Forge mappings\n",
 		"1.0.0": "* Finally working release!\n",
