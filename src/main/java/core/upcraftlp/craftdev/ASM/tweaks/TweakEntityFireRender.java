@@ -1,6 +1,8 @@
 package core.upcraftlp.craftdev.ASM.tweaks;
 
-import static org.objectweb.asm.Opcodes.*;
+import static org.objectweb.asm.Opcodes.FMUL;
+import static org.objectweb.asm.Opcodes.FSTORE;
+import static org.objectweb.asm.Opcodes.GETSTATIC;
 
 import java.util.Iterator;
 
@@ -24,7 +26,6 @@ public class TweakEntityFireRender extends ClassTransform {
         while(methods.hasNext()) {
             MethodNode node = methods.next();
             if(node.name.equals(name)) {
-                log.println("transforming fire render...");
                 for(int i = 0; i < node.instructions.size(); i++) {
                     AbstractInsnNode current = node.instructions.get(i);
                     
@@ -52,5 +53,5 @@ public class TweakEntityFireRender extends ClassTransform {
     public String getDeobfClassName() {
         return DeobfuscationHelper.Entity_Render;
     }
-
+    
 }

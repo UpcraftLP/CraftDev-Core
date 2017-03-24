@@ -26,8 +26,6 @@ public abstract class DeobfuscationHelper {
     }
 
     public static final String EnchantmentHelper = "net.minecraft.enchantment.EnchantmentHelper";
-    public static final String EnchantmentHelper_Sig = "(Lnet/minecraft/item/ItemStack;I)I";
-    
     public static final String Entity_Render = "net.minecraft.client.renderer.entity.Render";
 
     @Nullable
