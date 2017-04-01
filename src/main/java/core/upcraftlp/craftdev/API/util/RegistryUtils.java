@@ -3,6 +3,7 @@ package core.upcraftlp.craftdev.API.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import core.upcraftlp.craftdev.API.templates.ItemBlock;
 import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.block.Block;
@@ -27,6 +28,7 @@ public class RegistryUtils {
     public static <T extends IForgeRegistryEntry<T>> void createRegistryEntries(Class<T> type, RegistryEvent.Register<T> event, Class clazz, String modid, CreativeTabs tab) {
         ModLogger log = Loggers.get(modid);
         int count = 0;
+        boolean isClient = FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
         for (Field f : clazz.getDeclaredFields()) {
             if (IForgeRegistryEntry.class.isAssignableFrom(f.getType())) {
                 try {
@@ -41,11 +43,19 @@ public class RegistryUtils {
                     } else if (Block.class.isAssignableFrom(type)) {
                         Block block = (Block) entry;
                         block.setCreativeTab(tab);
-                        if (core.upcraftlp.craftdev.API.templates.Block.class.isAssignableFrom(type)) {
+                        if (core.upcraftlp.craftdev.API.templates.Block.class.isInstance(type)) {
                             final Item item = ((core.upcraftlp.craftdev.API.templates.Block) block).item();
-                            GameRegistry.register(item);
-                            if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) registerRender(item);
+                            if(item != null) {
+                                GameRegistry.register(item);
+                                count++;
+                                if (isClient) registerRender(item);
+                            }
+                        }
+                        else {
+                            Item itemBlock = new ItemBlock(block);
+                            GameRegistry.register(itemBlock);
                             count++;
+                            if(isClient) registerRender(itemBlock);
                         }
                     }
                 } catch (Exception ignore) {

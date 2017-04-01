@@ -18,7 +18,7 @@ public class Block extends net.minecraft.block.Block {
     }
 
     public net.minecraft.item.Item item() {
-        return this.item != null ? this.item : Item.getItemFromBlock(this);
+        return this.item;
     }
 
 }
