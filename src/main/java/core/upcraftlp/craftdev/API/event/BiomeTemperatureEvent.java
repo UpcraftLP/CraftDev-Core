@@ -1,5 +1,6 @@
 package core.upcraftlp.craftdev.API.event;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.BiomeEvent;
@@ -13,10 +14,16 @@ import net.minecraftforge.event.terraingen.BiomeEvent;
 public class BiomeTemperatureEvent extends BiomeEvent {
 
     private float temperature;
+    private BlockPos pos;
     
-    public BiomeTemperatureEvent(Biome biome, float f) {
+    public BiomeTemperatureEvent(Biome biome, BlockPos posIn, float temperatureIn) {
         super(biome);
-        this.temperature = f;
+        this.temperature = temperatureIn;
+        this.pos = posIn;
+    }
+    
+    public BlockPos getPos() {
+        return this.pos;
     }
     
     public float getTemperature() {

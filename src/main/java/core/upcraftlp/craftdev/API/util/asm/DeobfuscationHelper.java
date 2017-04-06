@@ -24,7 +24,7 @@ public abstract class DeobfuscationHelper {
         deobfNames.put("prepareScale", "func_188322_c");
         deobfNames.put("renderEntityOnFire", "func_76977_a");
         
-        deobfNames.put("getTemperature", "func_185353_n");
+        deobfNames.put("getFloatTemperature", "func_180626_a");
         deobfNames.put("temperature", "field_185415_d");
     }
 
