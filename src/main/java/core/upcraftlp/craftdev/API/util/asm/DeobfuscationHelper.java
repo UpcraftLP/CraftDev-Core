@@ -23,10 +23,14 @@ public abstract class DeobfuscationHelper {
         
         deobfNames.put("prepareScale", "func_188322_c");
         deobfNames.put("renderEntityOnFire", "func_76977_a");
+        
+        deobfNames.put("getTemperature", "func_185353_n");
+        deobfNames.put("temperature", "field_185415_d");
     }
 
     public static final String EnchantmentHelper = "net.minecraft.enchantment.EnchantmentHelper";
     public static final String Entity_Render = "net.minecraft.client.renderer.entity.Render";
+    public static final String Biome = "net.minecraft.world.biome.Biome";
 
     @Nullable
     public static String getName(String name) {
