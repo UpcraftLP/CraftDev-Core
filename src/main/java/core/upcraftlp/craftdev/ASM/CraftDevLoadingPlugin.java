@@ -5,7 +5,7 @@ import java.util.Map;
 import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
-@IFMLLoadingPlugin.MCVersion("1.11")
+@IFMLLoadingPlugin.MCVersion("1.11.2")
 public class CraftDevLoadingPlugin implements IFMLLoadingPlugin {
 
     private static boolean runtimeDeobfuscation;
