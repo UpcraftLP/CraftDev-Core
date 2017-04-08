@@ -3,7 +3,6 @@ package core.upcraftlp.craftdev.ASM;
 import java.util.Map;
 
 import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
-import core.upcraftlp.craftdev.API.util.asm.ClassTransform;
 import core.upcraftlp.craftdev.API.util.asm.TransformerUtils;
 import core.upcraftlp.craftdev.ASM.tweaks.TweakBiome;
 import core.upcraftlp.craftdev.ASM.tweaks.TweakEnchantHelper;
@@ -11,18 +10,14 @@ import core.upcraftlp.craftdev.ASM.tweaks.TweakEntityFireRender;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook {
 
     static {
         new TweakEnchantHelper();
         new TweakBiome();
+        new TweakEntityFireRender();
     }
-    
-    @SideOnly(Side.CLIENT)
-    public static final ClassTransform RENDERLIVING_TRANSFORM = new TweakEntityFireRender(); //needs to be done this way because of the annotation
     
     private static final ModLogger log = CraftDevCore.getLogger();
 
