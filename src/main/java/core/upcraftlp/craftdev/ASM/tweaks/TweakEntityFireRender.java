@@ -14,10 +14,7 @@ import org.objectweb.asm.tree.VarInsnNode;
 
 import core.upcraftlp.craftdev.API.util.asm.ClassTransform;
 import core.upcraftlp.craftdev.API.util.asm.DeobfuscationHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public class TweakEntityFireRender extends ClassTransform {
 
     @Override
