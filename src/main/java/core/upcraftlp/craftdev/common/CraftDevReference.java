@@ -4,7 +4,7 @@ import java.time.Year;
 
 public class CraftDevReference {
 
-    public static final String MCVERSIONS = "[1.11]";
+    public static final String MCVERSIONS = "[1.11.2]";
 
     public static final String VERSION = "@VERSION@";
     public static final String MODNAME = "CraftDev Core";

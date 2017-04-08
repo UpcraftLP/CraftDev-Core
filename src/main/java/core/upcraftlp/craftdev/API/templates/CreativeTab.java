@@ -73,7 +73,7 @@ public class CreativeTab extends CreativeTabs {
         } else {
             NonNullList<ItemStack> itemStacks = NonNullList.create();
             this.displayAllRelevantItems(itemStacks);
-            ItemStack toDisplay = itemStacks.get(tempIndex);
+            ItemStack toDisplay = itemStacks.size() > tempIndex ? itemStacks.get(tempIndex) : ItemStack.EMPTY;
             this.tempDisplayStack = toDisplay;
             tempIndex++;
             if (tempIndex >= itemStacks.size()) tempIndex = 0;
