@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class NetworkHandler {
 
-    private static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(CraftDevReference.MODID.toLowerCase());
+    public static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(CraftDevReference.MODID.toLowerCase());
     private static int packedID = 0;
 
     /**
