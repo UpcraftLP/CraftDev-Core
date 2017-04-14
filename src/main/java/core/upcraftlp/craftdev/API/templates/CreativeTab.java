@@ -2,8 +2,13 @@ package core.upcraftlp.craftdev.API.templates;
 
 import java.util.Random;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
@@ -13,10 +18,10 @@ public class CreativeTab extends CreativeTabs {
 
     protected static final String BACKGROUND_IMAGE_SEARCHBAR = "item_search.png";
     
-    private ItemStack icon = ItemStack.EMPTY;
+    @Nonnull private ItemStack icon = ItemStack.EMPTY;
     private boolean hasSearchBar = false;
     private boolean displayRandom = false;
-    public Random RANDOM = new Random();
+    protected Random RANDOM = new Random();
     private int tempIndex = 0;
     private ItemStack tempDisplayStack = ItemStack.EMPTY;
 
@@ -52,14 +57,11 @@ public class CreativeTab extends CreativeTabs {
      * 
      * @param icon
      */
-    public void setIconStack(ItemStack icon) {
-        if (icon == null || icon.isEmpty()) { // only place where you still have to check for a null ItemStack :P
-            this.displayRandom = true;
-            return;
-        } else {
-            icon.setCount(1);
-            this.icon = icon;
-        }
+    public void setIconStack(@Nullable ItemStack icon) {
+        if(icon == null) icon = ItemStack.EMPTY; //only place where you still have to check for a null ItemStack :P
+        icon.setCount(1);
+        this.icon = icon;
+        if (icon.isEmpty()) this.displayRandom = true;
     }
 
     @Override
@@ -77,15 +79,19 @@ public class CreativeTab extends CreativeTabs {
     }
 
     private void updateDisplayStack() {
-        if (!this.displayRandom) {
-            this.tempDisplayStack = this.icon;
-        } else {
+        if (this.displayRandom) {
             NonNullList<ItemStack> itemStacks = NonNullList.create();
             this.displayAllRelevantItems(itemStacks);
             ItemStack toDisplay = itemStacks.size() > tempIndex ? itemStacks.get(tempIndex) : ItemStack.EMPTY;
             this.tempDisplayStack = toDisplay;
             tempIndex++;
             if (tempIndex >= itemStacks.size()) tempIndex = 0;
+        } else {
+            if(this.icon.isEmpty()) {
+                CraftDevCore.getLogger().println("found empty Itemstack for CreativeTab " + this.getTabLabel() + ", defaulting to " + Items.DIAMOND.getRegistryName());
+                this.tempDisplayStack = new ItemStack(Items.DIAMOND);
+            }
+            this.tempDisplayStack = this.icon;
         }
     }
 
