@@ -21,30 +21,40 @@ public class CreativeTab extends CreativeTabs {
     private ItemStack tempDisplayStack = ItemStack.EMPTY;
 
     /**
-     * @param label
+     * @param label the lang key for this tab, the final key will be {@code itemGroup.label.name}
      * @param searchBarEnabled if the tab should have a search bar;<br/>this will also automatically set the background texture to <b>{@code item_search.png}</b>
      */
-    public CreativeTab(String label, boolean searchBarEnabled) {
+    public CreativeTab(String label, boolean searchBarEnabled, ItemStack icon) {
         super(label + ".name");
         this.hasSearchBar = searchBarEnabled;
         if (this.hasSearchBar) this.setBackgroundImageName(BACKGROUND_IMAGE_SEARCHBAR);
+        this.setIconStack(icon);
     }
+    
+    /**
+     * @param label the lang key for this tab, the final key will be {@code itemGroup.label.name}
+     */
+    public CreativeTab(String label) {
+        this(label, false, null);
+    }
+    
+    /**
+     * @param label the lang key for this tab, the final key will be {@code itemGroup.label.name}
+     */
+    public CreativeTab(String label, ItemStack icon) {
+        this(label, false, icon);
+    }
+    
 
     /**
-     * Used to set a Tab's display icon. use null to display a random ITem from
+     * Used to set a CreativeTab's display icon. use null to display a random Item from
      * the Tab's item list.
-     * <p>
-     * </p>
-     * <b>Call this AFTER registering your renders, or the game will crash!</b>
-     * You have been warned.
      * 
      * @param icon
      */
     @SideOnly(Side.CLIENT)
     public void setIconStack(ItemStack icon) {
-        if (icon == null || icon.isEmpty()) { // only place where you still have
-            // to check for a null ItemStack
-            // :P
+        if (icon == null || icon.isEmpty()) { // only place where you still have to check for a null ItemStack :P
             this.displayRandom = true;
             return;
         } else {
