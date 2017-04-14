@@ -52,7 +52,6 @@ public class CreativeTab extends CreativeTabs {
      * 
      * @param icon
      */
-    @SideOnly(Side.CLIENT)
     public void setIconStack(ItemStack icon) {
         if (icon == null || icon.isEmpty()) { // only place where you still have to check for a null ItemStack :P
             this.displayRandom = true;
