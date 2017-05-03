@@ -10,6 +10,13 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
+def username = "${mod_name}"
+if (project.hasProperty('dev_mail')) {
+    username = "${dev_mail}"
+}
+else if(project.hasProperty('dev_username')) {
+    username = "${dev_username}"
+}
 
 version = "${project.minecraft_version}-${project.mod_version}"
 group= project.base_package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -18,6 +25,13 @@ archivesBaseName = project.mod_name
 sourceCompatibility = targetCompatibility = project.jvm_version // Need this here so eclipse task generates correctly.
 compileJava {
     sourceCompatibility = targetCompatibility = project.jvm_version
+}
+
+repositories {
+    maven {
+        //JEI files
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
 }
 
 minecraft {
@@ -34,7 +48,12 @@ minecraft {
     makeObfSourceJar = true
 	
 	replace "@VERSION@", project.mod_version
-    replaceIn "CraftDevReference.java"	
+    replaceIn "CraftDevReference.java"
+
+    clientRunArgs += "--username=${username}"
+    if(project.hasProperty('dev_password')) {
+        clientRunArgs += " --password=${dev_password}"
+    }
 }
 
 configurations {
@@ -42,7 +61,13 @@ configurations {
 }
 
 dependencies {
-   
+
+    //everything in /libs/*
+    //nothing right now
+    //compile fileTree(dir: '${project.core_location}', include: '*.jar', exclude: '*-sources.jar')
+
+    // at runtime, use the full JEI jar (no build dependency, this is for testing purposes ONLY!
+    runtime "mezz.jei:jei_${project.minecraft_version}:${project.jei_version}"
 }
 
 sourceSets {
