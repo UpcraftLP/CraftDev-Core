@@ -1,12 +1,7 @@
 #PARSE_ESCAPES
 
 #general
-itemGroup.tabCraftDev.name=CraftDev-Core
 config.craftdevcore.name=CraftDev Core
-
-#items and blocks
-item.universal_wrench.name=Universal Wrench
-tile.deco_web.name=Deco Web
 
 #commands
 commands.clearlag.usage=/clearlag <1-5>\n - 1: only bosses\n - 2: all hostile mobs\n - 3: all passive mobs\n - 4: items\n - 5: 1-4 combined
