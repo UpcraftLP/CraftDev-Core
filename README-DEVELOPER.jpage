@@ -13,3 +13,8 @@ General Notes:
 	Versioning:
 		please refer to the Forge Versioning System:
 		URL: "http://mcforge.readthedocs.io/en/latest/conventions/versioning/"
+
+	Core Mod:
+	    CraftDev-Core contains a coremod, which requires an additional commandline parameter.
+	    Simply add the following line to your program arguments:
+	    -Dfml.coreMods.load=core.upcraftlp.craftdev.ASM.CraftDevLoadingPlugin
