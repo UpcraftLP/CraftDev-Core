@@ -32,6 +32,17 @@ repositories {
         //JEI files
         url = "http://dvs1.progwml6.com/files/maven"
     }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "http://modmaven.k-4u.nl"
+    }
+
+    maven {
+        //fallback for almost everything, this is CurseForge :P
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
 }
 
 minecraft {
@@ -61,10 +72,6 @@ configurations {
 }
 
 dependencies {
-
-    //everything in /libs/*
-    //nothing right now
-    //compile fileTree(dir: '${project.core_location}', include: '*.jar', exclude: '*-sources.jar')
 
     // at runtime, use the full JEI jar (no build dependency, this is for testing purposes ONLY!
     runtime "mezz.jei:jei_${project.minecraft_version}:${project.jei_version}"

@@ -1,7 +1,5 @@
 package core.upcraftlp.craftdev.config;
 
-import static core.upcraftlp.craftdev.API.config.ConfigHelper.Categories.*;
-
 import core.upcraftlp.craftdev.API.util.ModHelper;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import core.upcraftlp.craftdev.common.CraftDevReference;
@@ -10,6 +8,8 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEve
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import static core.upcraftlp.craftdev.API.config.ConfigHelper.Categories.*;
 
 @EventBusSubscriber(modid = CraftDevReference.MODID)
 public class CoreInternalConfig {
@@ -44,7 +44,7 @@ public class CoreInternalConfig {
         burningCreepersExplode = config.getBoolean("fiery creepers", TWEAKS, true, "creepers explode when on fire");
         zomBabiesBurn = config.getBoolean("ZomBabies burn", TWEAKS, true, "fixes baby zombies not catching fire in sunlight. false to disable");
         
-        webCrafting = config.getBoolean("web crafting", TWEAKS, true, "en/disbale crafting recipe for cobwebs");
+        webCrafting = config.getBoolean("web crafting", TWEAKS, true, "en/disbale crafting recipe for cobwebs; GAME MUST BE RESTARTED FOR THIS TO TAKE EFFECT");
 
         /* CLIENT */
         mobScaleFactor = config.getFloat("mob scale factor", CLIENT, 0.0f, 0.0f, 1.0f, "custom mob scale factor applied to all living entities (formula: 1.0 - (scale * 0.2f); 0.0 to disable, anything else will also turn entity shadows off); purely visual!");
