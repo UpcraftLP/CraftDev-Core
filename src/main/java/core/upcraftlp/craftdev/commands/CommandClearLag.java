@@ -71,7 +71,7 @@ public class CommandClearLag extends CommandBase {
             case 4:
                 for(Entity e : entityList) {
                     if(!e.isDead && e instanceof EntityItem) {
-                        count += ((EntityItem) e).getEntityItem().getCount();
+                        count += ((EntityItem) e).getItem().getCount();
                         e.setDead();
                     }
                 }
