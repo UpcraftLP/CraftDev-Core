@@ -7,6 +7,9 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.0.9"
+}
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
@@ -15,7 +18,7 @@ if (project.hasProperty('dev_mail')) {
     username = "${dev_mail}"
 }
 else if(project.hasProperty('dev_username')) {
-    username = "${dev_username}"
+    username = "${project.dev_username}"
 }
 
 version = "${project.minecraft_version}-${project.mod_version}"
@@ -65,20 +68,75 @@ minecraft {
     if(project.hasProperty('dev_password')) {
         clientRunArgs += " --password=${dev_password}"
     }
+    serverRunArgs += "nogui"
+    clientJvmArgs += "-Dfml.coreMods.load=core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin"
+    serverJvmArgs += "-Dfml.coreMods.load=core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin"
 }
 
 configurations {
     compile.extendsFrom exportedCompile
 }
 
+reobf {
+    jar
+}
+
+// API jar
+task apiJar(type: Jar) {
+    from sourceSets.main.output
+    from sourceSets.main.allJava
+    include 'core/upcraftlp/craftdev/api/**'
+    classifier = 'api'
+}
+
+// Javadoc jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+//sign Jar
+task signJar(type: SignJar, dependsOn: reobfJar) {
+    if(project.hasProperty('sign_keyStore')) {
+        keyPass = "${sign_keyPass}"
+        keyStore = "${sign_keyStore}"
+        storePass = "${sign_storePass}"
+        alias = "${sign_alias}"
+    }
+    inputFile = jar.archivePath
+    outputFile = jar.archivePath
+}
+
+jar {
+    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest.mainAttributes(
+            "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+            "Built-On": "${minecraft_version}-${forge_version}",
+            "FMLCorePlugin": "core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin",
+            "FMLCorePluginContainsFMLMod": "true",
+            "ContainedDeps": "${archivesBaseName}-${version}-obfapi.jar",
+            "FMLAT": "${project.mod_name}_at.cfg"
+    )
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
 dependencies {
 
     // at runtime, use the full JEI jar (no build dependency, this is for testing purposes ONLY!
     runtime "mezz.jei:jei_${project.minecraft_version}:${project.jei_version}"
+    tasks.build.dependsOn javadoc, javadocJar, apiJar, signJar
 }
 
 sourceSets {
-	
 	main {
 		java {
 			srcDir 'src/main/java'
@@ -87,6 +145,10 @@ sourceSets {
 			srcDir 'resources'
 		}
 	}
+}
+
+def curseRelations = {
+    //optionalLibrary '' //add curseforge-slug here
 }
 
 processResources
@@ -107,13 +169,53 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'		
     }
-	
+
+    //ATs
+    rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
-jar {
-    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
-    manifest {
-        attributes 'FMLCorePlugin': 'core.upcraftlp.craftdev.ASM.CraftDevLoadingPlugin'
-		attributes 'FMLCorePluginContainsFMLMod': 'true'
+curseforge {
+    if (project.hasProperty('curse_key'))
+        apiKey = project.curse_key
+
+    project {
+        id = "${project.curse_id}"
+        changelog = getChangelogText()
+        releaseType = 'release'
+
+        relations curseRelations
+
+        addArtifact javadocJar
+        addArtifact sourceJar
+        addArtifact apiJar
     }
+}
+
+String getChangelogText() {
+    def changelogFile = new File('changelog.txt')
+    String str = ''
+    if(!changelogFile.exists()) {
+        changelogFile.createNewFile()
+        return str
+    }
+    String separator = '---'
+    int lineCount = 0
+    boolean done = false
+    changelogFile.eachLine {
+        if (done || it == null) {
+            return
+        }
+        if (lineCount < 3) {
+            lineCount++
+            if (it.startsWith(separator)) {
+                return
+            }
+        }
+        if (!it.startsWith(separator)) {
+            str += "$it" + (lineCount < 3 ? ':\n\n' : '\n')
+            return
+        }
+        done = true // once we go past the first version block, parse no more
+    }
+    return str
 }

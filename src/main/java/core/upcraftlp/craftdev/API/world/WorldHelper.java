@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.world;
+package core.upcraftlp.craftdev.api.world;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.EnumParticleTypes;

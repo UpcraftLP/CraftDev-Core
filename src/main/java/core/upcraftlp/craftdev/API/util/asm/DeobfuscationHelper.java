@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.util.asm;
+package core.upcraftlp.craftdev.api.util.asm;
 
 import java.util.Map;
 
@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Maps;
 
-import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
-import core.upcraftlp.craftdev.ASM.CraftDevLoadingPlugin;
+import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
+import core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 
 public abstract class DeobfuscationHelper {

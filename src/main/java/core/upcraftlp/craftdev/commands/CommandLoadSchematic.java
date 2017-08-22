@@ -8,7 +8,7 @@ import java.util.Set;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
-import core.upcraftlp.craftdev.API.structures.StructureLoaderSchematic;
+import core.upcraftlp.craftdev.api.structures.StructureLoaderSchematic;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;

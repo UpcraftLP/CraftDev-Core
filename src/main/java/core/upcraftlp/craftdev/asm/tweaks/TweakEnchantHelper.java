@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.ASM.tweaks;
+package core.upcraftlp.craftdev.asm.tweaks;
 
 import static org.objectweb.asm.Opcodes.*;
 import static org.objectweb.asm.Opcodes.ISTORE;
@@ -11,9 +11,9 @@ import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
-import core.upcraftlp.craftdev.API.event.EnchantabilityEvent;
-import core.upcraftlp.craftdev.API.util.asm.ClassTransform;
-import core.upcraftlp.craftdev.API.util.asm.DeobfuscationHelper;
+import core.upcraftlp.craftdev.api.event.EnchantabilityEvent;
+import core.upcraftlp.craftdev.api.util.asm.ClassTransform;
+import core.upcraftlp.craftdev.api.util.asm.DeobfuscationHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -34,7 +34,7 @@ public class TweakEnchantHelper extends ClassTransform {
                             InsnList toAdd = new InsnList();
                             toAdd.add(new VarInsnNode(ALOAD, 3)); //load the stack
                             toAdd.add(new VarInsnNode(ILOAD, 5)); //load enchantability
-                            toAdd.add(new MethodInsnNode(INVOKESTATIC, "core/upcraftlp/craftdev/ASM/tweaks/TweakEnchantHelper", "getItemEnchantability", "(Lnet/minecraft/item/ItemStack;I)I", false));
+                            toAdd.add(new MethodInsnNode(INVOKESTATIC, "core/upcraftlp/craftdev/asm/tweaks/TweakEnchantHelper", "getItemEnchantability", "(Lnet/minecraft/item/ItemStack;I)I", false));
                             toAdd.add(new VarInsnNode(ISTORE, 5));
                             node.instructions.insert(current, toAdd);
                             break;

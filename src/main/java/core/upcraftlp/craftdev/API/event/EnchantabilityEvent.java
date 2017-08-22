@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.event;
+package core.upcraftlp.craftdev.api.event;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;

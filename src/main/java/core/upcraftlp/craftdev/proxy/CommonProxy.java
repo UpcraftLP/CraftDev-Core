@@ -2,9 +2,9 @@ package core.upcraftlp.craftdev.proxy;
 
 import java.io.File;
 
-import core.upcraftlp.craftdev.API.structures.StructureLoaderNBT;
-import core.upcraftlp.craftdev.API.structures.StructureLoaderSchematic;
-import core.upcraftlp.craftdev.API.util.ModHelper;
+import core.upcraftlp.craftdev.api.structures.StructureLoaderNBT;
+import core.upcraftlp.craftdev.api.structures.StructureLoaderSchematic;
+import core.upcraftlp.craftdev.api.util.ModHelper;
 import core.upcraftlp.craftdev.commands.CommandClearLag;
 import core.upcraftlp.craftdev.commands.CommandLoadSchematic;
 import core.upcraftlp.craftdev.commands.CommandLoadStructure;

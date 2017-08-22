@@ -1,14 +1,14 @@
-package core.upcraftlp.craftdev.API.util.asm;
+package core.upcraftlp.craftdev.api.util.asm;
 
 import java.util.Iterator;
 
 import org.objectweb.asm.tree.MethodNode;
 
-import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
+import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 
 /**
- * Class for doing ASM stuff.
+ * Class for doing asm stuff.
  * just extend this and instantiate it somewhere.
  */
 public abstract class ClassTransform {

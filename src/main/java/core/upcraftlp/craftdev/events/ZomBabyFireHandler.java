@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.google.common.collect.Lists;
 
-import core.upcraftlp.craftdev.API.util.EventHandler;
+import core.upcraftlp.craftdev.api.util.EventHandler;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.monster.EntityHusk;

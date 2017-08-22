@@ -21,6 +21,6 @@ public class CraftDevReference {
     public static final String CLIENT_PROXY = BASE_PACKAGE + ".proxy.ClientProxy";
     public static final String SERVER_PROXY = BASE_PACKAGE + ".proxy.ServerProxy";
 
-    public static final String[] TRANSFORMER_CLASSES = new String[] { BASE_PACKAGE + ".ASM.CraftDevClassTransformer" };
-    public static final String TRANSFORMER_HOLDER = BASE_PACKAGE + ".ASM.CraftDevClassTransformer";
+    public static final String[] TRANSFORMER_CLASSES = new String[] { BASE_PACKAGE + ".asm.CraftDevClassTransformer" };
+    public static final String TRANSFORMER_HOLDER = BASE_PACKAGE + ".asm.CraftDevClassTransformer";
 }

@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.world.gen;
+package core.upcraftlp.craftdev.api.world.gen;
 
 import java.util.Random;
 

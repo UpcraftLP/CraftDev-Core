@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.util.asm;
+package core.upcraftlp.craftdev.api.util.asm;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,7 +9,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 
-import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
+import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 
 public class TransformerUtils  {
@@ -45,7 +45,7 @@ public class TransformerUtils  {
         log.println("transforming class " + deobfName);
         transformer.transform(methods);
         
-        // ASM specific for cleaning up and returning the final bytes for JVM processing.
+        // asm specific for cleaning up and returning the final bytes for JVM processing.
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
         cn.accept(writer);
         

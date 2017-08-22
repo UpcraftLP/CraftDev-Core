@@ -24,3 +24,5 @@ gradle/wrapper/gradle-wrapper\.properties
 /classes/
 
 /src/test/
+
+changelog\.txt

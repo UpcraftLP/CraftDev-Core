@@ -1,9 +1,6 @@
-package core.upcraftlp.craftdev.API.templates;
+package core.upcraftlp.craftdev.api.templates;
 
 import java.util.Random;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.client.Minecraft;
@@ -18,7 +15,7 @@ public class CreativeTab extends CreativeTabs {
 
     protected static final String BACKGROUND_IMAGE_SEARCHBAR = "item_search.png";
     
-    @Nonnull private ItemStack icon = ItemStack.EMPTY;
+    private ItemStack icon = ItemStack.EMPTY;
     private boolean hasSearchBar = false;
     private boolean displayRandom = false;
     protected Random RANDOM = new Random();
@@ -29,39 +26,32 @@ public class CreativeTab extends CreativeTabs {
      * @param label the lang key for this tab, the final key will be {@code itemGroup.label.name}
      * @param searchBarEnabled if the tab should have a search bar;<br/>this will also automatically set the background texture to <b>{@code item_search.png}</b>
      */
-    public CreativeTab(String label, boolean searchBarEnabled, ItemStack icon) {
+    public CreativeTab(String label, boolean searchBarEnabled) {
         super(label + ".name");
         this.hasSearchBar = searchBarEnabled;
-        if (this.hasSearchBar) this.setBackgroundImageName(BACKGROUND_IMAGE_SEARCHBAR);
-        this.setIconStack(icon);
+        if (searchBarEnabled) this.setBackgroundImageName(BACKGROUND_IMAGE_SEARCHBAR);
     }
     
     /**
      * @param label the lang key for this tab, the final key will be {@code itemGroup.label.name}
      */
     public CreativeTab(String label) {
-        this(label, false, null);
-    }
-    
-    /**
-     * @param label the lang key for this tab, the final key will be {@code itemGroup.label.name}
-     */
-    public CreativeTab(String label, ItemStack icon) {
-        this(label, false, icon);
-    }
-    
+        this(label, false);
+    }    
 
     /**
-     * Used to set a CreativeTab's display icon. use null to display a random Item from
+     * Used to set a CreativeTab's display icon. use {@link ItemStack.EMPTY} to display a random Item from
      * the Tab's item list.
      * 
      * @param icon
      */
-    public void setIconStack(@Nullable ItemStack icon) {
-        if(icon == null) icon = ItemStack.EMPTY; //only place where you still have to check for a null ItemStack :P
-        icon.setCount(1);
-        this.icon = icon;
+    public void setIconStack(ItemStack icon) {
         if (icon.isEmpty()) this.displayRandom = true;
+		else {
+			this.displayRandom = false;
+			icon.setCount(1);
+		}
+		this.icon = icon;
     }
 
     @Override
@@ -72,20 +62,22 @@ public class CreativeTab extends CreativeTabs {
     @SideOnly(Side.CLIENT)
     @Override
     public ItemStack getIconItemStack() {
-        if (Minecraft.getSystemTime() % 60 == 0 || this.tempDisplayStack.isEmpty()) {
-            this.updateDisplayStack();
-        }
-        return this.tempDisplayStack;
+			if(this.displayRandom) {
+				if (Minecraft.getSystemTime() % 120 == 0) {
+				this.updateDisplayStack();
+			}
+		return this.tempDisplayStack;
+		}
+		else return this.icon;
     }
 
     private void updateDisplayStack() {
         if (this.displayRandom) {
             NonNullList<ItemStack> itemStacks = NonNullList.create();
             this.displayAllRelevantItems(itemStacks);
-            ItemStack toDisplay = itemStacks.size() > tempIndex ? itemStacks.get(tempIndex) : ItemStack.EMPTY;
+            ItemStack toDisplay = !itemStacks.isEmpty() ? itemStacks.get(tempIndex) : ItemStack.EMPTY;
             this.tempDisplayStack = toDisplay;
-            tempIndex++;
-            if (tempIndex >= itemStacks.size()) tempIndex = 0;
+			if (tempIndex++ >= itemStacks.size()) tempIndex = 0;
         } else {
             if(this.icon.isEmpty()) {
                 CraftDevCore.getLogger().println("found empty Itemstack for CreativeTab " + this.getTabLabel() + ", defaulting to " + Items.DIAMOND.getRegistryName());

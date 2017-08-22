@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.ASM;
+package core.upcraftlp.craftdev.asm;
 
 import java.util.Map;
 

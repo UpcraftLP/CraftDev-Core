@@ -1,6 +1,6 @@
 package core.upcraftlp.craftdev.events;
 
-import core.upcraftlp.craftdev.API.templates.ItemShield;
+import core.upcraftlp.craftdev.api.templates.ItemShield;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;

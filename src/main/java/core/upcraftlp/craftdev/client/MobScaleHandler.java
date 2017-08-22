@@ -1,6 +1,6 @@
 package core.upcraftlp.craftdev.client;
 
-import core.upcraftlp.craftdev.API.util.EventHandler;
+import core.upcraftlp.craftdev.api.util.EventHandler;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderLivingEvent;

@@ -1,6 +1,6 @@
 package core.upcraftlp.craftdev.common;
 
-import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
+import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;

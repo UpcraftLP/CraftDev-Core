@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.config;
+package core.upcraftlp.craftdev.api.config;
 
 import java.util.ArrayList;
 import java.util.List;

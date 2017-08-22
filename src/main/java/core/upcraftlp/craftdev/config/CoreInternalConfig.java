@@ -1,6 +1,6 @@
 package core.upcraftlp.craftdev.config;
 
-import core.upcraftlp.craftdev.API.util.ModHelper;
+import core.upcraftlp.craftdev.api.util.ModHelper;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraftforge.common.config.Configuration;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import static core.upcraftlp.craftdev.API.config.ConfigHelper.Categories.*;
+import static core.upcraftlp.craftdev.api.config.ConfigHelper.Categories.*;
 
 @EventBusSubscriber(modid = CraftDevReference.MODID)
 public class CoreInternalConfig {

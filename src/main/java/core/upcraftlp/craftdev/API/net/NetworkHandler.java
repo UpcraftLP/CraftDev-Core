@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.net;
+package core.upcraftlp.craftdev.api.net;
 
 import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraftforge.fml.common.network.NetworkRegistry;

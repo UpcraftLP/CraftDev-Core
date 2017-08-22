@@ -1,6 +1,6 @@
-package core.upcraftlp.craftdev.API.structures.trees;
+package core.upcraftlp.craftdev.api.structures.trees;
 
-import core.upcraftlp.craftdev.API.structures.ITreeMapping;
+import core.upcraftlp.craftdev.api.structures.ITreeMapping;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
 import net.minecraft.init.Blocks;

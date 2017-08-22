@@ -1,14 +1,14 @@
-package core.upcraftlp.craftdev.ASM;
+package core.upcraftlp.craftdev.asm;
 
 import java.util.*;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
-import core.upcraftlp.craftdev.API.util.asm.TransformerUtils;
-import core.upcraftlp.craftdev.ASM.tweaks.TweakBiome;
-import core.upcraftlp.craftdev.ASM.tweaks.TweakEnchantHelper;
-import core.upcraftlp.craftdev.ASM.tweaks.TweakEntityFireRender;
+import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
+import core.upcraftlp.craftdev.api.util.asm.TransformerUtils;
+import core.upcraftlp.craftdev.asm.tweaks.TweakBiome;
+import core.upcraftlp.craftdev.asm.tweaks.TweakEnchantHelper;
+import core.upcraftlp.craftdev.asm.tweaks.TweakEntityFireRender;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;

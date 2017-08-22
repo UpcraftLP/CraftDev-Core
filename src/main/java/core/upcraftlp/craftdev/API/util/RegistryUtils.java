@@ -1,10 +1,10 @@
-package core.upcraftlp.craftdev.API.util;
+package core.upcraftlp.craftdev.api.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import core.upcraftlp.craftdev.API.templates.ItemBlock;
-import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
+import core.upcraftlp.craftdev.api.templates.ItemBlock;
+import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -43,8 +43,8 @@ public class RegistryUtils {
                     } else if (Block.class.isAssignableFrom(type)) {
                         Block block = (Block) entry;
                         block.setCreativeTab(tab);
-                        if (core.upcraftlp.craftdev.API.templates.Block.class.isInstance(type)) {
-                            final Item item = ((core.upcraftlp.craftdev.API.templates.Block) block).item();
+                        if (core.upcraftlp.craftdev.api.templates.Block.class.isInstance(type)) {
+                            final Item item = ((core.upcraftlp.craftdev.api.templates.Block) block).item();
                             if(item != null) {
                                 GameRegistry.register(item);
                                 count++;

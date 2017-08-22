@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.structures;
+package core.upcraftlp.craftdev.api.structures;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

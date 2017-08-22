@@ -1,10 +1,10 @@
-package core.upcraftlp.craftdev.API.util;
+package core.upcraftlp.craftdev.api.util;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import core.upcraftlp.craftdev.ASM.CraftDevLoadingPlugin;
+import core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import net.minecraft.entity.Entity;

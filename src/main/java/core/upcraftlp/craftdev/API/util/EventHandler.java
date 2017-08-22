@@ -1,11 +1,11 @@
-package core.upcraftlp.craftdev.API.util;
+package core.upcraftlp.craftdev.api.util;
 
 import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import core.upcraftlp.craftdev.API.util.Loggers.ModLogger;
+import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventBus;

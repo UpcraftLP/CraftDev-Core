@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.structures;
+package core.upcraftlp.craftdev.api.structures;
 
 import java.io.File;
 import java.io.FileInputStream;

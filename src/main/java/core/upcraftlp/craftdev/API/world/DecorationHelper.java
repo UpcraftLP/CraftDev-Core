@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.world;
+package core.upcraftlp.craftdev.api.world;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Random;
 
 import com.google.common.annotations.Beta;
 
-import core.upcraftlp.craftdev.API.structures.ITreeMapping;
-import core.upcraftlp.craftdev.API.structures.TreeType;
+import core.upcraftlp.craftdev.api.structures.ITreeMapping;
+import core.upcraftlp.craftdev.api.structures.TreeType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;

@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.event;
+package core.upcraftlp.craftdev.api.event;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;

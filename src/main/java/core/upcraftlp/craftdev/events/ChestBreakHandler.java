@@ -1,6 +1,6 @@
 package core.upcraftlp.craftdev.events;
 
-import core.upcraftlp.craftdev.API.util.EventHandler;
+import core.upcraftlp.craftdev.api.util.EventHandler;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.state.IBlockState;

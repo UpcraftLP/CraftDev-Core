@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.ASM.tweaks;
+package core.upcraftlp.craftdev.asm.tweaks;
 
 import static org.objectweb.asm.Opcodes.FMUL;
 import static org.objectweb.asm.Opcodes.FSTORE;
@@ -12,8 +12,8 @@ import org.objectweb.asm.tree.InsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
-import core.upcraftlp.craftdev.API.util.asm.ClassTransform;
-import core.upcraftlp.craftdev.API.util.asm.DeobfuscationHelper;
+import core.upcraftlp.craftdev.api.util.asm.ClassTransform;
+import core.upcraftlp.craftdev.api.util.asm.DeobfuscationHelper;
 
 public class TweakEntityFireRender extends ClassTransform {
 

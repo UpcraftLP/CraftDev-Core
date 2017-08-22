@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.API.templates;
+package core.upcraftlp.craftdev.api.templates;
 
 import java.util.List;
 import java.util.Random;

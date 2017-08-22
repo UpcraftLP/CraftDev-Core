@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.ASM.tweaks;
+package core.upcraftlp.craftdev.asm.tweaks;
 
 import static org.objectweb.asm.Opcodes.ALOAD;
 import static org.objectweb.asm.Opcodes.FRETURN;
@@ -13,9 +13,9 @@ import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
-import core.upcraftlp.craftdev.API.event.BiomeTemperatureEvent;
-import core.upcraftlp.craftdev.API.util.asm.ClassTransform;
-import core.upcraftlp.craftdev.API.util.asm.DeobfuscationHelper;
+import core.upcraftlp.craftdev.api.event.BiomeTemperatureEvent;
+import core.upcraftlp.craftdev.api.util.asm.ClassTransform;
+import core.upcraftlp.craftdev.api.util.asm.DeobfuscationHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,7 +40,7 @@ public class TweakBiome extends ClassTransform {
                         InsnList toAdd = new InsnList();
                         toAdd.add(new VarInsnNode(ALOAD, 0));
                         toAdd.add(new VarInsnNode(ALOAD, 1));
-                        toAdd.add(new MethodInsnNode(INVOKESTATIC, "core/upcraftlp/craftdev/ASM/tweaks/TweakBiome", "getBiomeTemperature", "(FLnet/minecraft/world/biome/Biome;Lnet/minecraft/util/math/BlockPos;)F", false));
+                        toAdd.add(new MethodInsnNode(INVOKESTATIC, "core/upcraftlp/craftdev/asm/tweaks/TweakBiome", "getBiomeTemperature", "(FLnet/minecraft/world/biome/Biome;Lnet/minecraft/util/math/BlockPos;)F", false));
                         node.instructions.insertBefore(current, toAdd);
                         i += 3;
                     }
