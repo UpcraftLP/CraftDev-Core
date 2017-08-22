@@ -192,14 +192,14 @@ curseforge {
         changelog = getChangelogText()
         releaseType = 'release'
 
-        relations curseRelations
+        //relations curseRelations //TODO uncomment this when adding curse relations
 
         addArtifact javadocJar
         addArtifact sourceJar
         addArtifact apiJar
 
         mainArtifact(jar) {
-            displayName = "CraftDev-Core v${version} MC${minecraft_version}"
+            displayName = "CraftDev-Core v${project.mod_version} MC${minecraft_version}"
         }
     }
 }
