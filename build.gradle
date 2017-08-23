@@ -127,6 +127,7 @@ jar {
             "ContainedDeps": "${archivesBaseName}-${version}-obfapi.jar",
             "FMLAT": "${project.mod_name}_at.cfg"
     )
+    classifier = 'universal'
 }
 
 if (JavaVersion.current().isJava8Compatible()) {
