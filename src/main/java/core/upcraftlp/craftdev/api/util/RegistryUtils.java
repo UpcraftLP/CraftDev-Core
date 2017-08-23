@@ -3,7 +3,7 @@ package core.upcraftlp.craftdev.api.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import core.upcraftlp.craftdev.api.templates.ItemBlock;
+import core.upcraftlp.craftdev.api.item.ItemBlock;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,34 +30,32 @@ public class RegistryUtils {
     public static <T extends IForgeRegistryEntry<T>> void createRegistryEntries(Class<T> type, RegistryEvent.Register<T> event, Class clazz, String modid, CreativeTabs tab) {
         Logger log = LogManager.getLogger(modid);
         int count = 0;
-        boolean isClient = FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
         for (Field f : clazz.getDeclaredFields()) {
             if (IForgeRegistryEntry.class.isAssignableFrom(f.getType())) {
                 try {
                     T entry = (T) f.get(null);
-                    // event.getRegistry().register(entry); //FIXME why does this not work?
-                    GameRegistry.register(entry);
+                    GameRegistry.register(entry); //TODO in 1.12: change to Event#getRegistry()
                     count++;
                     if (Item.class.isAssignableFrom(type)) {
                         Item item = (Item) entry;
                         item.setCreativeTab(tab);
-                        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) registerRender(item);
+                        CraftDevCore.proxy.registerRender(item);
                     } else if (Block.class.isAssignableFrom(type)) {
                         Block block = (Block) entry;
                         block.setCreativeTab(tab);
-                        if (core.upcraftlp.craftdev.api.templates.Block.class.isInstance(type)) {
-                            final Item item = ((core.upcraftlp.craftdev.api.templates.Block) block).item();
+                        if (core.upcraftlp.craftdev.api.block.Block.class.isInstance(type)) {
+                            final Item item = ((core.upcraftlp.craftdev.api.block.Block) block).item();
                             if(item != null) {
                                 GameRegistry.register(item);
                                 count++;
-                                if (isClient) registerRender(item);
+                                CraftDevCore.proxy.registerRender(item);
                             }
                         }
                         else {
                             Item itemBlock = new ItemBlock(block);
                             GameRegistry.register(itemBlock);
                             count++;
-                            if(isClient) registerRender(itemBlock);
+                            CraftDevCore.proxy.registerRender(itemBlock);
                         }
                     }
                 } catch (Exception ignore) {
@@ -67,17 +66,4 @@ public class RegistryUtils {
         log.info("successfully registered " + count + " Objects.");
     }
 
-    private static void registerRender(Item item) {
-        if (item.getHasSubtypes()) {
-            NonNullList<ItemStack> items = NonNullList.create();
-            item.getSubItems(item, null, items);
-            for (ItemStack stack : items) {
-                int meta = stack.getMetadata();
-                ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName() + "_" + meta, "inventory"));
-            }
-        } else {
-            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-        }
-
-    }
 }
