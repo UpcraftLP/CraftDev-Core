@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.api.templates;
+package core.upcraftlp.craftdev.api.item;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 

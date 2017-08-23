@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.api.templates;
+package core.upcraftlp.craftdev.api.potion;
 
 public class Potion extends net.minecraft.potion.Potion {
 

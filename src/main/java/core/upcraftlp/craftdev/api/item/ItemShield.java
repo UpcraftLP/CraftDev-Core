@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.api.templates;
+package core.upcraftlp.craftdev.api.item;
 
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockPlanks;
@@ -60,6 +60,7 @@ public class ItemShield extends Item {
         return this.maxBlockingTime;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
@@ -86,7 +87,7 @@ public class ItemShield extends Item {
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         playerIn.setActiveHand(handIn);
-        return new ActionResult(EnumActionResult.SUCCESS, itemstack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
 
     @Override

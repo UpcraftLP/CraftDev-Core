@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.api.templates;
+package core.upcraftlp.craftdev.api.creativetab;
 
 import java.util.Random;
 
@@ -14,11 +14,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class CreativeTab extends CreativeTabs {
 
     protected static final String BACKGROUND_IMAGE_SEARCHBAR = "item_search.png";
-    
+
     private ItemStack icon = ItemStack.EMPTY;
     private boolean hasSearchBar = false;
-    private boolean displayRandom = false;
-    protected Random RANDOM = new Random();
+    private boolean displayRandom = true;
+    protected final Random RANDOM = new Random();
     private int tempIndex = 0;
     private ItemStack tempDisplayStack = ItemStack.EMPTY;
 
@@ -40,10 +40,8 @@ public class CreativeTab extends CreativeTabs {
     }    
 
     /**
-     * Used to set a CreativeTab's display icon. use {@link ItemStack.EMPTY} to display a random Item from
+     * Used to set a CreativeTab's display icon. use {@link ItemStack#EMPTY} to display a random Item from
      * the Tab's item list.
-     * 
-     * @param icon
      */
     public void setIconStack(ItemStack icon) {
         if (icon.isEmpty()) this.displayRandom = true;
@@ -71,6 +69,7 @@ public class CreativeTab extends CreativeTabs {
 		else return this.icon;
     }
 
+    @SideOnly(Side.CLIENT)
     private void updateDisplayStack() {
         if (this.displayRandom) {
             NonNullList<ItemStack> itemStacks = NonNullList.create();
@@ -80,7 +79,7 @@ public class CreativeTab extends CreativeTabs {
 			if (tempIndex++ >= itemStacks.size()) tempIndex = 0;
         } else {
             if(this.icon.isEmpty()) {
-                CraftDevCore.getLogger().println("found empty Itemstack for CreativeTab " + this.getTabLabel() + ", defaulting to " + Items.DIAMOND.getRegistryName());
+                CraftDevCore.getLogger().warn("found empty Itemstack for CreativeTab " + this.getTabLabel() + ", defaulting to " + Items.DIAMOND.getRegistryName());
                 this.tempDisplayStack = new ItemStack(Items.DIAMOND);
             }
             this.tempDisplayStack = this.icon;

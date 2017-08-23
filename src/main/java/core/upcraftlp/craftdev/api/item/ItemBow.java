@@ -1,6 +1,5 @@
-package core.upcraftlp.craftdev.api.templates;
+package core.upcraftlp.craftdev.api.item;
 
-import core.upcraftlp.craftdev.api.util.IItemPropertyGetterFix;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 

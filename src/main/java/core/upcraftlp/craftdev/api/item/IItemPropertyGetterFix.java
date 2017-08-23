@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.api.util;
+package core.upcraftlp.craftdev.api.item;
 
 import javax.annotation.Nullable;
 

@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.api.templates;
+package core.upcraftlp.craftdev.api.item;
 
 import java.util.Set;
 import java.util.TreeSet;

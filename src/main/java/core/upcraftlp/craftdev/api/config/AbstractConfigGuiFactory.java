@@ -1,12 +1,14 @@
 package core.upcraftlp.craftdev.api.config;
 
-import java.util.Set;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
-import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Set;
+
+@SideOnly(Side.CLIENT)
 public abstract class AbstractConfigGuiFactory implements IModGuiFactory {
 
     @Deprecated
@@ -14,11 +16,11 @@ public abstract class AbstractConfigGuiFactory implements IModGuiFactory {
     public void initialize(Minecraft minecraftInstance) {
     }
 
-    /**
-     * return a dummy implementation of {@link GuiConfig} or {@code null} if no GUI is desired
-     */
     @Override
-    public abstract Class<? extends GuiScreen> mainConfigGuiClass();
+    @Deprecated
+    public Class<? extends GuiScreen> mainConfigGuiClass() {
+        return null;
+    }
 
     @Deprecated
     @Override
@@ -34,17 +36,13 @@ public abstract class AbstractConfigGuiFactory implements IModGuiFactory {
 
     @Override
     public boolean hasConfigGui() {
-        return true;
+        return mainConfigGuiClass() != null;
     }
 
+    /**
+     * @return a new instance of the config screen, usually inheriting from {@link net.minecraftforge.fml.client.config.GuiConfig}
+     */
     @Override
-    public GuiScreen createConfigGui(GuiScreen parentScreen) {
-        try {
-            return (GuiScreen) mainConfigGuiClass().getConstructors()[0].newInstance(parentScreen);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    public abstract GuiScreen createConfigGui(GuiScreen parentScreen);
 
 }

@@ -1,12 +1,13 @@
-package core.upcraftlp.craftdev.api.templates;
+package core.upcraftlp.craftdev.api.block;
 
 import java.util.Random;
 
+import core.upcraftlp.craftdev.api.item.ItemBlock;
 import net.minecraft.block.material.Material;
 
 public class Block extends net.minecraft.block.Block {
 
-    protected Random BLOCK_RANDOM = new Random();
+    protected Random RANDOM = new Random();
     private ItemBlock item;
 
     public Block(String name, Material material, boolean createItemBlock) {

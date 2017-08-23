@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.api.templates;
+package core.upcraftlp.craftdev.api.item;
 
 public class ItemFood extends net.minecraft.item.ItemFood {
 
