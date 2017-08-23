@@ -23,11 +23,15 @@ public abstract class DeobfuscationHelper {
         
         addMapping("getFloatTemperature", "func_180626_a");
         addMapping("temperature", "field_185415_d");
+        addMapping("attackTargetEntityWithCurrentItem", "func_71059_n");
+        addMapping("spawnSweepParticles", "func_184810_cG");
+        addMapping("func_191527_a", "func_191527_a"); //TODO add deobfuscated name of func_191527_a
     }
 
     public static final String EnchantmentHelper = "net.minecraft.enchantment.EnchantmentHelper";
     public static final String Entity_Render = "net.minecraft.client.renderer.entity.Render";
     public static final String Biome = "net.minecraft.world.biome.Biome";
+    public static final String EntityPlayer = "net.minecraft.entity.player.EntityPlayer";
 
     @Nullable
     public static String getName(String name) {

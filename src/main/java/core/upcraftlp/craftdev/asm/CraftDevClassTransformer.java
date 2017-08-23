@@ -4,6 +4,7 @@ import core.upcraftlp.craftdev.api.util.asm.TransformerUtils;
 import core.upcraftlp.craftdev.asm.tweaks.TweakBiome;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEnchantHelper;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEntityFireRender;
+import core.upcraftlp.craftdev.asm.tweaks.TweakSweepAttack;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
@@ -14,6 +15,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
+@IFMLLoadingPlugin.MCVersion("1.11.2") //FIXME mcversion annotation
 public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook {
 
     private static final Random rand = new Random();
@@ -22,6 +24,7 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
         new TweakEnchantHelper();
         new TweakBiome();
         new TweakEntityFireRender();
+        new TweakSweepAttack();
     }
     
     private static final Logger log = CraftDevCore.getLogger();
