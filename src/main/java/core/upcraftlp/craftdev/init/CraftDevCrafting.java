@@ -9,7 +9,7 @@ public class CraftDevCrafting {
 
     public static void init() {
         
-        /**
+        /*
          * [S S]
          * [ S ]
          * [S S]

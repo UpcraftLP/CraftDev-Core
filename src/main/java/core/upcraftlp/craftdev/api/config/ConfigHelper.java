@@ -1,14 +1,13 @@
 package core.upcraftlp.craftdev.api.config;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
+import com.google.common.collect.Lists;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.config.IConfigElement;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class ConfigHelper {
 
@@ -20,7 +19,7 @@ public class ConfigHelper {
     
     @Nonnull
     public static List<IConfigElement> getEntries(Configuration config) {
-        List<IConfigElement> entries = new ArrayList<IConfigElement>();
+        List<IConfigElement> entries = Lists.newArrayList();
         for(String categoryName : config.getCategoryNames()) {
             ConfigCategory category = config.getCategory(categoryName);
             entries.addAll(new ConfigElement(category).getChildElements());
