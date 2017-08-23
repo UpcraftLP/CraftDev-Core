@@ -8,6 +8,7 @@ import com.google.common.annotations.Beta;
 
 import core.upcraftlp.craftdev.api.structures.ITreeMapping;
 import core.upcraftlp.craftdev.api.structures.TreeType;
+import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
@@ -21,12 +22,6 @@ public class DecorationHelper {
 
 	/**
 	 * A helper method for generating randomized trees in different shapes
-	 * 
-	 * @param world
-	 * @param startPos
-	 * @param log
-	 * @param leaves
-	 * @param treeType
 	 */
 	public static void generateTree(World world, BlockPos startPos, ITreeMapping tree, TreeType treeType)
 	{
@@ -91,28 +86,16 @@ public class DecorationHelper {
 			if(random.nextInt(2) == 0) leaves.add(startPos.offset(EnumFacing.SOUTH).offset(EnumFacing.EAST));
 			 
 			break;
-		
+
+		case TWO_BY_TWO:
 		case LARGE:
-			break;
-			
 		case PALM:
-			break;
-			
 		case BUSH:
-			break;
-			
 		case BIG:
-			break;
-			
 		case EXTRA_BIG:
-			break;
-			
 		case HOUSE:
-			break;
-			
-		default:
-			break;
-		
+			CraftDevCore.getLogger().warn("TreeType " + treeType.name() + " has not been implemented yet. Aborting Tree generation!");
+			return;
 		}
 		
 		for (BlockPos blockPos : logsX) {
