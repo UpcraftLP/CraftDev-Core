@@ -33,7 +33,7 @@ public class TweakBiome extends ClassTransform {
         while(methods.hasNext()) {
             MethodNode node = methods.next();
             if(node.name.equals(name)) {
-                log.println("adding BiomeTemperatureEvent");
+                log.debug("adding BiomeTemperatureEvent");
                 for(int i = 0; i < node.instructions.size(); i++) {
                     AbstractInsnNode current = node.instructions.get(i);
                     if(current instanceof InsnNode && ((InsnNode) current).getOpcode() == FRETURN) {

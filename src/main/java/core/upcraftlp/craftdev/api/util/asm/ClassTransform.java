@@ -1,11 +1,10 @@
 package core.upcraftlp.craftdev.api.util.asm;
 
-import java.util.Iterator;
-
+import core.upcraftlp.craftdev.common.CraftDevCore;
+import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.tree.MethodNode;
 
-import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
-import core.upcraftlp.craftdev.common.CraftDevCore;
+import java.util.Iterator;
 
 /**
  * Class for doing asm stuff.
@@ -14,9 +13,9 @@ import core.upcraftlp.craftdev.common.CraftDevCore;
 public abstract class ClassTransform {
     
     /**
-     * a {@link ModLogger} to log things
+     * a {@link Logger} to log things
      */
-    protected static final ModLogger log = CraftDevCore.getLogger();
+    protected static final Logger log = CraftDevCore.getLogger();
     
     protected ClassTransform() {
         TransformerUtils.register(this.getDeobfClassName(), this);

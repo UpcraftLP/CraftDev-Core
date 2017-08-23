@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import core.upcraftlp.craftdev.api.templates.ItemBlock;
-import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -18,6 +17,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class RegistryUtils {
 
@@ -26,7 +27,7 @@ public class RegistryUtils {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static <T extends IForgeRegistryEntry<T>> void createRegistryEntries(Class<T> type, RegistryEvent.Register<T> event, Class clazz, String modid, CreativeTabs tab) {
-        ModLogger log = Loggers.get(modid);
+        Logger log = LogManager.getLogger(modid);
         int count = 0;
         boolean isClient = FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
         for (Field f : clazz.getDeclaredFields()) {
@@ -60,10 +61,10 @@ public class RegistryUtils {
                     }
                 } catch (Exception ignore) {
                 }
-                if (!Modifier.isFinal(f.getModifiers())) CraftDevCore.getLogger().println(clazz.getName() + ":" + f.getName() + " has no final modifier! Pleaes change this!");
+                if (!Modifier.isFinal(f.getModifiers())) CraftDevCore.getLogger().warn(clazz.getName() + ":" + f.getName() + " has no final modifier! Pleaes change this!");
             }
         }
-        log.println("successfully registered " + count + " Objects.");
+        log.info("successfully registered " + count + " Objects.");
     }
 
     private static void registerRender(Item item) {

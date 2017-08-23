@@ -30,7 +30,7 @@ public class TweakEnchantHelper extends ClassTransform {
                     if(current instanceof VarInsnNode) {
                         VarInsnNode insNode = (VarInsnNode) current;
                         if(insNode.getOpcode() == ISTORE && insNode.var == 5) {
-                            log.println("adding EnchantabilityEvent");
+                            log.debug("adding EnchantabilityEvent");
                             InsnList toAdd = new InsnList();
                             toAdd.add(new VarInsnNode(ALOAD, 3)); //load the stack
                             toAdd.add(new VarInsnNode(ILOAD, 5)); //load enchantability

@@ -1,10 +1,5 @@
 package core.upcraftlp.craftdev.asm;
 
-import java.util.*;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.api.util.asm.TransformerUtils;
 import core.upcraftlp.craftdev.asm.tweaks.TweakBiome;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEnchantHelper;
@@ -12,7 +7,12 @@ import core.upcraftlp.craftdev.asm.tweaks.TweakEntityFireRender;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
-import org.lwjgl.Sys;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook {
 
@@ -24,7 +24,7 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
         new TweakEntityFireRender();
     }
     
-    private static final ModLogger log = CraftDevCore.getLogger();
+    private static final Logger log = CraftDevCore.getLogger();
 
     @Override
     public byte[] transform(String name, String deobfClassName, byte[] basicClass) {
@@ -64,9 +64,9 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
 
     @Override
     public Void call() throws Exception {
-       log.println("Hello Minecraft!");
-       log.println(quotes[rand.nextInt(quotes.length)]);
-       if(CraftDevLoadingPlugin.isDeobfuscatedEnvironment()) log.println("deobfuscated environment detected!");
+       log.info("Hello Minecraft!");
+       log.info(quotes[rand.nextInt(quotes.length)]);
+       if(CraftDevLoadingPlugin.isDeobfuscatedEnvironment()) log.warn("deobfuscated environment detected!");
        return null; //return null or throw an exception
     }
     

@@ -1,6 +1,5 @@
 package core.upcraftlp.craftdev.common;
 
-import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
 import core.upcraftlp.craftdev.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
@@ -9,16 +8,18 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(name = CraftDevReference.MODNAME, version = CraftDevReference.VERSION, acceptedMinecraftVersions = CraftDevReference.MCVERSIONS, modid = CraftDevReference.MODID, acceptableRemoteVersions = "*", canBeDeactivated = false, updateJSON = CraftDevReference.UPDATE_JSON, guiFactory = CraftDevReference.GUI_FACTORY)
 public class CraftDevCore {
 
-    private static final ModLogger log = ModLogger.create(CraftDevReference.MODID);
+    private static final Logger log =LogManager.getLogger(CraftDevReference.MODID);
     
-    @Mod.Metadata
+    @Mod.Metadata(CraftDevReference.MODID)
     public static ModMetadata metaData;
 
-    public static ModLogger getLogger() {
+    public static Logger getLogger() {
         return log;
     }
     
@@ -35,25 +36,25 @@ public class CraftDevCore {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
-        log.println("Pre-Initialization finished.");
+        log.info("Pre-Initialization finished.");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
-        log.println("Initialization finished.");
+        log.info("Initialization finished.");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
-        log.println("Post-Initialization finished.");
+        log.info("Post-Initialization finished.");
     }
 
     @Mod.EventHandler
     public void serverLoad(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
-        log.println("World initialization complete.");
+        log.info("World initialization complete.");
     }
     
 }

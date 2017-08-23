@@ -1,20 +1,19 @@
 package core.upcraftlp.craftdev.api.util.asm;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
+import core.upcraftlp.craftdev.common.CraftDevCore;
+import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 
-import core.upcraftlp.craftdev.api.util.Loggers.ModLogger;
-import core.upcraftlp.craftdev.common.CraftDevCore;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class TransformerUtils  {
     
-    protected static final ModLogger log = CraftDevCore.getLogger();
+    protected static final Logger log = CraftDevCore.getLogger();
     private static final Map<String, ClassTransform> transformers = new HashMap<String, ClassTransform>();
     
     /**
@@ -33,7 +32,7 @@ public class TransformerUtils  {
      */
     public static byte[] transformClass(String deobfClassName, byte[] basicClass) {
         if(transformers.containsKey(deobfClassName)) return transformInternal(deobfClassName, basicClass);
-        return basicClass;
+        else return basicClass;
     }
     
     private static byte[] transformInternal(String deobfName, byte[] basicClass) {
@@ -42,14 +41,14 @@ public class TransformerUtils  {
         ClassReader cr = new ClassReader(basicClass);
         cr.accept(cn, 0);
         Iterator<MethodNode> methods = cn.methods.iterator();
-        log.println("transforming class " + deobfName);
+        log.debug("transforming class " + deobfName);
         transformer.transform(methods);
         
         // asm specific for cleaning up and returning the final bytes for JVM processing.
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
         cn.accept(writer);
-        
-        log.println("successfully transformed " + deobfName + "!");
+
+        log.debug("successfully transformed " + deobfName + "!");
         return writer.toByteArray();
     }
     

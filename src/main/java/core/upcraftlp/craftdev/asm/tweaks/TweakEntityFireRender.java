@@ -29,13 +29,13 @@ public class TweakEntityFireRender extends ClassTransform {
                     if(current instanceof VarInsnNode && ((VarInsnNode) current).getOpcode() == FSTORE) {
                         VarInsnNode varNode = (VarInsnNode) current;
                         if(varNode.var == 12) {
-                            log.println("adding the scale modifier, part 1 of 2...");
+                            log.debug("adding the scale modifier, part 1 of 2...");
                             node.instructions.insertBefore(current, new FieldInsnNode(GETSTATIC, "core/upcraftlp/craftdev/client/MobScaleHandler", "scale", "F")); //pull the scale multiplier onto the stack
                             node.instructions.insertBefore(current, new InsnNode(FMUL)); //multiply the old scale with the multiplier
                             i += 2; //skip the newly added instructions
                         }
                         else if(varNode.var == 17) { //need this for the height of the fire
-                            log.println("adding the scale modifier, part 2 of 2...");
+                            log.debug("adding the scale modifier, part 2 of 2...");
                             node.instructions.insertBefore(current, new FieldInsnNode(GETSTATIC, "core/upcraftlp/craftdev/client/MobScaleHandler", "scale", "F")); //pull the scale multiplier onto the stack
                             node.instructions.insertBefore(current, new InsnNode(FMUL)); //multiply the old scale with the multiplier
                             break; //skip everything else.

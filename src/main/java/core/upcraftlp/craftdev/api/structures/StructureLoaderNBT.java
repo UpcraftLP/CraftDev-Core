@@ -35,7 +35,7 @@ public class StructureLoaderNBT {
             load(world, pos, stream, settings);
             return true;
         } catch (Exception e) {
-            CraftDevCore.getLogger().errFatal("Resource not found: " + location.toString());
+            CraftDevCore.getLogger().error("Resource not found: " + location.toString());
             return false;
         } finally {
             IOUtils.closeQuietly(stream);
@@ -47,7 +47,7 @@ public class StructureLoaderNBT {
         try {
             File structureFile = new File(structureDir, name + ".nbt");
             if (!structureFile.exists()) {
-                CraftDevCore.getLogger().errFatal("File not found: " + structureFile.getAbsolutePath());
+                CraftDevCore.getLogger().error("File not found: " + structureFile.getAbsolutePath());
                 return false;
             } else {
                 stream = new FileInputStream(structureFile);
@@ -55,7 +55,7 @@ public class StructureLoaderNBT {
                 return true;
             }
         } catch (Exception e) {
-            CraftDevCore.getLogger().errFatal("Exception caught: " + e.getMessage());
+            CraftDevCore.getLogger().error("Exception caught: " + e.getMessage());
             return false;
         } finally {
             IOUtils.closeQuietly(stream);
