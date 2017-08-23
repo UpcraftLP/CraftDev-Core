@@ -18,3 +18,6 @@ commands.loadschematic.usage=/loadSchematic <name> <x> <y> <z> [mirrored] [rotat
 
 commands.genTree.usage=/genTree <type>
 commands.genTree.wrongArgument=%s is not a valid tree type!
+
+commands.craftdev.usage=/craftdev <uuid|nbt|donators>
+commands.craftdev.emptyHand=Cannot get NBT compound from empty hand!

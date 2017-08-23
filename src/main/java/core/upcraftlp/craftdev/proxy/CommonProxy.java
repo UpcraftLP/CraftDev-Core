@@ -3,10 +3,7 @@ package core.upcraftlp.craftdev.proxy;
 import core.upcraftlp.craftdev.api.structures.StructureLoaderNBT;
 import core.upcraftlp.craftdev.api.structures.StructureLoaderSchematic;
 import core.upcraftlp.craftdev.api.util.ModHelper;
-import core.upcraftlp.craftdev.commands.CommandClearLag;
-import core.upcraftlp.craftdev.commands.CommandGenTree;
-import core.upcraftlp.craftdev.commands.CommandLoadSchematic;
-import core.upcraftlp.craftdev.commands.CommandLoadStructure;
+import core.upcraftlp.craftdev.commands.*;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import core.upcraftlp.craftdev.init.CraftDevCrafting;
 import net.minecraft.item.Item;
@@ -40,6 +37,7 @@ public abstract class CommonProxy {
             event.registerServerCommand(new CommandLoadStructure());
             event.registerServerCommand(new CommandLoadSchematic());
             event.registerServerCommand(new CommandGenTree());
+            event.registerServerCommand(new CommandCraftDev());
         }
         event.registerServerCommand(new CommandClearLag());
     }

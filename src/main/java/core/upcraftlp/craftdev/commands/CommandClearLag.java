@@ -46,7 +46,10 @@ public class CommandClearLag extends CommandBase {
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if(sender.getEntityWorld().isRemote) return;
-        if(args.length != 1) throw new WrongUsageException(this.getUsage(sender));
+        if(args.length > 1) throw new WrongUsageException(this.getUsage(sender));
+        else if(args.length == 0) {
+            this.execute(server, sender, new String[]{"2"}); //defaulting to 2
+        }
         else {
             int i = parseInt(args[0], 0, 6);
             int count = 0;

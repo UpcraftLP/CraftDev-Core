@@ -12,6 +12,7 @@ public class CraftDevReference {
     public static final String FORGE_FINGERPRINT = "@FINGERPRINTKEY@";
     public static final String UPDATE_JSON = "https://raw.githubusercontent.com/UpcraftLP/CraftDev-Core/master/Version.json";
     public static final String UPDATE_URL = "https://minecraft.curseforge.com/projects/craftdev-core";
+    public static final String VANITY_FEATURES_URL = "https://gist.githubusercontent.com/UpcraftLP/e2a42de0b719a70448e1cf4c9fbec256/raw";
     
     public static final String CREDITS = "\u00A9" + Year.now().getValue() + " UpcraftLP";
     public static final String[] authors = new String[] { "UpcraftLP" };
