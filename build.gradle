@@ -113,7 +113,6 @@ jar {
             "Built-On": "${minecraft_version}-${forge_version}",
             "FMLCorePlugin": "core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin",
             "FMLCorePluginContainsFMLMod": "true",
-            "ContainedDeps": "${archivesBaseName}-${version}-obfapi.jar",
             "FMLAT": "${project.mod_name}_at.cfg"
     )
     classifier = 'universal'
