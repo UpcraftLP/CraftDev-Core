@@ -6,10 +6,12 @@ import core.upcraftlp.craftdev.asm.tweaks.TweakEnchantHelper;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEntityFireRender;
 import core.upcraftlp.craftdev.asm.tweaks.TweakSweepAttack;
 import core.upcraftlp.craftdev.common.CraftDevCore;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.LWJGLUtil;
 
 import java.util.Map;
 import java.util.Random;
@@ -35,7 +37,7 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
     }
     
     private static final String[] quotes = new String[]{ //TODO: funny Strings ;)
-            "You're going to die in " + System.currentTimeMillis(),
+            "You're going to die in " + (Long.MAX_VALUE - System.nanoTime() / 1000000L),//yeah, literally
             "What about this?",
             "Who called me?",
             "Can I be your friend?",
@@ -49,12 +51,15 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
             UUID.randomUUID().toString(),
             "DIE! DIE! DIE!",
             "Hello, would you like to hear a TCP joke?\n" +
-                    "Yes, I'd like to hear a TCP joke.\nOK, I'll tell you a TCP joke.\n" +
-                    "OK, I'll hear a TCP joke.\nAre you ready to hear a TCP joke?\n" +
+                    "Yes, I'd like to hear a TCP joke.\n" +
+                    "OK, I'll tell you a TCP joke.\n" +
+                    "OK, I'll hear a TCP joke.\n" +
+                    "Are you ready to hear a TCP joke?\n" +
                     "Yes, I am ready to hear a TCP joke.\n" +
                     "OK, I'm about to send the TCP joke. It will last 10 seconds, it has two characters, it does not have a setting, it ends with a punchline.\n" +
                     "OK, I'm ready to hear the TCP joke that will last 10 seconds, has two characters, does not have a setting and will end with a punchline.\n" +
-                    "I'm sorry, your connection has timed out... ...Hello, would you like to hear a TCP joke?",
+                    "I'm sorry, your connection has timed out...\n" +
+                    "Hello, would you like to hear a TCP joke?",
             "I'd tell you a UDP joke, but you probably won't get it ;)",
             "Okay, here it is:",
             "UDP packet bar walks a into",
@@ -62,7 +67,8 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
             "how many programmers does it take to change a light bulb?\n" +
                     " - none, that's a hardware problem",
             "just BASH it ;-)",
-            "Go -f>@+?*<.-&'_:$#/%! yourself!"
+            "Go -f>@+?*<.-&'_:$#/%! yourself!",
+            "Quite honestly, I wouldn't worry myself about that."
     };
 
     @Override

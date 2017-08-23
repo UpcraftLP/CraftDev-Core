@@ -1,7 +1,6 @@
 package core.upcraftlp.craftdev.asm.tweaks;
 
 import core.upcraftlp.craftdev.api.event.SweepEvent;
-import core.upcraftlp.craftdev.api.util.ModHelper;
 import core.upcraftlp.craftdev.api.util.asm.ClassTransform;
 import core.upcraftlp.craftdev.api.util.asm.DeobfuscationHelper;
 import net.minecraft.entity.Entity;
@@ -47,17 +46,16 @@ public class TweakSweepAttack extends ClassTransform {
                             AbstractInsnNode abstractNode = node.instructions.get(i + 3);
                             if(abstractNode instanceof FieldInsnNode) {
                                 FieldInsnNode fieldNode = (FieldInsnNode) abstractNode;
-                                log.error(fieldNode.name);
                                 if(fieldNode.getOpcode() == GETFIELD && fieldNode.name.equals(DeobfuscationHelper.getName("velocityChanged"))) {
                                     log.debug("adding SweepEvent");
                                     InsnList toAdd = new InsnList();
-                                    toAdd.add(new VarInsnNode(ALOAD, 0)); //load the player on stack
-                                    toAdd.add(new VarInsnNode(ALOAD, 1));
+                                    toAdd.add(new VarInsnNode(ALOAD, 0)); //load the player on the stack
+                                    toAdd.add(new VarInsnNode(ALOAD, 1)); //load the target entity (method parameter) on the stack
                                     toAdd.add(new MethodInsnNode(INVOKESTATIC, "core/upcraftlp/craftdev/asm/tweaks/TweakSweepAttack", "fireSweepEvent", "(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)Z", false));
                                     do {
                                         abstractNode = abstractNode.getPrevious();
                                     } while (!(abstractNode instanceof LabelNode));
-                                    toAdd.add(new JumpInsnNode(IFNE, (LabelNode) abstractNode)); //if method returned 0 (false; event has been canceled) skip furhter execution
+                                    toAdd.add(new JumpInsnNode(IFNE, (LabelNode) abstractNode)); //skip further execution if event has been canceled
                                     node.instructions.insertBefore(node.instructions.get(insertIndex), toAdd); //FIXME doesn't work outside the dev environment :(
                                     break loop;
                                 }
