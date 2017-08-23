@@ -1,17 +1,24 @@
 package core.upcraftlp.craftdev.common;
 
 import core.upcraftlp.craftdev.proxy.CommonProxy;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(name = CraftDevReference.MODNAME, version = CraftDevReference.VERSION, acceptedMinecraftVersions = CraftDevReference.MCVERSIONS, modid = CraftDevReference.MODID, acceptableRemoteVersions = "*", canBeDeactivated = false, updateJSON = CraftDevReference.UPDATE_JSON, guiFactory = CraftDevReference.GUI_FACTORY)
+@Mod(
+        name = CraftDevReference.MODNAME,
+        version = CraftDevReference.VERSION,
+        acceptedMinecraftVersions = CraftDevReference.MCVERSIONS,
+        modid = CraftDevReference.MODID,
+        acceptableRemoteVersions = "*",
+        updateJSON = CraftDevReference.UPDATE_JSON,
+        guiFactory = CraftDevReference.GUI_FACTORY,
+        certificateFingerprint = CraftDevReference.FORGE_FINGERPRINT
+)
 public class CraftDevCore {
 
     private static final Logger log =LogManager.getLogger(CraftDevReference.MODID);
@@ -55,6 +62,20 @@ public class CraftDevCore {
     public void serverLoad(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
         log.info("World initialization complete.");
+    }
+
+    @Mod.EventHandler
+    public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
+        FMLLog.bigWarning(event.getSource() + " has a mismatching fingerprint key!");
+        if(event.isDirectory()) {
+            log.warn(event.getSource() + " is a directory!");
+        }
+        else {
+            log.warn("Expected: " + event.getExpectedFingerprint());
+            String res = "Got " + event.getFingerprints().size() + " known keys: ";
+            for (String fingerPrint : event.getFingerprints()) res += "\n   - " + fingerPrint;
+            log.warn(res);
+        }
     }
     
 }

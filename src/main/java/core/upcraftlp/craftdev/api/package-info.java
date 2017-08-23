@@ -1,9 +1,9 @@
 /**
  * <b>(C) 2017</b>
  * @author <a href ="https://github.com/UpcraftLP">UpcraftLP</a>
- * @version @CRAFTDEVAPIVERSION@
+ * @version 1.1.0
  */
-@API(apiVersion = "@CRAFTDEVAPIVERSION@", owner = "UpcraftLP", provides = "CraftDevAPI")
+@API(apiVersion = "1.1.0", owner = "UpcraftLP", provides = "CraftDevAPI")
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 package core.upcraftlp.craftdev.api;

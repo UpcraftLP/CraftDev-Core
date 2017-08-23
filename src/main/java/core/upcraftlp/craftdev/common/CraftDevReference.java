@@ -9,6 +9,7 @@ public class CraftDevReference {
     public static final String VERSION = "@VERSION@";
     public static final String MODNAME = "CraftDev Core";
     public static final String MODID = "craftdevcore";
+    public static final String FORGE_FINGERPRINT = "@FINGERPRINTKEY@";
     public static final String UPDATE_JSON = "https://raw.githubusercontent.com/UpcraftLP/CraftDev-Core/master/Version.json";
     public static final String UPDATE_URL = "https://minecraft.curseforge.com/projects/craftdev-core";
     
