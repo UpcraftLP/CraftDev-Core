@@ -21,3 +21,8 @@ commands.genTree.wrongArgument=%s is not a valid tree type!
 
 commands.craftdev.usage=/craftdev <uuid|nbt|donators>
 commands.craftdev.emptyHand=Cannot get NBT compound from empty hand!
+commands.craftdev.nbt1=Item: %s
+commands.craftdev.nbt2=NBT compound: %s
+commands.craftdev.uuid=UUID: %s
+commands.craftdev.uuidHover=Click to get the UUID into chat for easy copy-pasting
+commands.craftdev.donators=Donators: %s

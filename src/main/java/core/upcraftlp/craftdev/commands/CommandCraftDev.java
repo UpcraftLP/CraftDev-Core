@@ -1,6 +1,7 @@
 package core.upcraftlp.craftdev.commands;
 
 import com.google.common.collect.Lists;
+import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -8,9 +9,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.util.text.event.HoverEvent;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,7 +49,10 @@ public class CommandCraftDev extends CommandBase {
         EntityPlayer player = getCommandSenderAsPlayer(sender);
         switch (args[0].toUpperCase(Locale.ROOT)) {
             case "UUID":
-                sender.sendMessage(new TextComponentString(player.getCachedUniqueIdString()));
+                TextComponentTranslation text = new TextComponentTranslation("commands.craftdev.uuid", player.getCachedUniqueIdString());
+                        text.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, player.getCachedUniqueIdString()));
+                        text.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("commands.craftdev.uuidHover")));
+                sender.sendMessage(text);
                 break;
             case "NBT":
                 ItemStack held = player.getHeldItemMainhand();
@@ -53,12 +60,12 @@ public class CommandCraftDev extends CommandBase {
                     throw new CommandException("commands.craftdev.emptyHand");
                 }
                 else {
-                    player.sendMessage(new TextComponentString("Item: " + held.getItem().getRegistryName().toString()));
-                    if(held.hasTagCompound()) player.sendMessage(new TextComponentString("NBT Tag: " + held.getTagCompound().toString()));
+                    player.sendMessage(new TextComponentTranslation("commands.craftdev.nbt1", held.getItem().getRegistryName()));
+                    if(held.hasTagCompound()) player.sendMessage(new TextComponentTranslation("commands.craftdev.nbt2", held.getTagCompound()));
                 }
                 break;
             case "DONATORS":
-                sender.sendMessage(new TextComponentString(getCommandSenderAsPlayer(sender).getDisplayNameString())); //TODO check if person is donator
+                sender.sendMessage(new TextComponentTranslation("commands.craftdev.donators", Arrays.asList(CraftDevReference.authors))); //TODO check if person is donator
                 break;
         }
     }
