@@ -1,6 +1,6 @@
 package core.upcraftlp.craftdev.events;
 
-import core.upcraftlp.craftdev.api.util.EventHandler;
+import core.upcraftlp.craftdev.common.CraftDevReference;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.state.IBlockState;
@@ -10,17 +10,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
-public class ChestBreakHandler extends EventHandler {
-
-    public ChestBreakHandler(Side effectiveSide) {
-        super(effectiveSide);
-    }
+@Mod.EventBusSubscriber(modid = CraftDevReference.MODID)
+public class ChestBreakHandler {
 
     @SubscribeEvent
-    public void onChestBroken(BreakEvent event) {
+    public static void onChestBroken(BreakEvent event) {
         EntityPlayer player = event.getPlayer();
         World world = event.getWorld();
         if (world.isRemote || player instanceof FakePlayer || player.isSneaking() || !CoreInternalConfig.chestBreaker) return;
@@ -38,8 +35,4 @@ public class ChestBreakHandler extends EventHandler {
         }
     }
 
-    @Override
-    public Side[] getSides() {
-        return ALL;
-    }
 }

@@ -1,6 +1,7 @@
 package core.upcraftlp.craftdev.events;
 
-import core.upcraftlp.craftdev.api.templates.ItemShield;
+import core.upcraftlp.craftdev.api.item.ItemShield;
+import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = CraftDevReference.MODID)
 public class ShieldHandler {
 
     @SubscribeEvent

@@ -6,12 +6,15 @@ import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class CoreConfigGuiFactory extends AbstractConfigGuiFactory {
 
     @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return CoreConfigGUI.class;
+    public GuiScreen createConfigGui(GuiScreen parentScreen) {
+        return new CoreConfigGUI(parentScreen);
     }
 
     public static class CoreConfigGUI extends GuiConfig {

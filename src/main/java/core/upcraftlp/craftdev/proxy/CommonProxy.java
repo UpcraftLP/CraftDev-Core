@@ -9,7 +9,6 @@ import core.upcraftlp.craftdev.commands.CommandLoadSchematic;
 import core.upcraftlp.craftdev.commands.CommandLoadStructure;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import core.upcraftlp.craftdev.init.CraftDevCrafting;
-import core.upcraftlp.craftdev.init.CraftDevEvents;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -26,7 +25,6 @@ public abstract class CommonProxy {
         StructureLoaderNBT.setStructureDir(structureDir);
         StructureLoaderSchematic.setStructureDir(structureDir);
         CraftDevCrafting.init();
-        CraftDevEvents.init(event.getSide());
     }
 
     public void init(FMLInitializationEvent event) {
