@@ -23,9 +23,11 @@ public abstract class DeobfuscationHelper {
         
         addMapping("getFloatTemperature", "func_180626_a");
         addMapping("temperature", "field_185415_d");
+
         addMapping("attackTargetEntityWithCurrentItem", "func_71059_n");
         addMapping("spawnSweepParticles", "func_184810_cG");
         addMapping("func_191527_a", "func_191527_a"); //TODO add deobfuscated name of func_191527_a
+        addMapping("velocityChanged", "field_70133_I");
     }
 
     public static final String EnchantmentHelper = "net.minecraft.enchantment.EnchantmentHelper";
