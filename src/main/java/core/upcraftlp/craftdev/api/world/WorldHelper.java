@@ -1,10 +1,14 @@
 package core.upcraftlp.craftdev.api.world;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+
+import java.util.Random;
 
 public class WorldHelper {
 
@@ -59,14 +63,13 @@ public class WorldHelper {
     }
     
     /**
-     * spawns particles on the respective Side (Client or Server)
+     * spawns particles.
+     * if called on an {@link WorldServer} this code will send packets to the clients telling them to spawn particles.
+     * Otherwise the method will do nothing at all.
      */
-    public static void spawnParticles(World world, EnumParticleTypes particle, boolean ignoreRangeClient, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters) {
-    	if(!world.isRemote) {
-    		world.spawnParticle(particle, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
-    	}
-    	else {
-    		world.spawnParticle(particle, ignoreRangeClient, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
+    public static void spawnParticles(World world, EnumParticleTypes particle, double xCoord, double yCoord, double zCoord, int amount, double xOffset, double yOffset, double zOffset, double speed, int... parameters) {
+        if(world instanceof WorldServer) {
+            ((WorldServer) world).spawnParticle(particle, particle.getShouldIgnoreRange(), xCoord, yCoord, zCoord, amount, world.rand.nextDouble() * 0.2D, world.rand.nextDouble() * 0.7D, world.rand.nextDouble() * 0.2D, speed, parameters);
     	}
     }
 
