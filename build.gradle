@@ -71,6 +71,9 @@ minecraft {
 	replace "@VERSION@", project.mod_version
     replaceIn "CraftDevReference.java"
 
+    replace "@CRAFTDEVAPIVERSION@", project.api_version
+    replaceIn "package-info.java"
+
     clientRunArgs += "--username=${username}"
     if(project.hasProperty('dev_password')) {
         clientRunArgs += " --password=${dev_password}"
