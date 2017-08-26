@@ -6,12 +6,10 @@ import core.upcraftlp.craftdev.asm.tweaks.TweakEnchantHelper;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEntityFireRender;
 import core.upcraftlp.craftdev.asm.tweaks.TweakSweepAttack;
 import core.upcraftlp.craftdev.common.CraftDevCore;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.LWJGLUtil;
 
 import java.util.Map;
 import java.util.Random;
@@ -37,7 +35,7 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
     }
     
     private static final String[] quotes = new String[]{ //TODO: funny Strings ;)
-            "You're going to die in " + (Long.MAX_VALUE - System.nanoTime() / 1000000L),//yeah, literally
+            "You're going to die in " + (Integer.MAX_VALUE - (int) (System.currentTimeMillis() / 1000L)), //Year 2038 is coming :P
             "What about this?",
             "Who called me?",
             "Can I be your friend?",
