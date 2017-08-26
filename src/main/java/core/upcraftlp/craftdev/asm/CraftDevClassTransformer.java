@@ -24,7 +24,7 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
         new TweakEnchantHelper();
         new TweakBiome();
         new TweakEntityFireRender();
-        new TweakSweepAttack();
+        //new TweakSweepAttack(); //FIXME re-enable once the asm is working
     }
     
     private static final Logger log = CraftDevCore.getLogger();

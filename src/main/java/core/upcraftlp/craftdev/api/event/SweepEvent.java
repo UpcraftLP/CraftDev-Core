@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.eventhandler.Cancelable;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  *
  * This Event is fired on the {@link net.minecraftforge.common.MinecraftForge#EVENT_BUS} when a player tries to use a sweep-attack.
  */
+@Cancelable
 public class SweepEvent extends PlayerEvent {
 
     private ItemStack item;
