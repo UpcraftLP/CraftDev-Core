@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import core.upcraftlp.craftdev.api.event.StructureLoadEvent;
+import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.io.IOUtils;
 
 import core.upcraftlp.craftdev.common.CraftDevCore;
@@ -32,7 +34,7 @@ public class StructureLoaderNBT {
             String id = location.getResourceDomain();
             String path = location.getResourcePath();
             stream = MinecraftServer.class.getResourceAsStream("/assets/" + id + "/structures/" + path + ".nbt");
-            load(world, pos, stream, settings);
+            load(world, pos, stream, settings, location.toString());
             return true;
         } catch (Exception e) {
             CraftDevCore.getLogger().error("Resource not found: " + location.toString());
@@ -51,7 +53,7 @@ public class StructureLoaderNBT {
                 return false;
             } else {
                 stream = new FileInputStream(structureFile);
-                load(world, pos, stream, settings);
+                load(world, pos, stream, settings, name);
                 return true;
             }
         } catch (Exception e) {
@@ -62,7 +64,7 @@ public class StructureLoaderNBT {
         }
     }
 
-    private static void load(World world, BlockPos pos, InputStream stream, PlacementSettings settings) throws IOException {
+    private static void load(World world, BlockPos pos, InputStream stream, PlacementSettings settings, String name) throws IOException {
         NBTTagCompound templateCompound = CompressedStreamTools.readCompressed(stream);
         Template template = new Template();
         template.read(fixer.process(FixTypes.STRUCTURE, templateCompound));
@@ -70,7 +72,10 @@ public class StructureLoaderNBT {
             settings.setIntegrity(MathHelper.clamp(settings.getIntegrity(), 0.0f, 1.0f));
             settings.setSeed(world.getSeed());
         }
-        template.addBlocksToWorld(world, pos, settings);
+        StructureLoadEvent event = new StructureLoadEvent(world, pos, name, settings, template);
+        if(MinecraftForge.TERRAIN_GEN_BUS.post(event)) {
+            event.getTemplate().addBlocksToWorld(world, event.getPosition(), event.getPlacementSettings());
+        }
     }
 
     public static File getStructureDir() {
