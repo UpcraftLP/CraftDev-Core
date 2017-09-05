@@ -25,6 +25,7 @@ public class CoreInternalConfig {
 
     public static float mobScaleFactor;
     public static boolean scalePlayers;
+    public static boolean betaUpdates;
 
     public static void init(FMLPreInitializationEvent event) {
         config = ModHelper.getConfigFile(event, "core", CraftDevReference.VERSION).setCategoryComment(CLIENT, "client-only tweaks").setCategoryComment(GENERAL, "general settings").setCategoryComment(TWEAKS, "various small tweaks");
@@ -37,6 +38,7 @@ public class CoreInternalConfig {
 
         /* GENERAL */
         isDebugMode = config.getBoolean("debug mode", GENERAL, false, "en/disable debug mode");
+        betaUpdates = config.getBoolean("announceBetaUpdates", GENERAL, false, "announce beta updates in the update-checker");
 
         /* TWEAKS */
         chestBreaker = config.getBoolean("chest breaker", TWEAKS, true, "false to prevent double chests from being destroyed as a single chest");
