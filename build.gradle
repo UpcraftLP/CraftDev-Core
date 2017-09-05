@@ -190,6 +190,7 @@ curseforge {
 
     project {
         id = "${project.curse_id}"
+        changelogType = 'markdown'
         changelog = getChangelogText()
         releaseType = 'release'
 
@@ -206,7 +207,7 @@ curseforge {
 }
 
 String getChangelogText() {
-    def changelogFile = new File('changelog.txt')
+    def changelogFile = new File('changelog.md')
     String str = ''
     if(!changelogFile.exists()) {
         changelogFile.createNewFile()
