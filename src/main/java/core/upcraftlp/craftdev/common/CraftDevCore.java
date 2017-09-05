@@ -1,6 +1,7 @@
 package core.upcraftlp.craftdev.common;
 
 import core.upcraftlp.craftdev.api.util.UpdateChecker;
+import core.upcraftlp.craftdev.client.VanityFeatures;
 import core.upcraftlp.craftdev.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
@@ -44,6 +45,7 @@ public class CraftDevCore {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        VanityFeatures.update();
         proxy.preInit(event);
         UpdateChecker.registerMod(MODID);
         log.info("Pre-Initialization finished.");
