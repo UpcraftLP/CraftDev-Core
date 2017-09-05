@@ -1,10 +1,11 @@
 package core.upcraftlp.craftdev.commands;
 
 import com.google.common.collect.Lists;
-import core.upcraftlp.craftdev.common.CraftDevReference;
+import core.upcraftlp.craftdev.client.VanityFeatures;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -14,7 +15,6 @@ import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,7 +45,7 @@ public class CommandCraftDev extends CommandBase {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        if(args.length != 1) return;
+        if(args.length != 1) throw new WrongUsageException(this.getUsage(sender));
         EntityPlayer player = getCommandSenderAsPlayer(sender);
         switch (args[0].toUpperCase(Locale.ROOT)) {
             case "UUID":
@@ -65,7 +65,7 @@ public class CommandCraftDev extends CommandBase {
                 }
                 break;
             case "DONATORS":
-                sender.sendMessage(new TextComponentTranslation("commands.craftdev.donators", Arrays.asList(CraftDevReference.authors))); //TODO check if person is donator
+                sender.sendMessage(new TextComponentTranslation("commands.craftdev.donators", VanityFeatures.hasVanityFeatures(sender.getName()))); //TODO check if person is donator
                 break;
         }
     }
