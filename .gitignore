@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-*
-/*
-!Version.json
-!.gitignore
-=======
 # eclipse
 bin
 *.launch
@@ -34,4 +28,3 @@ gradle/wrapper/gradle-wrapper\.properties
 changelog\.txt
 
 *.iml
->>>>>>> CraftDev-Core-1.11.2
