@@ -1,4 +1,37 @@
+<<<<<<< HEAD
 *
 /*
 !Version.json
 !.gitignore
+=======
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+
+gradle/wrapper/gradle-wrapper\.properties
+/classes/
+
+/src/test/
+
+changelog\.txt
+
+*.iml
+>>>>>>> CraftDev-Core-1.11.2
