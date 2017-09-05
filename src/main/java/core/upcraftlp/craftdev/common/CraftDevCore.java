@@ -1,7 +1,6 @@
 package core.upcraftlp.craftdev.common;
 
 import core.upcraftlp.craftdev.proxy.CommonProxy;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -9,28 +8,30 @@ import net.minecraftforge.fml.common.event.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static core.upcraftlp.craftdev.common.CraftDevReference.*;
+
 @Mod(
-        name = CraftDevReference.MODNAME,
-        version = CraftDevReference.VERSION,
-        acceptedMinecraftVersions = CraftDevReference.MCVERSIONS,
-        modid = CraftDevReference.MODID,
+        name = MODNAME,
+        version = VERSION,
+        acceptedMinecraftVersions = MCVERSIONS,
+        modid = MODID,
         acceptableRemoteVersions = "*",
-        updateJSON = CraftDevReference.UPDATE_JSON,
-        guiFactory = CraftDevReference.GUI_FACTORY,
-        certificateFingerprint = CraftDevReference.FORGE_FINGERPRINT
+        updateJSON = UPDATE_JSON,
+        guiFactory = GUI_FACTORY,
+        certificateFingerprint = FORGE_FINGERPRINT
 )
 public class CraftDevCore {
 
-    private static final Logger log =LogManager.getLogger(CraftDevReference.MODID);
+    private static final Logger log = LogManager.getLogger(MODID);
     
-    @Mod.Metadata(CraftDevReference.MODID)
+    @Mod.Metadata(MODID)
     public static ModMetadata metaData;
 
     public static Logger getLogger() {
         return log;
     }
     
-    @SidedProxy(clientSide = CraftDevReference.CLIENT_PROXY, serverSide = CraftDevReference.SERVER_PROXY)
+    @SidedProxy(clientSide = CLIENT_PROXY, serverSide = SERVER_PROXY)
     public static CommonProxy proxy;
 
     @Mod.Instance
@@ -66,7 +67,7 @@ public class CraftDevCore {
 
     @Mod.EventHandler
     public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
-        FMLLog.bigWarning(event.getSource() + " has a mismatching fingerprint key!");
+        log.warn(event.getSource() + " has a mismatching fingerprint key!");
         if(event.isDirectory()) {
             log.warn(event.getSource() + " is a directory!");
         }

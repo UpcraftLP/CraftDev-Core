@@ -76,7 +76,7 @@ public class CreativeTab extends CreativeTabs {
             this.displayAllRelevantItems(itemStacks);
             ItemStack toDisplay = !itemStacks.isEmpty() ? itemStacks.get(tempIndex) : ItemStack.EMPTY;
             this.tempDisplayStack = toDisplay;
-			if (tempIndex++ >= itemStacks.size()) tempIndex = 0;
+			if (++tempIndex >= itemStacks.size()) tempIndex = 0;
         } else {
             if(this.icon.isEmpty()) {
                 CraftDevCore.getLogger().warn("found empty Itemstack for CreativeTab " + this.getTabLabel() + ", defaulting to " + Items.DIAMOND.getRegistryName());

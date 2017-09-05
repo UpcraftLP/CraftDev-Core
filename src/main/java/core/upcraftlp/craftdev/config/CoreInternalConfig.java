@@ -36,7 +36,7 @@ public class CoreInternalConfig {
         /** Configuration Start **/
 
         /* GENERAL */
-        isDebugMode = config.getBoolean("debug mode", GENERAL.toString(), false, "en/disable debug mode");
+        isDebugMode = config.getBoolean("debug mode", GENERAL, false, "en/disable debug mode");
 
         /* TWEAKS */
         chestBreaker = config.getBoolean("chest breaker", TWEAKS, true, "false to prevent double chests from being destroyed as a single chest");

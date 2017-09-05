@@ -66,6 +66,7 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
                     " - none, that's a hardware problem",
             "just BASH it ;-)",
             "Go -f>@+?*<.-&'_:$#/%! yourself!",
+            "Beep beep bup beep",
             "Quite honestly, I wouldn't worry myself about that."
     };
 

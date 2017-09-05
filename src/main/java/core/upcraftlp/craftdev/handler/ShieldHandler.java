@@ -1,4 +1,4 @@
-package core.upcraftlp.craftdev.events;
+package core.upcraftlp.craftdev.handler;
 
 import core.upcraftlp.craftdev.api.item.ItemShield;
 import core.upcraftlp.craftdev.common.CraftDevReference;
