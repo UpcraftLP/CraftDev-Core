@@ -1,14 +1,17 @@
 {
 	"homepage": "https://minecraft.curseforge.com/projects/craftdev-core",
 	"promos": {
-		"1.11.2-latest": "2.0.5",
-		"1.11.2-recommended": "2.0.5",
+		"1.11.2-latest": "2.2.1",
+		"1.11.2-recommended": "2.2.0",
 		"1.11-latest": "2.0.3",
 		"1.11-recommended": "2.0.3",
 		"1.10.2-latest": "0.2.2",
 		"1.10.2-recommended": "0.2.2"
 	},
 	"1.11.2": {
+		"2.2.1": "* mostly internal changes",
+		"2.2.0": "* bugfixes",
+		"2.1.0": "* added custom shield template",
 		"2.0.5": "* hotfix for Forge messing around with the BiomeEvent, preventing the mod from starting outside the deveopment environment\n* added some strings that may be printed to the log ;)\n* made it possible to add missing obfuscation mappings on the fly",
 		"2.0.4": "* see v2.0.3, but for MC 1.11.2",
 		"2.0.2": "* updated v2.0.1 to MC1.11.2!",
