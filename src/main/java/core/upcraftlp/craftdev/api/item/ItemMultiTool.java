@@ -15,7 +15,7 @@ public class ItemMultiTool extends ItemTool {
 
     @Override
     public Set<String> getToolClasses(ItemStack stack) {
-        Set<String> toolClasses = new TreeSet<String>();
+        Set<String> toolClasses = new TreeSet<>();
         toolClasses.add("pickaxe");
         toolClasses.add("axe");
         toolClasses.add("shovel");

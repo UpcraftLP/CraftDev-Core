@@ -1,14 +1,6 @@
 package core.upcraftlp.craftdev.api.structures;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 import core.upcraftlp.craftdev.api.event.StructureLoadEvent;
-import net.minecraftforge.common.MinecraftForge;
-import org.apache.commons.io.IOUtils;
-
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,6 +14,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
+import net.minecraftforge.common.MinecraftForge;
+import org.apache.commons.io.IOUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class StructureLoaderNBT {
 
@@ -37,7 +36,7 @@ public class StructureLoaderNBT {
             load(world, pos, stream, settings, location.toString());
             return true;
         } catch (Exception e) {
-            CraftDevCore.getLogger().error("Resource not found: " + location.toString());
+            CraftDevCore.log.error("Resource not found: " + location.toString());
             return false;
         } finally {
             IOUtils.closeQuietly(stream);
@@ -49,7 +48,7 @@ public class StructureLoaderNBT {
         try {
             File structureFile = new File(structureDir, name + ".nbt");
             if (!structureFile.exists()) {
-                CraftDevCore.getLogger().error("File not found: " + structureFile.getAbsolutePath());
+                CraftDevCore.log.error("File not found: " + structureFile.getAbsolutePath());
                 return false;
             } else {
                 stream = new FileInputStream(structureFile);
@@ -57,7 +56,7 @@ public class StructureLoaderNBT {
                 return true;
             }
         } catch (Exception e) {
-            CraftDevCore.getLogger().error("Exception caught: " + e.getMessage());
+            CraftDevCore.log.error("Exception caught: " + e.getMessage());
             return false;
         } finally {
             IOUtils.closeQuietly(stream);

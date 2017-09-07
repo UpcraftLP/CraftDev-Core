@@ -15,10 +15,6 @@ public class NetworkHandler {
     /**
      * register a packet and it's handler using the simple network
      * implementation
-     * 
-     * @param handler
-     * @param message
-     * @param side
      */
     public static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> handler, Class<REQ> message, Side side) {
         INSTANCE.registerMessage(handler, message, packedID++, side);

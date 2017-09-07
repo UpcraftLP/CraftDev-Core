@@ -1,9 +1,6 @@
 package core.upcraftlp.craftdev.api.world.gen;
 
-import java.util.Random;
-
 import com.google.common.base.Predicate;
-
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -14,6 +11,8 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.Random;
 
 public class DefaultWorldGenImplementation {
 
@@ -73,7 +72,7 @@ public class DefaultWorldGenImplementation {
 
 		public boolean apply(IBlockState state) {
 			if (state != null && state.getBlock() == Blocks.STONE) {
-				BlockStone.EnumType blockstone$enumtype = (BlockStone.EnumType) state.getValue(BlockStone.VARIANT);
+				BlockStone.EnumType blockstone$enumtype = state.getValue(BlockStone.VARIANT);
 				return blockstone$enumtype.isNatural();
 			} else {
 				return false;

@@ -1,10 +1,5 @@
 package core.upcraftlp.craftdev.api.structures;
 
-import java.util.IllegalFormatFlagsException;
-import java.util.Iterator;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -15,6 +10,10 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ObjectIntIdentityMap;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import javax.annotation.Nullable;
+import java.util.IllegalFormatFlagsException;
+import java.util.Iterator;
 
 public class SchematicConverter {
     
@@ -114,8 +113,6 @@ public class SchematicConverter {
         return templateCompound;
     }
 
-/***************************************************************************************************************************************/
-    
     /**
      * helper class, this is a straight copy of {@link Template.BasicPalette}
      */
@@ -127,7 +124,7 @@ public class SchematicConverter {
 
         private BasicPalette()
         {
-            this.ids = new ObjectIntIdentityMap<IBlockState>(16);
+            this.ids = new ObjectIntIdentityMap<>(16);
         }
 
         public int idFor(IBlockState state)
@@ -146,7 +143,7 @@ public class SchematicConverter {
         @Nullable
         public IBlockState stateFor(int id)
         {
-            IBlockState iblockstate = (IBlockState)this.ids.getByValue(id);
+            IBlockState iblockstate = this.ids.getByValue(id);
             return iblockstate == null ? DEFAULT_BLOCK_STATE : iblockstate;
         }
 

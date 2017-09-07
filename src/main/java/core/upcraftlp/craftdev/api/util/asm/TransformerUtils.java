@@ -1,7 +1,5 @@
 package core.upcraftlp.craftdev.api.util.asm;
 
-import core.upcraftlp.craftdev.common.CraftDevCore;
-import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
@@ -13,8 +11,7 @@ import java.util.Map;
 
 public class TransformerUtils  {
     
-    protected static final Logger log = CraftDevCore.getLogger();
-    private static final Map<String, ClassTransform> transformers = new HashMap<String, ClassTransform>();
+    private static final Map<String, ClassTransform> transformers = new HashMap<>();
     
     /**
      * register a new {@link ClassTransform}
@@ -41,14 +38,14 @@ public class TransformerUtils  {
         ClassReader cr = new ClassReader(basicClass);
         cr.accept(cn, 0);
         Iterator<MethodNode> methods = cn.methods.iterator();
-        log.debug("transforming class " + deobfName);
+        System.out.println("transforming class " + deobfName);
         transformer.transform(methods);
         
         // asm specific for cleaning up and returning the final bytes for JVM processing.
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
         cn.accept(writer);
 
-        log.debug("successfully transformed " + deobfName + "!");
+        System.out.println("successfully transformed " + deobfName + "!");
         return writer.toByteArray();
     }
     

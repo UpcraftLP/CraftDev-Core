@@ -1,21 +1,15 @@
 package core.upcraftlp.craftdev.asm.tweaks;
 
-import static org.objectweb.asm.Opcodes.*;
-import static org.objectweb.asm.Opcodes.ISTORE;
-
-import java.util.Iterator;
-
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.InsnList;
-import org.objectweb.asm.tree.MethodInsnNode;
-import org.objectweb.asm.tree.MethodNode;
-import org.objectweb.asm.tree.VarInsnNode;
-
 import core.upcraftlp.craftdev.api.event.EnchantabilityEvent;
 import core.upcraftlp.craftdev.api.util.asm.ClassTransform;
 import core.upcraftlp.craftdev.api.util.asm.DeobfuscationHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import org.objectweb.asm.tree.*;
+
+import java.util.Iterator;
+
+import static org.objectweb.asm.Opcodes.*;
 
 public class TweakEnchantHelper extends ClassTransform {
     
@@ -30,7 +24,7 @@ public class TweakEnchantHelper extends ClassTransform {
                     if(current instanceof VarInsnNode) {
                         VarInsnNode insNode = (VarInsnNode) current;
                         if(insNode.getOpcode() == ISTORE && insNode.var == 5) {
-                            log.debug("adding EnchantabilityEvent");
+                            System.out.println("adding EnchantabilityEvent");
                             InsnList toAdd = new InsnList();
                             toAdd.add(new VarInsnNode(ALOAD, 3)); //load the stack
                             toAdd.add(new VarInsnNode(ILOAD, 5)); //load enchantability

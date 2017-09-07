@@ -1,9 +1,5 @@
 package core.upcraftlp.craftdev.api.util;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
 import core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
@@ -18,6 +14,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ModHelper {
 
 	private static int entityID;
@@ -28,11 +28,9 @@ public class ModHelper {
 	 * <b>!</b> You have to keep track of that sound by yourself <b>!</b>
 	 * </p>
 	 * 
-	 * @param name
-	 * @param modid
 	 * @return the {@link SoundEvent}
 	 */
-	public static final SoundEvent registerSound(String name, String modid) {
+	public static SoundEvent registerSound(String name, String modid) {
 		ResourceLocation location = new ResourceLocation(modid, name);
 		final SoundEvent event = new SoundEvent(location);
 		GameRegistry.register(event, location);
@@ -151,7 +149,7 @@ public class ModHelper {
 		return CraftDevLoadingPlugin.isDeobfuscatedEnvironment();
 	}
 	
-	private static final Map<String, Boolean> loadedMods = new HashMap<String, Boolean>();
+	private static final Map<String, Boolean> loadedMods = new HashMap<>();
 
 	/**
 	 * checks if a specific mod id is loaded, caches the result for efficiency

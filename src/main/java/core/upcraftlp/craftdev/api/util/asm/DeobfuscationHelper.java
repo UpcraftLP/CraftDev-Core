@@ -2,8 +2,6 @@ package core.upcraftlp.craftdev.api.util.asm;
 
 import com.google.common.collect.Maps;
 import core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin;
-import core.upcraftlp.craftdev.common.CraftDevCore;
-import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -11,7 +9,6 @@ import java.util.Map;
 public abstract class DeobfuscationHelper {
 
     private static final Map<String, String> deobfNames; // always deobfName : obfName
-    private static final Logger log = CraftDevCore.getLogger();
 
     static {
         deobfNames = Maps.newConcurrentMap();
@@ -38,7 +35,7 @@ public abstract class DeobfuscationHelper {
     @Nullable
     public static String getName(String name) {
         if(!deobfNames.containsKey(name)) {
-            log.error(name + " has no obfuscated name mapping! preventing crash by disabling class transformer!");
+            System.out.println(name + " has no obfuscated name mapping! preventing crash by disabling class transformer!");
             return null; //this is safe here because someString#equals(null) will return false, and thus disable the class transformer.
         }
         return CraftDevLoadingPlugin.isDeobfuscatedEnvironment() ? name : deobfNames.get(name);
@@ -49,6 +46,6 @@ public abstract class DeobfuscationHelper {
      */
     public static void addMapping(String deobfuscatedName, String obfuscatedName) {
         if(!deobfNames.containsKey(deobfuscatedName)) deobfNames.put(deobfuscatedName, obfuscatedName);
-        else log.warn("tried to add duplicate mapping: [" + deobfuscatedName + ":" + obfuscatedName + "]");
+        else System.out.println("tried to add duplicate mapping: [" + deobfuscatedName + ":" + obfuscatedName + "]");
     }
 }

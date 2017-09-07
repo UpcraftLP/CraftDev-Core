@@ -34,7 +34,7 @@ public class CoreInternalConfig {
     }
 
     public static void syncConfig() {
-        /** Configuration Start **/
+        /* Configuration Start */
 
         /* GENERAL */
         isDebugMode = config.getBoolean("debug mode", GENERAL, false, "en/disable debug mode");
@@ -53,7 +53,7 @@ public class CoreInternalConfig {
         scalePlayers = config.getBoolean("scale Playes", CLIENT, false, "enable/disable scaling for players. Will only take effect if mob scale factor > 0");
         CraftDevCore.proxy.configChanged();
 
-        /** Configuration End **/
+        /* Configuration End */
         if (config.hasChanged()) config.save();
     }
 

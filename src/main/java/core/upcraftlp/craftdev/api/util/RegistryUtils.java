@@ -1,25 +1,18 @@
 package core.upcraftlp.craftdev.api.util;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-
 import core.upcraftlp.craftdev.api.item.ItemBlock;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 public class RegistryUtils {
 
@@ -60,7 +53,7 @@ public class RegistryUtils {
                     }
                 } catch (Exception ignore) {
                 }
-                if (!Modifier.isFinal(f.getModifiers())) CraftDevCore.getLogger().warn(clazz.getName() + ":" + f.getName() + " has no final modifier! Pleaes change this!");
+                if (!Modifier.isFinal(f.getModifiers())) CraftDevCore.log.warn(clazz.getName() + ":" + f.getName() + " has no final modifier! Pleaes change this!");
             }
         }
         log.info("successfully registered " + count + " Objects.");

@@ -1,10 +1,6 @@
 package core.upcraftlp.craftdev.commands;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -15,14 +11,14 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityAmbientCreature;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.Collections;
+import java.util.List;
 
 public class CommandClearLag extends CommandBase {
 
@@ -108,7 +104,7 @@ public class CommandClearLag extends CommandBase {
                 }
                 break;
             }
-            notifyCommandListener(sender, this, "commands.clearlag.success." + i, new Object[]{Integer.valueOf(count)});
+            notifyCommandListener(sender, this, "commands.clearlag.success." + i, count);
             server.updateTimeLightAndEntities();
         }
     }

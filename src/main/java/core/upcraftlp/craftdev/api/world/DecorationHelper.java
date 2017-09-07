@@ -1,11 +1,6 @@
 package core.upcraftlp.craftdev.api.world;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import com.google.common.annotations.Beta;
-
 import core.upcraftlp.craftdev.api.structures.ITreeMapping;
 import core.upcraftlp.craftdev.api.structures.TreeType;
 import core.upcraftlp.craftdev.common.CraftDevCore;
@@ -13,6 +8,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * <b>UNFINISHED, USE AT OWN RISK!</b>
@@ -27,10 +26,10 @@ public class DecorationHelper {
 	{
 		//TODO: Trees!
 		Random random = new Random();
-		List<BlockPos> logsX = new ArrayList<BlockPos>();
-		List<BlockPos> logsY = new ArrayList<BlockPos>();
-		List<BlockPos> logsZ = new ArrayList<BlockPos>();
-		List<BlockPos> leaves = new ArrayList<BlockPos>();
+		List<BlockPos> logsX = new ArrayList<>();
+		List<BlockPos> logsY = new ArrayList<>();
+		List<BlockPos> logsZ = new ArrayList<>();
+		List<BlockPos> leaves = new ArrayList<>();
 		
 		switch(treeType) {
 		
@@ -94,7 +93,7 @@ public class DecorationHelper {
 		case BIG:
 		case EXTRA_BIG:
 		case HOUSE:
-			CraftDevCore.getLogger().warn("TreeType " + treeType.name() + " has not been implemented yet. Aborting Tree generation!");
+			CraftDevCore.log.warn("TreeType " + treeType.name() + " has not been implemented yet. Aborting Tree generation!");
 			return;
 		}
 		

@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static core.upcraftlp.craftdev.common.CraftDevReference.*;
@@ -24,15 +23,11 @@ import static core.upcraftlp.craftdev.common.CraftDevReference.*;
 )
 public class CraftDevCore {
 
-    private static final Logger log = LogManager.getLogger(MODID);
+    public static Logger log;
     
     @Mod.Metadata(MODID)
     public static ModMetadata metaData;
 
-    public static Logger getLogger() {
-        return log;
-    }
-    
     @SidedProxy(clientSide = CLIENT_PROXY, serverSide = SERVER_PROXY)
     public static CommonProxy proxy;
 
@@ -45,6 +40,7 @@ public class CraftDevCore {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        log = event.getModLog();
         VanityFeatures.update();
         proxy.preInit(event);
         UpdateChecker.registerMod(MODID);
@@ -72,15 +68,15 @@ public class CraftDevCore {
 
     @Mod.EventHandler
     public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
-        log.warn(event.getSource() + " has a mismatching fingerprint key!");
+        System.out.println(event.getSource() + " has a mismatching fingerprint key!");
         if(event.isDirectory()) {
-            log.warn(event.getSource() + " is a directory!");
+            System.out.println(event.getSource() + " is a directory!");
         }
         else {
-            log.warn("Expected: " + event.getExpectedFingerprint());
-            String res = "Got " + event.getFingerprints().size() + " known keys: ";
-            for (String fingerPrint : event.getFingerprints()) res += "\n   - " + fingerPrint;
-            log.warn(res);
+            System.out.println("Expected: " + event.getExpectedFingerprint());
+            StringBuilder res = new StringBuilder("Got " + event.getFingerprints().size() + " known keys: ");
+            for (String fingerPrint : event.getFingerprints()) res.append("\n   - ").append(fingerPrint);
+            System.out.println(res.toString());
         }
     }
     

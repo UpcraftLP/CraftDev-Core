@@ -13,30 +13,18 @@ public abstract class AbstractConfigGuiFactory implements IModGuiFactory {
 
     @Deprecated
     @Override
-    public void initialize(Minecraft minecraftInstance) {
-    }
-
-    @Override
-    @Deprecated
-    public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return null;
-    }
-
-    @Deprecated
-    @Override
-    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
-        return null;
-    }
-
-    @Deprecated
-    @Override
     public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
         return null;
     }
 
     @Override
+    public void initialize(Minecraft minecraftInstance) {
+        //NO-OP
+    }
+
+    @Override
     public boolean hasConfigGui() {
-        return mainConfigGuiClass() != null;
+        return true;
     }
 
     /**
@@ -44,5 +32,15 @@ public abstract class AbstractConfigGuiFactory implements IModGuiFactory {
      */
     @Override
     public abstract GuiScreen createConfigGui(GuiScreen parentScreen);
+
+    @Override
+    public Class<? extends GuiScreen> mainConfigGuiClass() {
+        return null;
+    }
+
+    @Override
+    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+        return null;
+    }
 
 }

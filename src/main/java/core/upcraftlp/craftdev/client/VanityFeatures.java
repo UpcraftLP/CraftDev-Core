@@ -43,7 +43,7 @@ public class VanityFeatures {
                 //TODO read and write save file
             }
             catch (Exception e) {
-                CraftDevCore.getLogger().error("Exception reading vanity data, discarding data!");
+                CraftDevCore.log.error("Exception reading vanity data, discarding data!");
                 playerData.clear();
             }
             finally {

@@ -1,7 +1,5 @@
 package core.upcraftlp.craftdev.api.creativetab;
 
-import java.util.Random;
-
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class CreativeTab extends CreativeTabs {
 
@@ -74,12 +74,11 @@ public class CreativeTab extends CreativeTabs {
         if (this.displayRandom) {
             NonNullList<ItemStack> itemStacks = NonNullList.create();
             this.displayAllRelevantItems(itemStacks);
-            ItemStack toDisplay = !itemStacks.isEmpty() ? itemStacks.get(tempIndex) : ItemStack.EMPTY;
-            this.tempDisplayStack = toDisplay;
+            this.tempDisplayStack = !itemStacks.isEmpty() ? itemStacks.get(tempIndex) : ItemStack.EMPTY;
 			if (++tempIndex >= itemStacks.size()) tempIndex = 0;
         } else {
             if(this.icon.isEmpty()) {
-                CraftDevCore.getLogger().warn("found empty Itemstack for CreativeTab " + this.getTabLabel() + ", defaulting to " + Items.DIAMOND.getRegistryName());
+                CraftDevCore.log.warn("found empty Itemstack for CreativeTab " + this.getTabLabel() + ", defaulting to " + Items.DIAMOND.getRegistryName());
                 this.tempDisplayStack = new ItemStack(Items.DIAMOND);
             }
             this.tempDisplayStack = this.icon;

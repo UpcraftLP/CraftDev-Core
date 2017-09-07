@@ -28,7 +28,7 @@ public class UpdateChecker {
     public static boolean hasUpdate(String modid, boolean betaVersions) {
         ForgeVersion.CheckResult result = getResult(modid);
         if(result.status == ForgeVersion.Status.PENDING) {
-            CraftDevCore.getLogger().warn("Cannot check for updates, found status: PENDING!");
+            CraftDevCore.log.warn("Cannot check for updates, found status: PENDING!");
             return false;
         }
         return betaVersions ? result.status.isAnimated() : result.status == ForgeVersion.Status.OUTDATED;
@@ -46,7 +46,7 @@ public class UpdateChecker {
         for (String modid : modsToCheck) {
             if (hasUpdate(modid, CoreInternalConfig.betaUpdates)) {
                 String url = getResult(modid).url;
-                CraftDevCore.getLogger().warn("There's an update available for {}" + (StringUtils.isNullOrEmpty(url) ? "": ", download version {} here: {}"), FMLCommonHandler.instance().findContainerFor(modid).getName(), getLatestVersion(modid), url);
+                CraftDevCore.log.warn("There's an update available for {}" + (StringUtils.isNullOrEmpty(url) ? "": ", download version {} here: {}"), FMLCommonHandler.instance().findContainerFor(modid).getName(), getLatestVersion(modid), url);
             }
         }
     }

@@ -3,6 +3,8 @@ package core.upcraftlp.craftdev.api.item;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Item extends net.minecraft.item.Item {
 
@@ -25,6 +27,7 @@ public class Item extends net.minecraft.item.Item {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void getSubItems(net.minecraft.item.Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
         if ( this.getSubItemCount() > 0 ) {
             for ( int i = 0; i < this.getSubItemCount(); i++ )

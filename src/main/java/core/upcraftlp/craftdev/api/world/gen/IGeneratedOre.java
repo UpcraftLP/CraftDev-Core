@@ -6,28 +6,28 @@ import net.minecraft.block.state.IBlockState;
 
 public interface IGeneratedOre {
 
-    public default int getVeinDiameter() {
+    default int getVeinDiameter() {
         return 6;
     }
 
-    public IBlockState getBlockState();
+    IBlockState getBlockState();
 
-    public int getMinHeight();
+    int getMinHeight();
 
-    public int getMaxHeight();
+    int getMaxHeight();
 
-    public default Predicate<IBlockState> getPredicateOverride() {
+    default Predicate<IBlockState> getPredicateOverride() {
         return null;
     }
 
-    public int getLeastQuantity();
+    int getLeastQuantity();
 
-    public int getMostQuantity();
+    int getMostQuantity();
 
     /**
      * higher number = generates later
      */
-    public default int getOreGenWeight() {
+    default int getOreGenWeight() {
         return 10;
     }
 }

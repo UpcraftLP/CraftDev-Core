@@ -38,14 +38,14 @@ public class StructureLoaderSchematic {
         try {
             File structureFile = new File(structureDir, name + ".schematic");
             if (!structureFile.exists()) {
-                CraftDevCore.getLogger().error("File not found: " + structureFile.getAbsolutePath());
+                CraftDevCore.log.error("File not found: " + structureFile.getAbsolutePath());
                 return false;
             }
             stream = new FileInputStream(structureFile);
             load(world, pos, stream, settings, name);
             return true;
         } catch (Exception e) {
-            CraftDevCore.getLogger().error("Exception caught: " + e.getMessage());
+            CraftDevCore.log.error("Exception caught: " + e.getMessage());
             return false;
         } finally {
             IOUtils.closeQuietly(stream);
@@ -61,7 +61,7 @@ public class StructureLoaderSchematic {
             load(world, pos, stream, settings, location.toString());
             return true;
         } catch (Exception e) {
-            CraftDevCore.getLogger().error("Exception caught: " + e.getMessage());
+            CraftDevCore.log.error("Exception caught: " + e.getMessage());
             return false;
         } finally {
             IOUtils.closeQuietly(stream);

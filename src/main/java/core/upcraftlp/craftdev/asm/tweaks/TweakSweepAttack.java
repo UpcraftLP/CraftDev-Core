@@ -47,7 +47,7 @@ public class TweakSweepAttack extends ClassTransform {
                             if(abstractNode instanceof FieldInsnNode) {
                                 FieldInsnNode fieldNode = (FieldInsnNode) abstractNode;
                                 if(fieldNode.getOpcode() == GETFIELD && fieldNode.name.equals(DeobfuscationHelper.getName("velocityChanged"))) {
-                                    log.debug("adding SweepEvent");
+                                    System.out.println("adding SweepEvent");
                                     InsnList toAdd = new InsnList();
                                     toAdd.add(new VarInsnNode(ALOAD, 0)); //load the player on the stack
                                     toAdd.add(new VarInsnNode(ALOAD, 1)); //load the target entity (method parameter) on the stack
