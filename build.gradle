@@ -232,5 +232,6 @@ String getChangelogText() {
         }
         done = true // once we go past the first version block, parse no more
     }
+	str += "\n\n see full changelog [here](${project.changelog_url} \"Changelog\")"
     return str
 }
