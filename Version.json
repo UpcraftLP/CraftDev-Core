@@ -1,14 +1,16 @@
 {
 	"homepage": "https://minecraft.curseforge.com/projects/craftdev-core",
 	"promos": {
-		"1.11.2-latest": "2.2.1",
-		"1.11.2-recommended": "2.2.0",
+		"1.11.2-latest": "2.2.3",
+		"1.11.2-recommended": "2.2.3",
 		"1.11-latest": "2.0.3",
 		"1.11-recommended": "2.0.3",
 		"1.10.2-latest": "0.2.2",
 		"1.10.2-recommended": "0.2.2"
 	},
 	"1.11.2": {
+		"2.2.3": "* bugfixes\nRecommended to update!!!",
+		"2.2.2": "* added update-checker\n*internal changes\n* new command",
 		"2.2.1": "* mostly internal changes",
 		"2.2.0": "* bugfixes",
 		"2.1.0": "* added custom shield template",
