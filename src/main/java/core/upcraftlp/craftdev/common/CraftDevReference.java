@@ -18,7 +18,7 @@ public class CraftDevReference {
     public static final String[] authors = new String[] { "UpcraftLP" };
     public static final String MOD_DESCRIPTION = "core mod for Upcraft's mods";
     
-    private static final String BASE_PACKAGE = "core.upcraftlp.craftdev";
+    public static final String BASE_PACKAGE = "core.upcraftlp.craftdev";
     public static final String GUI_FACTORY = BASE_PACKAGE + ".config.CoreConfigGuiFactory";
     public static final String CLIENT_PROXY = BASE_PACKAGE + ".proxy.ClientProxy";
     public static final String SERVER_PROXY = BASE_PACKAGE + ".proxy.ServerProxy";

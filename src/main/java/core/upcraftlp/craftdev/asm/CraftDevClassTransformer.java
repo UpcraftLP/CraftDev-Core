@@ -4,6 +4,7 @@ import core.upcraftlp.craftdev.api.util.asm.TransformerUtils;
 import core.upcraftlp.craftdev.asm.tweaks.TweakBiome;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEnchantHelper;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEntityFireRender;
+import core.upcraftlp.craftdev.asm.tweaks.TweakSweepAttack;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
@@ -21,7 +22,7 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
         new TweakEnchantHelper();
         new TweakBiome();
         new TweakEntityFireRender();
-        //new TweakSweepAttack(); //FIXME re-enable once the asm is working
+        new TweakSweepAttack(); //FIXME re-enable once the asm is working
     }
     
     @Override

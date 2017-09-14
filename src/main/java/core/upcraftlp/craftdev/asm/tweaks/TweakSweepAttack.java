@@ -42,7 +42,7 @@ public class TweakSweepAttack extends ClassTransform {
                     }
                     else if(current instanceof TypeInsnNode) {
                         TypeInsnNode typeNode = (TypeInsnNode) current;
-                        if(typeNode.getOpcode() == INSTANCEOF && typeNode.desc.equals(DeobfuscationHelper.EntityPlayer.replace(".", "/") + "MP")) {
+                        if(typeNode.getOpcode() == INSTANCEOF && typeNode.desc.equals("net/minecraft/entity/player/EntityPlayerMP")) {
                             AbstractInsnNode abstractNode = node.instructions.get(i + 3);
                             if(abstractNode instanceof FieldInsnNode) {
                                 FieldInsnNode fieldNode = (FieldInsnNode) abstractNode;

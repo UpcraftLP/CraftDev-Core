@@ -6,6 +6,8 @@ import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 @IFMLLoadingPlugin.MCVersion("1.11.2") //FIXME mcversion annotation
+@IFMLLoadingPlugin.SortingIndex(1001) //needs to be > 1000 for the obfuscated class names to be remapped at runtime
+@IFMLLoadingPlugin.TransformerExclusions({CraftDevReference.BASE_PACKAGE})
 public class CraftDevLoadingPlugin implements IFMLLoadingPlugin {
 
     private static boolean runtimeDeobfuscation;
