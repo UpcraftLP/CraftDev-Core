@@ -1,5 +1,6 @@
 package core.upcraftlp.craftdev.api.util.asm;
 
+import core.upcraftlp.craftdev.common.CraftDevCore;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
@@ -38,14 +39,14 @@ public class TransformerUtils  {
         ClassReader cr = new ClassReader(basicClass);
         cr.accept(cn, 0);
         Iterator<MethodNode> methods = cn.methods.iterator();
-        System.out.println("transforming class " + deobfName);
+        CraftDevCore.log.debug("transforming class " + deobfName);
         transformer.transform(methods);
         
         // asm specific for cleaning up and returning the final bytes for JVM processing.
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
         cn.accept(writer);
 
-        System.out.println("successfully transformed " + deobfName + "!");
+        CraftDevCore.log.debug("successfully transformed " + deobfName + "!");
         return writer.toByteArray();
     }
     

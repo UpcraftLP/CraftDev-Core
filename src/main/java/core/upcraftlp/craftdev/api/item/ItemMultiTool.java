@@ -26,8 +26,8 @@ public class ItemMultiTool extends ItemTool {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
-        return efficiencyOnProperMaterial;
+    public float getDestroySpeed(ItemStack stack, IBlockState state) {
+        return efficiency;
     }
 
     @Override

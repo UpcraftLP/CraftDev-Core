@@ -4,7 +4,10 @@ import core.upcraftlp.craftdev.api.util.asm.TransformerUtils;
 import core.upcraftlp.craftdev.asm.tweaks.TweakBiome;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEnchantHelper;
 import core.upcraftlp.craftdev.asm.tweaks.TweakEntityFireRender;
+import core.upcraftlp.craftdev.common.CraftDevCore;
+import core.upcraftlp.craftdev.common.CraftDevReference;
 import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
@@ -12,7 +15,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-@IFMLLoadingPlugin.MCVersion("1.11.2") //FIXME mcversion annotation
+@IFMLLoadingPlugin.MCVersion(Loader.MC_VERSION)
 public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook {
 
     private static final Random rand = new Random();
@@ -67,9 +70,9 @@ public class CraftDevClassTransformer implements IClassTransformer, IFMLCallHook
 
     @Override
     public Void call() throws Exception {
-        System.out.println("Hello Minecraft!");
-        System.out.println(quotes[rand.nextInt(quotes.length)]);
-       if(CraftDevLoadingPlugin.isDeobfuscatedEnvironment()) System.out.println("deobfuscated environment detected!");
+        CraftDevCore.log.debug("Hello Minecraft!");
+        CraftDevCore.log.debug(quotes[rand.nextInt(quotes.length)]);
+       if(CraftDevLoadingPlugin.isDeobfuscatedEnvironment()) CraftDevCore.log.debug("deobfuscated environment detected!");
        return null; //return null or throw an exception
     }
     

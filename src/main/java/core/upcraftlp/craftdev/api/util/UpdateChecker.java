@@ -44,7 +44,7 @@ public class UpdateChecker {
 
     public static void notifyServer() {
         for (String modid : modsToCheck) {
-            if (hasUpdate(modid, CoreInternalConfig.betaUpdates)) {
+            if (hasUpdate(modid, CoreInternalConfig.announceBetaUpdates)) {
                 String url = getResult(modid).url;
                 CraftDevCore.log.warn("There's an update available for {}" + (StringUtils.isNullOrEmpty(url) ? "": ", download version {} here: {}"), FMLCommonHandler.instance().findContainerFor(modid).getName(), getLatestVersion(modid), url);
             }

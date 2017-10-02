@@ -3,6 +3,7 @@ package core.upcraftlp.craftdev.api.util;
 import core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
+import net.minecraft.client.audio.SoundRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
@@ -32,8 +33,8 @@ public class ModHelper {
 	 */
 	public static SoundEvent registerSound(String name, String modid) {
 		ResourceLocation location = new ResourceLocation(modid, name);
-		final SoundEvent event = new SoundEvent(location);
-		GameRegistry.register(event, location);
+		final SoundEvent event = new SoundEvent(location).setRegistryName(location);
+		GameRegistry.findRegistry(SoundEvent.class).register(event);
 		return event;
 	}
 
@@ -55,7 +56,7 @@ public class ModHelper {
 	 */
 	public static void registerEntity(ResourceLocation registryName, Class<? extends Entity> entityClass,
 			String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
-		EntityRegistry.registerModEntity(registryName, entityClass, entityName, entityID++, CraftDevCore.getInstance(),
+		EntityRegistry.registerModEntity(registryName, entityClass, entityName, entityID++, "craftdev-core",
 				trackingRange, updateFrequency, sendsVelocityUpdates);
 	}
 

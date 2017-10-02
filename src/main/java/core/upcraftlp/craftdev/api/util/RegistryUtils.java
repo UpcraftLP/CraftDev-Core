@@ -7,7 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +27,7 @@ public class RegistryUtils {
             if (IForgeRegistryEntry.class.isAssignableFrom(f.getType())) {
                 try {
                     T entry = (T) f.get(null);
-                    GameRegistry.register(entry); //TODO in 1.12: change to Event#getRegistry()
+                    event.getRegistry().register(entry);
                     count++;
                     if (Item.class.isAssignableFrom(type)) {
                         Item item = (Item) entry;
@@ -39,14 +39,14 @@ public class RegistryUtils {
                         if (core.upcraftlp.craftdev.api.block.Block.class.isInstance(type)) {
                             final Item item = ((core.upcraftlp.craftdev.api.block.Block) block).item();
                             if(item != null) {
-                                GameRegistry.register(item);
+                                GameRegistry.findRegistry(Item.class).register(item);
                                 count++;
                                 CraftDevCore.proxy.registerRender(item);
                             }
                         }
                         else {
                             Item itemBlock = new ItemBlock(block);
-                            GameRegistry.register(itemBlock);
+                            GameRegistry.findRegistry(Item.class).register(itemBlock);
                             count++;
                             CraftDevCore.proxy.registerRender(itemBlock);
                         }

@@ -3,6 +3,7 @@ package core.upcraftlp.craftdev.asm.tweaks;
 import core.upcraftlp.craftdev.api.event.SweepEvent;
 import core.upcraftlp.craftdev.api.util.asm.ClassTransform;
 import core.upcraftlp.craftdev.api.util.asm.DeobfuscationHelper;
+import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,19 +36,19 @@ public class TweakSweepAttack extends ClassTransform {
                     if(insertIndex == 0) {
                         if(current instanceof MethodInsnNode) {
                             MethodInsnNode methodNode = (MethodInsnNode) current;
-                            if(methodNode.getOpcode() == INVOKESTATIC && methodNode.owner.equals(DeobfuscationHelper.EnchantmentHelper.replace(".", "/")) && methodNode.name.equals(DeobfuscationHelper.getName("func_191527_a")) && methodNode.desc.equals("(Lnet/minecraft/entity/EntityLivingBase;)F")) {
+                            if(methodNode.getOpcode() == INVOKESTATIC && methodNode.owner.equals(DeobfuscationHelper.EnchantmentHelper.replace(".", "/")) && methodNode.name.equals(DeobfuscationHelper.getName("getSweepingDamageRatio")) && methodNode.desc.equals("(Lnet/minecraft/entity/EntityLivingBase;)F")) {
                                 insertIndex = i - 2;
                             }
                         }
                     }
                     else if(current instanceof TypeInsnNode) {
                         TypeInsnNode typeNode = (TypeInsnNode) current;
-                        if(typeNode.getOpcode() == INSTANCEOF && typeNode.desc.equals(DeobfuscationHelper.EntityPlayer.replace(".", "/") + "MP")) {
+                        if(typeNode.getOpcode() == INSTANCEOF && typeNode.desc.equals("net/minecraft/entity/player/EntityPlayerMP")) {
                             AbstractInsnNode abstractNode = node.instructions.get(i + 3);
                             if(abstractNode instanceof FieldInsnNode) {
                                 FieldInsnNode fieldNode = (FieldInsnNode) abstractNode;
                                 if(fieldNode.getOpcode() == GETFIELD && fieldNode.name.equals(DeobfuscationHelper.getName("velocityChanged"))) {
-                                    System.out.println("adding SweepEvent");
+                                    CraftDevCore.log.debug("adding SweepEvent");
                                     InsnList toAdd = new InsnList();
                                     toAdd.add(new VarInsnNode(ALOAD, 0)); //load the player on the stack
                                     toAdd.add(new VarInsnNode(ALOAD, 1)); //load the target entity (method parameter) on the stack

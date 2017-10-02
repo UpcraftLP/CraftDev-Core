@@ -4,6 +4,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -26,7 +28,7 @@ public class BlockSilverfish extends Block {
     protected net.minecraft.block.Block drop;
 
     public BlockSilverfish(net.minecraft.block.Block drop) {
-        super(drop.getUnlocalizedName().substring(5) + "_silverfish", Material.CLAY, true);
+        super(drop.getRegistryName() + "_silverfish", Material.CLAY, true);
         this.setUnlocalizedName(drop.getUnlocalizedName().substring(5));
         this.setSoundType(SoundType.STONE);
         this.setHardness(2.0f);
@@ -40,7 +42,7 @@ public class BlockSilverfish extends Block {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, net.minecraft.entity.player.EntityPlayer player, List<String> tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag advanced) {
         tooltip.add(TextFormatting.GRAY + I18n.format("desc.silverfish.name"));
     }
 

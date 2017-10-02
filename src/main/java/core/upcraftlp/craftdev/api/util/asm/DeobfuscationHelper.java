@@ -23,7 +23,7 @@ public abstract class DeobfuscationHelper {
 
         addMapping("attackTargetEntityWithCurrentItem", "func_71059_n");
         addMapping("spawnSweepParticles", "func_184810_cG");
-        addMapping("func_191527_a", "func_191527_a"); //TODO add deobfuscated name of func_191527_a
+        addMapping("getSweepingDamageRatio", "func_191527_a");
         addMapping("velocityChanged", "field_70133_I");
     }
 

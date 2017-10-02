@@ -23,14 +23,14 @@ public class ZomBabyFireHandler {
     
     @SubscribeEvent
     public static void onZomBabyUpdate(LivingUpdateEvent event) {
-        if(!CoreInternalConfig.zomBabiesBurn || ModHelper.getIsModLoaded("quark")) return;
+        if(!CoreInternalConfig.tweaks.zomBabiesBurn || ModHelper.getIsModLoaded("quark")) return;
         if(event.getEntityLiving() instanceof EntityZombie) {
             EntityZombie zombie = (EntityZombie) event.getEntityLiving();
             World world = zombie.getEntityWorld();
             if(zombie.isBurning() || !zombie.isChild() || zombie instanceof EntityHusk || !zombie.isServerWorld() || !world.isDaytime()) return;
             BlockPos pos = zombie.getRidingEntity() instanceof EntityBoat ? new BlockPos(zombie.posX, Math.round(zombie.posY), zombie.posZ).up() : new BlockPos(zombie.posX, Math.round(zombie.posY), zombie.posZ);
             
-            float brightness = zombie.getBrightness(1.0F);
+            float brightness = zombie.getBrightness();
 
             if (brightness > 0.5F && rand.nextFloat() * 30.0F < (brightness - 0.4F) * 2.0F && world.canSeeSky(pos))
             {

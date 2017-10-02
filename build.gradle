@@ -1,3 +1,5 @@
+import java.util.logging.LogManager
+
 buildscript {
     repositories {
         jcenter()
@@ -11,7 +13,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 plugins {
@@ -74,7 +76,7 @@ minecraft {
 
     clientRunArgs += "--username=${username}"
     if(project.hasProperty('dev_password')) {
-        clientRunArgs += " --password=${dev_password}"
+        clientRunArgs += "--password=${dev_password}"
     }
     serverRunArgs += "nogui"
     clientJvmArgs += "-Dfml.coreMods.load=core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin"
@@ -112,7 +114,6 @@ jar {
             "Implementation-Version": project.version,
             "Built-On": "${minecraft_version}-${forge_version}",
             "FMLCorePlugin": "core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin",
-            "FMLCorePluginContainsFMLMod": "true",
             "FMLAT": "${project.mod_name}_at.cfg"
     )
     classifier = 'universal'
@@ -207,9 +208,10 @@ curseforge {
 }
 
 String getChangelogText() {
-    def changelogFile = new File('changelog.md')
+    def changelogFile = new File(project.projectDir, "changelog.md")
     String str = ''
     if(!changelogFile.exists()) {
+        System.out.println("No changelog file found, creating one at \"" + changelogFile.getAbsolutePath() + "\"")
         changelogFile.createNewFile()
         return str
     }

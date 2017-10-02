@@ -20,7 +20,7 @@ public class ChestBreakHandler {
     public static void onChestBroken(BreakEvent event) {
         EntityPlayer player = event.getPlayer();
         World world = event.getWorld();
-        if (world.isRemote || player instanceof FakePlayer || player.isSneaking() || !CoreInternalConfig.chestBreaker) return;
+        if (world.isRemote || player instanceof FakePlayer || player.isSneaking() || !CoreInternalConfig.tweaks.chestBreaker) return;
         if (event.getState().getBlock() instanceof BlockChest) {
             BlockPos pos = event.getPos();
             for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
