@@ -6,6 +6,7 @@ import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 
 import java.util.Iterator;
 
+import core.upcraftlp.craftdev.common.CraftDevCore;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.InsnList;
 import org.objectweb.asm.tree.InsnNode;
@@ -33,7 +34,7 @@ public class TweakBiome extends ClassTransform {
         while(methods.hasNext()) {
             MethodNode node = methods.next();
             if(node.name.equals(name)) {
-                System.out.println("adding BiomeTemperatureEvent");
+                CraftDevCore.log.debug("adding BiomeTemperatureEvent");
                 for(int i = 0; i < node.instructions.size(); i++) {
                     AbstractInsnNode current = node.instructions.get(i);
                     if(current instanceof InsnNode && current.getOpcode() == FRETURN) {

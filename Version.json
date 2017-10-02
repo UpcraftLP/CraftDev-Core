@@ -1,6 +1,12 @@
 {
 	"homepage": "https://minecraft.curseforge.com/projects/craftdev-core",
 	"promos": {
+        "1.12.2-latest": "2.2.4",
+        "1.12.2-recommended": "2.2.4",
+        "1.12.1-latest": "2.2.4",
+        "1.12.1-recommended": "2.2.4",
+        "1.12-latest": "2.2.4",
+        "1.12-recommended": "2.2.4",
 		"1.11.2-latest": "2.2.3",
 		"1.11.2-recommended": "2.2.3",
 		"1.11-latest": "2.0.3",
@@ -8,6 +14,9 @@
 		"1.10.2-latest": "0.2.2",
 		"1.10.2-recommended": "0.2.2"
 	},
+    "1.12": {
+        "2.2.4": "* initial 1.12.X port\n* bugfixes"
+    },
 	"1.11.2": {
 		"2.2.3": "* bugfixes\nRecommended to update!!!",
 		"2.2.2": "* added update-checker\n*internal changes\n* new command",

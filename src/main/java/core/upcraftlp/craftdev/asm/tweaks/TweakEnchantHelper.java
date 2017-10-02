@@ -3,6 +3,7 @@ package core.upcraftlp.craftdev.asm.tweaks;
 import core.upcraftlp.craftdev.api.event.EnchantabilityEvent;
 import core.upcraftlp.craftdev.api.util.asm.ClassTransform;
 import core.upcraftlp.craftdev.api.util.asm.DeobfuscationHelper;
+import core.upcraftlp.craftdev.common.CraftDevCore;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import org.objectweb.asm.tree.*;
@@ -24,7 +25,7 @@ public class TweakEnchantHelper extends ClassTransform {
                     if(current instanceof VarInsnNode) {
                         VarInsnNode insNode = (VarInsnNode) current;
                         if(insNode.getOpcode() == ISTORE && insNode.var == 5) {
-                            System.out.println("adding EnchantabilityEvent");
+                            CraftDevCore.log.debug("adding EnchantabilityEvent");
                             InsnList toAdd = new InsnList();
                             toAdd.add(new VarInsnNode(ALOAD, 3)); //load the stack
                             toAdd.add(new VarInsnNode(ILOAD, 5)); //load enchantability

@@ -7,6 +7,7 @@ import core.upcraftlp.craftdev.common.CraftDevReference;
 import core.upcraftlp.craftdev.config.CoreInternalConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -54,19 +55,11 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void configChanged() {
-        super.configChanged();
-        MobScaleHandler.scalePlayers = CoreInternalConfig.scalePlayers;
-        MobScaleHandler.scale = 1.0f - (CoreInternalConfig.mobScaleFactor * 0.2f); // hardcoded maximum of 0.8f
-        Minecraft.getMinecraft().gameSettings.entityShadows = MobScaleHandler.scale == 1.0f; //disable shadows if the scale is active
-    }
-
-    @Override
     public void registerRender(Item item) {
         super.registerRender(item);
         if (item.getHasSubtypes()) {
             NonNullList<ItemStack> items = NonNullList.create();
-            item.getSubItems(item, null, items);
+            item.getSubItems(CreativeTabs.SEARCH, items);
             for (ItemStack stack : items) {
                 int meta = stack.getMetadata();
                 ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName() + "_" + meta, "inventory"));

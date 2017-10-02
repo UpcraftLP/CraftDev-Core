@@ -27,14 +27,14 @@ public class Item extends net.minecraft.item.Item {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(net.minecraft.item.Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         if ( this.getSubItemCount() > 0 ) {
             for ( int i = 0; i < this.getSubItemCount(); i++ )
-                subItems.add(new ItemStack(this, 1, i));
+                items.add(new ItemStack(this, 1, i));
         }
         else {
-            super.getSubItems(itemIn, tab, subItems);
+            super.getSubItems(tab, items);
         }
     }
+
 }

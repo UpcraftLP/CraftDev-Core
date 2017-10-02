@@ -15,6 +15,8 @@ public class CraftDevCrafting {
          * [S S]
          * 3x3 crafting; s = ore:string.
          */
-        if(CoreInternalConfig.webCrafting) GameRegistry.addRecipe(new ShapedOreRecipe(Blocks.WEB, "S S", " S ", "S S", 'S', "string"));
+        //FIXME currently disabled
+        //TODO move to json recipe
+        //if(CoreInternalConfig.webCrafting) GameRegistry.addRecipe(new ShapedOreRecipe(Blocks.WEB, "S S", " S ", "S S", 'S', "string"));
     }
 }

@@ -3,10 +3,12 @@ package core.upcraftlp.craftdev.common;
 import core.upcraftlp.craftdev.api.util.UpdateChecker;
 import core.upcraftlp.craftdev.client.VanityFeatures;
 import core.upcraftlp.craftdev.proxy.CommonProxy;
+import jline.internal.Log;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static core.upcraftlp.craftdev.common.CraftDevReference.*;
@@ -18,12 +20,11 @@ import static core.upcraftlp.craftdev.common.CraftDevReference.*;
         modid = MODID,
         acceptableRemoteVersions = "*",
         updateJSON = UPDATE_JSON,
-        guiFactory = GUI_FACTORY,
         certificateFingerprint = FORGE_FINGERPRINT
 )
 public class CraftDevCore {
 
-    public static Logger log;
+    public static Logger log = LogManager.getLogger(MODID);
     
     @Mod.Metadata(MODID)
     public static ModMetadata metaData;
@@ -40,7 +41,6 @@ public class CraftDevCore {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        log = event.getModLog();
         VanityFeatures.update();
         proxy.preInit(event);
         UpdateChecker.registerMod(MODID);
@@ -68,15 +68,15 @@ public class CraftDevCore {
 
     @Mod.EventHandler
     public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
-        System.out.println(event.getSource() + " has a mismatching fingerprint key!");
+        log.warn(event.getSource() + " has a mismatching fingerprint key!");
         if(event.isDirectory()) {
-            System.out.println(event.getSource() + " is a directory!");
+            log.warn(event.getSource() + " is a directory!");
         }
         else {
-            System.out.println("Expected: " + event.getExpectedFingerprint());
+            log.warn("Expected: " + event.getExpectedFingerprint());
             StringBuilder res = new StringBuilder("Got " + event.getFingerprints().size() + " known keys: ");
             for (String fingerPrint : event.getFingerprints()) res.append("\n   - ").append(fingerPrint);
-            System.out.println(res.toString());
+            log.warn(res.toString());
         }
     }
     

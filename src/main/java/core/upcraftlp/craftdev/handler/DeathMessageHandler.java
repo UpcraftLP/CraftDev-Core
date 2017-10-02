@@ -17,7 +17,7 @@ public class DeathMessageHandler {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingDeath(LivingDeathEvent event) {
-        if (!CoreInternalConfig.showAllDeaths) return;
+        if (!CoreInternalConfig.tweaks.showAllDeaths) return;
         EntityLivingBase entity = event.getEntityLiving();
         World world = entity.getEntityWorld();
         if (!world.isRemote && entity.hasCustomName() && !(entity instanceof EntityPlayer)) {

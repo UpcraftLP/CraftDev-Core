@@ -31,7 +31,7 @@ public class ClientUpdateHandler {
     public static void onPlayerTick(TickEvent.ClientTickEvent event) {
         if(hasShown || Minecraft.getMinecraft().player == null) return;
         for (String modid : UpdateChecker.modsToCheck) {
-            if (UpdateChecker.hasUpdate(modid, CoreInternalConfig.betaUpdates)) {
+            if (UpdateChecker.hasUpdate(modid, CoreInternalConfig.announceBetaUpdates)) {
                 String url = UpdateChecker.getResult(modid).url;
                 String targetVersion = UpdateChecker.getLatestVersion(modid);
                 ITextComponent link = new TextComponentString("here").setStyle(new Style().setColor(TextFormatting.BLUE).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url)).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(url).setStyle(new Style().setColor(TextFormatting.AQUA).setItalic(true)))));
