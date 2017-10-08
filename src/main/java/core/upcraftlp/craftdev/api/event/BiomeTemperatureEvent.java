@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 
 /**
  * fired on the {@link MinecraftForge#EVENT_BUS} when trying to determine
- * the Temperature of a Biome in {@link Biome#getFloatTemperature(BlockPos)}.
+ * the Temperature of a Biome in {@link Biome#getTemperature(BlockPos)}.
  * @author UpcraftLP
  *
  */

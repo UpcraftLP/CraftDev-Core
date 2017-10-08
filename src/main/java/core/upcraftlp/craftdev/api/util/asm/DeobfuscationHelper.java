@@ -18,7 +18,7 @@ public abstract class DeobfuscationHelper {
         addMapping("prepareScale", "func_188322_c");
         addMapping("renderEntityOnFire", "func_76977_a");
         
-        addMapping("getFloatTemperature", "func_180626_a");
+        addMapping("getTemperature", "func_180626_a");
         addMapping("temperature", "field_185415_d");
 
         addMapping("attackTargetEntityWithCurrentItem", "func_71059_n");

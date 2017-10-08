@@ -88,10 +88,6 @@ configurations {
     compile.extendsFrom exportedCompile
 }
 
-reobf {
-    jar
-}
-
 // API jar
 task apiJar(type: Jar) {
     from sourceSets.main.output
@@ -106,6 +102,11 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
 }
 
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
 jar {
     from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest.mainAttributes(
@@ -114,13 +115,13 @@ jar {
             "Implementation-Version": project.version,
             "Built-On": "${minecraft_version}-${forge_version}",
             "FMLCorePlugin": "core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin",
+            "FMLCorePluginContainsFMLMod": "true",
             "FMLAT": "${project.mod_name}_at.cfg"
     )
-    classifier = 'universal'
 }
 
 //sign Jar
-task signJar(type: SignJar, dependsOn: reobfJar) {
+task signJar(type: SignJar) {
     if(project.hasProperty('sign_keyStore')) {
         keyPass = "${sign_keyPass}"
         keyStore = "${sign_keyStore}"
@@ -143,7 +144,7 @@ dependencies {
 
     // at runtime, use the full JEI jar (no build dependency, this is for testing purposes ONLY!
     runtime "mezz.jei:jei_${project.minecraft_version}:${project.jei_version}"
-    tasks.build.dependsOn javadoc, javadocJar, apiJar, signJar
+    tasks.build.dependsOn javadoc, javadocJar, apiJar, signJar, deobfJar
     tasks.curseforge.dependsOn build
 }
 
@@ -200,6 +201,7 @@ curseforge {
         addArtifact javadocJar
         addArtifact sourceJar
         addArtifact apiJar
+        addArtifact deobfJar
 
         mainArtifact(jar) {
             displayName = "CraftDev-Core v${project.mod_version} MC${minecraft_version}"

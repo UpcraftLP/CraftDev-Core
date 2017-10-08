@@ -30,7 +30,7 @@ public class TweakBiome extends ClassTransform {
 
     @Override
     public void transform(Iterator<MethodNode> methods) {
-        String name = DeobfuscationHelper.getName("getFloatTemperature");
+        String name = DeobfuscationHelper.getName("getTemperature");
         while(methods.hasNext()) {
             MethodNode node = methods.next();
             if(node.name.equals(name)) {
