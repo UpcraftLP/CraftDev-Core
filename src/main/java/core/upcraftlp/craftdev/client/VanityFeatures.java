@@ -9,8 +9,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.compress.utils.IOUtils;
 
+import java.net.InetAddress;
 import java.net.URL;
 import java.util.Map;
 import java.util.Scanner;
@@ -19,6 +22,7 @@ import java.util.UUID;
 /**
  * @author UpcraftLP
  */
+@SideOnly(Side.CLIENT)
 public class VanityFeatures {
 
     private static final Map<UUID, NBTTagCompound> playerData = Maps.newConcurrentMap();
@@ -27,20 +31,22 @@ public class VanityFeatures {
         new Thread(() -> {
             Scanner sc = null;
             try {
-                URL url = new URL(CraftDevReference.VANITY_FEATURES_URL);
-                sc = new Scanner(url.openStream());
-                StringBuilder json = new StringBuilder();
-                while (sc.hasNextLine()) {
-                    json.append(sc.nextLine());
+                if (InetAddress.getByName("google.com") != null) { //check internet access first
+                    URL url = new URL(CraftDevReference.VANITY_FEATURES_URL);
+                    sc = new Scanner(url.openStream());
+                    StringBuilder json = new StringBuilder();
+                    while (sc.hasNextLine()) {
+                        json.append(sc.nextLine());
+                    }
+                    NBTTagCompound nbt = JsonToNBT.getTagFromJson(json.toString());
+                    NBTTagList playerList = nbt.getTagList("players", Constants.NBT.TAG_COMPOUND);
+                    for (int i = 0; i < playerList.tagCount(); i++) {
+                        NBTTagCompound tag = playerList.getCompoundTagAt(i);
+                        UUID uuid = UUID.fromString("uuid");
+                        playerData.put(uuid, tag);
+                    }
+                    //TODO read and write save file
                 }
-                NBTTagCompound nbt = JsonToNBT.getTagFromJson(json.toString());
-                NBTTagList playerList = nbt.getTagList("players", Constants.NBT.TAG_COMPOUND);
-                for (int i = 0; i < playerList.tagCount(); i++) {
-                    NBTTagCompound tag = playerList.getCompoundTagAt(i);
-                    UUID uuid = UUID.fromString("uuid");
-                    playerData.put(uuid, tag);
-                }
-                //TODO read and write save file
             }
             catch (Exception e) {
                 CraftDevCore.log.error("Exception reading vanity data, discarding data!");
