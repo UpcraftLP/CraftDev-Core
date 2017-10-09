@@ -36,7 +36,7 @@ public class RegistryUtils {
                     } else if (Block.class.isAssignableFrom(type)) {
                         Block block = (Block) entry;
                         block.setCreativeTab(tab);
-                        if (core.upcraftlp.craftdev.api.block.Block.class.isInstance(type)) {
+                        if (core.upcraftlp.craftdev.api.block.Block.class.isAssignableFrom(type)) {
                             final Item item = ((core.upcraftlp.craftdev.api.block.Block) block).item();
                             if(item != null) {
                                 GameRegistry.findRegistry(Item.class).register(item);
