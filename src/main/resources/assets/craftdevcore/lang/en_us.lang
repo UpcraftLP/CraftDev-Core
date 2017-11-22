@@ -1,7 +1,7 @@
 #PARSE_ESCAPES
 
 #general
-config.craftdevcore.name=CraftDev Core
+config.craftdevcore.title=CraftDev Core
 
 #commands
 commands.clearlag.usage=/clearlag [1-6]\n - 1:\n - 1: ALL entities\n - 2: all hostile mobs\n - 3: all items\n - 4: primed TNT\n - 5: all animals\n - 6: all bosses

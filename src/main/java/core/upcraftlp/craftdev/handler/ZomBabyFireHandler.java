@@ -23,7 +23,7 @@ public class ZomBabyFireHandler {
     
     @SubscribeEvent
     public static void onZomBabyUpdate(LivingUpdateEvent event) {
-        if(!CoreInternalConfig.zomBabiesBurn || ModHelper.getIsModLoaded("quark")) return;
+        if(!CoreInternalConfig.Tweaks.zomBabiesBurn || ModHelper.getIsModLoaded("quark")) return;
         if(event.getEntityLiving() instanceof EntityZombie) {
             EntityZombie zombie = (EntityZombie) event.getEntityLiving();
             World world = zombie.getEntityWorld();

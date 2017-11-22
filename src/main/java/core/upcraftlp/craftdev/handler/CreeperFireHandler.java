@@ -16,7 +16,7 @@ public class CreeperFireHandler {
     @SubscribeEvent
     public static void onBurningCreeper(LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if(CoreInternalConfig.burningCreepersExplode && entity.isBurning() && entity instanceof EntityCreeper) {
+        if(CoreInternalConfig.Tweaks.burningCreepersExplode && entity.isBurning() && entity instanceof EntityCreeper) {
             EntityCreeper creeper = (EntityCreeper) entity;
             if(!creeper.hasIgnited()) creeper.ignite();
         }

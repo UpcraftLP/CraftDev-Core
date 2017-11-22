@@ -56,8 +56,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void configChanged() {
         super.configChanged();
-        MobScaleHandler.scalePlayers = CoreInternalConfig.scalePlayers;
-        MobScaleHandler.scale = 1.0f - (CoreInternalConfig.mobScaleFactor * 0.2f); // hardcoded maximum of 0.8f
+        MobScaleHandler.scalePlayers = CoreInternalConfig.Client.scalePlayers;
+        MobScaleHandler.scale = (float) (1.0D - (CoreInternalConfig.Client.mobScaleFactor * 0.2D)); // hardcoded maximum of 0.8f
         Minecraft.getMinecraft().gameSettings.entityShadows = MobScaleHandler.scale == 1.0f; //disable shadows if the scale is active
     }
 

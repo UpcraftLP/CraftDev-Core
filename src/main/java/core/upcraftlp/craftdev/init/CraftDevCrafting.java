@@ -15,6 +15,6 @@ public class CraftDevCrafting {
          * [S S]
          * 3x3 crafting; s = ore:string.
          */
-        if(CoreInternalConfig.webCrafting) GameRegistry.addRecipe(new ShapedOreRecipe(Blocks.WEB, "S S", " S ", "S S", 'S', "string"));
+        if(CoreInternalConfig.Tweaks.webCrafting) GameRegistry.addRecipe(new ShapedOreRecipe(Blocks.WEB, "S S", " S ", "S S", 'S', "string"));
     }
 }

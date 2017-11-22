@@ -17,8 +17,7 @@ import java.io.File;
 public abstract class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
-        CoreInternalConfig.init(event);
-        final File structureDir = new File(ModHelper.getConfigDir(event), "strcutures");
+        final File structureDir = new File(ModHelper.getConfigDir(event), "structures");
         StructureLoaderNBT.setStructureDir(structureDir);
         StructureLoaderSchematic.setStructureDir(structureDir);
         CraftDevCrafting.init();

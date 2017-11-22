@@ -1,66 +1,67 @@
 package core.upcraftlp.craftdev.config;
 
-import core.upcraftlp.craftdev.api.util.ModHelper;
 import core.upcraftlp.craftdev.common.CraftDevCore;
 import core.upcraftlp.craftdev.common.CraftDevReference;
-import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import static core.upcraftlp.craftdev.api.config.ConfigHelper.Categories.*;
-
-@EventBusSubscriber(modid = CraftDevReference.MODID)
+@Config(name = "craftdevmods/core", modid = CraftDevReference.MODID)
+@Config.LangKey("config." + CraftDevReference.MODID + ".title")
 public class CoreInternalConfig {
 
-    public static Configuration config;
+    @Config.Comment("en/disable debug mode")
+    public static boolean isDebugMode = false;
 
-    public static boolean isDebugMode;
-    public static boolean chestBreaker;
-    public static boolean showAllDeaths;
-    public static boolean burningCreepersExplode;
-    public static boolean zomBabiesBurn;
-    public static boolean webCrafting;
+    @Config.Comment("announce beta updates in the update-checker")
+    public static boolean betaUpdates = false;
 
-    public static float mobScaleFactor;
-    public static boolean scalePlayers;
-    public static boolean betaUpdates;
+    @Config.Comment("various small tweaks")
+    public static Tweaks TWEAKS = new Tweaks();
 
-    public static void init(FMLPreInitializationEvent event) {
-        config = ModHelper.getConfigFile(event, "core", CraftDevReference.VERSION).setCategoryComment(CLIENT, "client-only tweaks").setCategoryComment(GENERAL, "general settings").setCategoryComment(TWEAKS, "various small tweaks");
-        config.load();
-        syncConfig();
+    @Config.Comment("client-only settings")
+    public static Client CLIENT = new Client();
+
+    public static class Tweaks {
+
+            @Config.Comment("false to prevent double chests from being destroyed as a single chest")
+            public static boolean chestBreaker = true;
+
+            @Config.Comment("show death messages of all living entities with custom name")
+            public static boolean showAllDeaths = true;
+
+            @Config.Comment("creepers explode when on fire")
+            public static boolean burningCreepersExplode = true;
+
+            @Config.Comment("fixes baby zombies not catching fire in sunlight. false to disable")
+            public static boolean zomBabiesBurn = true;
+
+            @Config.RequiresMcRestart
+            @Config.Comment("en/disbale crafting recipe for cobwebs")
+            public static boolean webCrafting = true;
+
     }
 
-    public static void syncConfig() {
-        /* Configuration Start */
+    public static class Client {
 
-        /* GENERAL */
-        isDebugMode = config.getBoolean("debug mode", GENERAL, false, "en/disable debug mode");
-        betaUpdates = config.getBoolean("announceBetaUpdates", GENERAL, false, "announce beta updates in the update-checker");
+        @Config.RangeDouble(min = 0.0D, max = 1.0D)
+        @Config.Comment("custom mob scale factor applied to all living entities (formula: 1.0 - (scale * 0.2f); 0.0 to disable, anything else will also turn entity shadows off); purely visual!")
+        public static double mobScaleFactor = 0.5F;
 
-        /* TWEAKS */
-        chestBreaker = config.getBoolean("chest breaker", TWEAKS, true, "false to prevent double chests from being destroyed as a single chest");
-        showAllDeaths = config.getBoolean("show custom deaths", TWEAKS, true, "show death messages of all living entities with custom name");
-        burningCreepersExplode = config.getBoolean("fiery creepers", TWEAKS, true, "creepers explode when on fire");
-        zomBabiesBurn = config.getBoolean("ZomBabies burn", TWEAKS, true, "fixes baby zombies not catching fire in sunlight. false to disable");
-        
-        webCrafting = config.getBoolean("web crafting", TWEAKS, true, "en/disbale crafting recipe for cobwebs; GAME MUST BE RESTARTED FOR THIS TO TAKE EFFECT");
-
-        /* CLIENT */
-        mobScaleFactor = config.getFloat("mob scale factor", CLIENT, 0.0f, 0.0f, 1.0f, "custom mob scale factor applied to all living entities (formula: 1.0 - (scale * 0.2f); 0.0 to disable, anything else will also turn entity shadows off); purely visual!");
-        scalePlayers = config.getBoolean("scale Playes", CLIENT, false, "enable/disable scaling for players. Will only take effect if mob scale factor > 0");
-        CraftDevCore.proxy.configChanged();
-
-        /* Configuration End */
-        if (config.hasChanged()) config.save();
+        @Config.Comment("enable/disable scaling for players. Will only take effect if mob scale factor > 0")
+        public static boolean scalePlayers = false;
     }
 
-    @SubscribeEvent
-    public static void configChanged(OnConfigChangedEvent event) {
-        if (event.getModID().equals(CraftDevReference.MODID)) {
-            syncConfig();
+    @EventBusSubscriber(modid = CraftDevReference.MODID)
+    public static class ConfigHandler {
+        @SubscribeEvent
+        public static void configChanged(OnConfigChangedEvent event) {
+            if (event.getModID().equals(CraftDevReference.MODID)) {
+                ConfigManager.sync(CraftDevReference.MODID, Config.Type.INSTANCE);
+            }
+            CraftDevCore.proxy.configChanged();
         }
     }
 
