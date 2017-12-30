@@ -20,7 +20,6 @@ build
 eclipse
 run
 
-gradle/wrapper/gradle-wrapper\.properties
 /classes/
 
 /src/test/
