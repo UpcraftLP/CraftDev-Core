@@ -30,7 +30,7 @@ else if(project.hasProperty('dev_username')) {
     username = "${project.dev_username}"
 }
 
-version = "${project.minecraft_version}-${project.mod_version}"
+version = "${project.mc_version}-${project.mod_version}"
 group= project.base_package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.mod_name
 
@@ -64,7 +64,7 @@ repositories {
 }
 
 minecraft {
-    version = "${project.minecraft_version}-${project.forge_version}"
+    version = "${project.mc_version}-${project.forge_version}"
     if(file('../run').exists()) {
 		runDir = "../run"
 	}
@@ -120,7 +120,7 @@ jar {
             "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
             "Implementation-Title": project.name,
             "Implementation-Version": project.version,
-            "Built-On": "${minecraft_version}-${forge_version}",
+            "Built-On": "${mc_version}-${forge_version}",
             "FMLCorePlugin": "core.upcraftlp.craftdev.asm.CraftDevLoadingPlugin",
             "FMLCorePluginContainsFMLMod": "true",
             "FMLAT": "${project.mod_name}_at.cfg"
@@ -152,7 +152,7 @@ if (JavaVersion.current().isJava8Compatible()) {
 dependencies {
 
     // at runtime, use the full JEI jar (no build dependency, this is for testing purposes ONLY!
-    runtime "mezz.jei:jei_${project.minecraft_version}:${project.jei_version}"
+    runtime "mezz.jei:jei_${project.mc_version}:${project.jei_version}"
     tasks.build.dependsOn javadoc, javadocJar, apiJar, signJar, deobfJar
     tasks.curseforge.dependsOn build
 }
@@ -219,7 +219,7 @@ curseforge {
             addGameVersion '1.12.2'
 
             mainArtifact(jar) {
-                displayName = "CraftDev-Core v${project.mod_version} MC${minecraft_version}"
+                displayName = "CraftDev-Core v${project.mod_version} MC${mc_version}"
             }
         }
     }
