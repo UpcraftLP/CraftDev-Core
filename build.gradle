@@ -55,6 +55,12 @@ repositories {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
     }
+
+    maven {
+        //get dependencies from github
+        name = "JitPack"
+        url = "https://jitpack.io"
+    }
 }
 
 minecraft {
@@ -71,7 +77,8 @@ minecraft {
     makeObfSourceJar = true
 	
     replace "@VERSION@", project.mod_version
-    replace "@FINGERPRINTKEY@", "${project.public_key}".replace(":", "").toLowerCase(Locale.ROOT)
+    def fingerPrintKey = project.hasProperty('public_key') ? findProperty('public_key').replace(":", "").toLowerCase(Locale.ROOT) : "undefined"
+    replace "@FINGERPRINTKEY@", fingerPrintKey
     replaceIn "core/upcraftlp/craftdev/common/CraftDevReference.java"
 
     clientRunArgs += "--username=${username}"
@@ -121,13 +128,15 @@ jar {
 }
 
 //sign Jar
-task signJar(type: SignJar) {
-    if(project.hasProperty('sign_keyStore')) {
-        keyPass = "${sign_keyPass}"
-        keyStore = "${sign_keyStore}"
-        storePass = "${sign_storePass}"
-        alias = "${sign_alias}"
+task signJar(type: SignJar, dependsOn: reobfJar) {
+    onlyIf {
+        project.hasProperty('sign_keyStore')
     }
+    keyPass = findProperty('sign_keyPass')
+    keyStore = findProperty('sign_keyStore')
+    storePass = findProperty('sign_storePass')
+    alias = findProperty('sign_alias')
+
     inputFile = jar.archivePath
     outputFile = jar.archivePath
 }
@@ -190,21 +199,28 @@ curseforge {
     if (project.hasProperty('curse_key'))
         apiKey = project.curse_key
 
-    project {
-        id = "${project.curse_id}"
-        changelogType = 'markdown'
-        changelog = getChangelogText()
-        releaseType = 'release'
 
-        //relations curseRelations //TODO uncomment this when adding curse relations
+    if(project.hasProperty('curse_id')) {
+        project {
+            id = project.curse_id
+            changelogType = 'markdown'
+            changelog = getChangelogText()
+            releaseType = project.release_type
 
-        addArtifact javadocJar
-        addArtifact sourceJar
-        addArtifact apiJar
-        addArtifact deobfJar
+            //relations curseRelations //TODO uncomment this when adding curse relations
 
-        mainArtifact(jar) {
-            displayName = "CraftDev-Core v${project.mod_version} MC${minecraft_version}"
+            //no such jars for now
+            //addArtifact javadocJar
+            //addArtifact sourceJar
+            //addArtifact apiJar
+
+            addGameVersion '1.12'
+            addGameVersion '1.12.1'
+            addGameVersion '1.12.2'
+
+            mainArtifact(jar) {
+                displayName = "CraftDev-Core v${project.mod_version} MC${minecraft_version}"
+            }
         }
     }
 }
