@@ -141,6 +141,12 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
     outputFile = jar.archivePath
 }
 
+artifacts {
+    archives javadocJar
+    archives deobfJar
+    archives apiJar
+}
+
 if (JavaVersion.current().isJava8Compatible()) {
     allprojects {
         tasks.withType(Javadoc) {
