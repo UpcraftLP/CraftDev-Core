@@ -30,7 +30,7 @@ else if(project.hasProperty('dev_username')) {
 }
 
 version = "${project.mc_version}-${project.mod_version}"
-group= project.base_package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group= project.maven_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.mod_name
 
 sourceCompatibility = targetCompatibility = project.jvm_version // Need this here so eclipse task generates correctly.
